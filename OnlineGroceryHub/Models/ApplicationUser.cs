@@ -1,6 +1,8 @@
-﻿namespace OnlineGroceryHub.Models
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace OnlineGroceryHub.Models
 {
-    public class ApplicationUser
+    public class ApplicationUser : IdentityUser
     {
         public string FirstName { get; set; } = null!;
     }
