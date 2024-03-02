@@ -31,7 +31,7 @@ namespace OnlineGroceryHub.Infrastructure.Data.Models
         public decimal Price { get; set; }
 
         [Comment("Product expiration date")]
-        public DateOnly? ExpirationDate { get; set; }
+        public DateTime? ExpirationDate { get; set; }
 
         [Required]
         [Comment("Product image")]
@@ -45,5 +45,11 @@ namespace OnlineGroceryHub.Infrastructure.Data.Models
         [Comment("Product category")]
         public int CategoryId { get; set; }
         public Category Category { get; set; } = null!;
+
+        [Required]
+        [ForeignKey(nameof(SubCategoryId))]
+        [Comment("Product subcategory")]
+        public int SubCategoryId { get; set; }
+        public SubCategory SubCategory { get; set; } = null!;
     }
 }

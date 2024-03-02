@@ -19,5 +19,11 @@ namespace OnlineGroceryHub.Infrastructure.Constants
             public const int NameMaxLength = 150;
             public const int DescriptionMaxLength = 500;
         }
+
+        public static class SubCategory
+        {
+            public const int NameMaxLength = 50;
+
+        }
     }
 }

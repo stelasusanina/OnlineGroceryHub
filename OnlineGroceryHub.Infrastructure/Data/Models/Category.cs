@@ -7,15 +7,12 @@ namespace OnlineGroceryHub.Infrastructure.Data.Models
     public class Category
     {
         [Key]
-        [Comment("Product identifier")]
+        [Comment("Category identifier")]
         public int Id { get; set; }
 
         [Required]
         [MaxLength(Constants.DataConstants.Category.NameMaxLength)]
         [Comment("Category name")]
         public string Name { get; set; } = null!;
-
-        [Comment("List of all the products in the category")]
-        public IEnumerable<Product> Products { get; set;} = new List<Product>();
     }
 }
