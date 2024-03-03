@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using OnlineGroceryHub.Infrastructure.Data.Models;
+using OnlineGroceryHub.Infrastructure.Data.SeedDb;
 using OnlineGroceryHub.Models;
 using System.Reflection.Emit;
 
@@ -19,6 +20,10 @@ namespace OnlineGroceryHub.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.ApplyConfiguration(new CategoryConfiguration());
+            builder.ApplyConfiguration(new SubCategoryConfiguration());
+            builder.ApplyConfiguration(new ProductConfiguration());
+
             builder.Entity<Product>()
                 .Property(p => p.Price)
                 .HasPrecision(18, 2);
