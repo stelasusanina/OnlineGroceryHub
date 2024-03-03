@@ -179,6 +179,43 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                     b.ToTable("Categories");
 
                     b.HasComment("Product category");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 3,
+                            Name = "Dairy"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Frozen"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Vegetables"
+                        },
+                        new
+                        {
+                            Id = 1,
+                            Name = "Fruits"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Drinks"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Packaged Foods"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Meat and Fish"
+                        });
                 });
 
             modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.Product", b =>
@@ -235,6 +272,44 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                     b.ToTable("Products");
 
                     b.HasComment("Product model");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 3,
+                            Description = "In the development of our recipe, we were inspired by a unique taste profile born back 800 years ago in the small Cheddar village in the UK. Right there, in the caves, close to nature, an exclusive taste palette was born – rich, mellow and slightly salty. It conquered the world.",
+                            ExpirationDate = new DateTime(2025, 2, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ImageUrl = "https://i0.wp.com/packagingoftheworld.com/wp-content/uploads/2023/12/02_LIVITY_3.jpg?fit=1181%2C1181&ssl=1",
+                            Name = "Rice Chips Livity Cheddar with Tomato Chutney Sauce",
+                            Origin = "Bulgaria",
+                            Price = 1.99m,
+                            Quantity = 0.059999999999999998,
+                            SubCategoryId = 7
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Ingredients: 60% Robusta and 40% Arabica; Intensity: 8/10",
+                            ExpirationDate = new DateTime(2025, 8, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ImageUrl = "https://i0.wp.com/avanti-bg.com/wp-content/uploads/2020/09/%D0%9A%D0%90%D0%A4%D0%95-%D0%9B%D0%90%D0%92%D0%90%D0%A6%D0%90-%D0%9A%D0%A0%D0%95%D0%9C%D0%90-%D0%90%D0%A0%D0%9E%D0%9C%D0%90-1%D0%9A%D0%93.jpg?fit=1500%2C1500&ssl=1",
+                            Name = "Coffee Lavazza Crema e Aroma Grains",
+                            Origin = "Poland",
+                            Price = 30.99m,
+                            Quantity = 1.0,
+                            SubCategoryId = 5
+                        },
+                        new
+                        {
+                            Id = 1,
+                            Description = "\"Dimitar Madjarov\" cheeses are traditional Bulgarian products, produced from 100% cow, sheep, goat and buffalo milk and Bulgarian sourdough, with a characteristic pale yellow color, well-expressed aroma and mild taste.",
+                            ExpirationDate = new DateTime(2024, 8, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ImageUrl = "https://cdncloudcart.com/16398/products/images/39837/kaskaval-ot-krave-mlako-madzarov-bds-420-g-image_5ea2d3e81638e_1280x1280.png?1587732297",
+                            Name = "Yellow Cheese Madjarov BDS from Cow Milk",
+                            Origin = "Bulgaria",
+                            Price = 12.99m,
+                            Quantity = 0.38,
+                            SubCategoryId = 3
+                        });
                 });
 
             modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.SubCategory", b =>
@@ -263,6 +338,50 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                     b.ToTable("SubCategories");
 
                     b.HasComment("Product subcategory");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 5,
+                            CategoryId = 5,
+                            Name = "Coffee"
+                        },
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            Name = "Apples"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CategoryId = 6,
+                            Name = "Chicken"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 3,
+                            Name = "Cheese"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CategoryId = 7,
+                            Name = "Snacks"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryId = 4,
+                            Name = "Frozen Meat"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 2,
+                            Name = "Cucumbers"
+                        });
                 });
 
             modelBuilder.Entity("OnlineGroceryHub.Models.ApplicationUser", b =>

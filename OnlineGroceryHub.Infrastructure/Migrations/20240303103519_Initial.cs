@@ -28,6 +28,7 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -202,7 +203,7 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                     ExpirationDate = table.Column<DateTime>(type: "datetime2", nullable: true, comment: "Product expiration date"),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "Product image"),
                     Origin = table.Column<string>(type: "nvarchar(max)", nullable: true, comment: "Product origin"),
-                    SubCategoryId = table.Column<int>(type: "int", nullable: true)
+                    SubCategoryId = table.Column<int>(type: "int", nullable: false, comment: "Product subcategory")
                 },
                 constraints: table =>
                 {
@@ -211,9 +212,53 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                         name: "FK_Products_SubCategories_SubCategoryId",
                         column: x => x.SubCategoryId,
                         principalTable: "SubCategories",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 },
                 comment: "Product model");
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Fruits" },
+                    { 2, "Vegetables" },
+                    { 3, "Dairy" },
+                    { 4, "Frozen" },
+                    { 5, "Drinks" },
+                    { 6, "Meat and Fish" },
+                    { 7, "Packaged Foods" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "SubCategories",
+                columns: new[] { "Id", "CategoryId", "Name" },
+                values: new object[,]
+                {
+                    { 1, 1, "Apples" },
+                    { 2, 2, "Cucumbers" },
+                    { 3, 3, "Cheese" },
+                    { 4, 4, "Frozen Meat" },
+                    { 5, 5, "Coffee" },
+                    { 6, 6, "Chicken" },
+                    { 7, 7, "Snacks" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "Description", "ExpirationDate", "ImageUrl", "Name", "Origin", "Price", "Quantity", "SubCategoryId" },
+                values: new object[] { 1, "\"Dimitar Madjarov\" cheeses are traditional Bulgarian products, produced from 100% cow, sheep, goat and buffalo milk and Bulgarian sourdough, with a characteristic pale yellow color, well-expressed aroma and mild taste.", new DateTime(2024, 8, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), "https://cdncloudcart.com/16398/products/images/39837/kaskaval-ot-krave-mlako-madzarov-bds-420-g-image_5ea2d3e81638e_1280x1280.png?1587732297", "Yellow Cheese Madjarov BDS from Cow Milk", "Bulgaria", 12.99m, 0.38, 3 });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "Description", "ExpirationDate", "ImageUrl", "Name", "Origin", "Price", "Quantity", "SubCategoryId" },
+                values: new object[] { 2, "Ingredients: 60% Robusta and 40% Arabica; Intensity: 8/10", new DateTime(2025, 8, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "https://i0.wp.com/avanti-bg.com/wp-content/uploads/2020/09/%D0%9A%D0%90%D0%A4%D0%95-%D0%9B%D0%90%D0%92%D0%90%D0%A6%D0%90-%D0%9A%D0%A0%D0%95%D0%9C%D0%90-%D0%90%D0%A0%D0%9E%D0%9C%D0%90-1%D0%9A%D0%93.jpg?fit=1500%2C1500&ssl=1", "Coffee Lavazza Crema e Aroma Grains", "Poland", 30.99m, 1.0, 5 });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "Description", "ExpirationDate", "ImageUrl", "Name", "Origin", "Price", "Quantity", "SubCategoryId" },
+                values: new object[] { 3, "In the development of our recipe, we were inspired by a unique taste profile born back 800 years ago in the small Cheddar village in the UK. Right there, in the caves, close to nature, an exclusive taste palette was born – rich, mellow and slightly salty. It conquered the world.", new DateTime(2025, 2, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "https://i0.wp.com/packagingoftheworld.com/wp-content/uploads/2023/12/02_LIVITY_3.jpg?fit=1181%2C1181&ssl=1", "Rice Chips Livity Cheddar with Tomato Chutney Sauce", "Bulgaria", 1.99m, 0.059999999999999998, 7 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
