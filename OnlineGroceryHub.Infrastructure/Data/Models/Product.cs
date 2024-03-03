@@ -41,12 +41,6 @@ namespace OnlineGroceryHub.Infrastructure.Data.Models
         public string? Origin { get; set; }
 
         [Required]
-        [ForeignKey(nameof(CategoryId))]
-        [Comment("Product category")]
-        public int CategoryId { get; set; }
-        public Category Category { get; set; } = null!;
-
-        [Required]
         [ForeignKey(nameof(SubCategoryId))]
         [Comment("Product subcategory")]
         public int SubCategoryId { get; set; }
