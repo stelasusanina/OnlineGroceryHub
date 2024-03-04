@@ -36,4 +36,8 @@
     <ProjectReference Include="..\OnlineGroceryHub.Infrastructure\OnlineGroceryHub.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\NewFolder\" />
+  </ItemGroup>
+
 </Project>
