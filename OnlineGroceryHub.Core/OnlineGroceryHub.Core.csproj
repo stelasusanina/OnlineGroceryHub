@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineGroceryHub.Infrastructure\OnlineGroceryHub.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
