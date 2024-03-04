@@ -9,6 +9,6 @@ namespace OnlineGroceryHub.Core.Contracts
 {
     public interface IProductService
     {
-        Task<List<ProductDTO>> GetAllProducts();
+        Task<List<ShortProductDTO>> GetAllProducts();
     }
 }

@@ -11,11 +11,11 @@ namespace OnlineGroceryHub.Core.Models
 {
     public class ProductsViewModel
     {
-        public ProductsViewModel(List<ProductDTO> products)
+        public ProductsViewModel(List<ShortProductDTO> products)
         {
             this.Products = products;
         }
 
-        public List<ProductDTO> Products  { get; set; }
+        public List<ShortProductDTO> Products  { get; set; }
     }
 }

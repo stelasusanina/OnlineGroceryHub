@@ -14,10 +14,10 @@ namespace OnlineGroceryHub.Core.Services
             this.context = context;
         }
 
-        public async Task<List<ProductDTO>> GetAllProducts ()
+        public async Task<List<ShortProductDTO>> GetAllProducts ()
         {
             var products = await context.Products
-                .Select(p => new ProductDTO
+                .Select(p => new ShortProductDTO
                 {
                     Id = p.Id,
                     Name = p.Name,

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OnlineGroceryHub.Core.Models
 {
-    public class ProductDTO
+    public class ShortProductDTO
     {
         public int Id { get; set; }
         public string Name { get; set; } = null!;
