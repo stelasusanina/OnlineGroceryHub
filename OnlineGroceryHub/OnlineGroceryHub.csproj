@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OnlineGroceryHub.Core\OnlineGroceryHub.Core.csproj" />
     <ProjectReference Include="..\OnlineGroceryHub.Infrastructure\OnlineGroceryHub.Infrastructure.csproj" />
   </ItemGroup>
 
