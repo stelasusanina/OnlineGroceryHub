@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OnlineGroceryHub.Core.Contracts;
 using OnlineGroceryHub.Core.Models;
 using OnlineGroceryHub.Models;
@@ -6,7 +7,7 @@ using System.Diagnostics;
 
 namespace OnlineGroceryHub.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> logger;
         private readonly IProductService productService;
@@ -17,11 +18,10 @@ namespace OnlineGroceryHub.Controllers
             productService = _productService;
         }
 
-        public async Task<IActionResult> Index()
+        [AllowAnonymous]
+        public IActionResult Index()
         {
-            var products = await productService.GetAllProducts();
-            var viewModel = new ProductsViewModel(products);
-            return View(viewModel);
+            return View();
         }
 
         public IActionResult Privacy()
