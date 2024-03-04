@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OnlineGroceryHub.Core.Contracts;
+using OnlineGroceryHub.Core.Models;
 using OnlineGroceryHub.Models;
 using System.Diagnostics;
 
@@ -6,16 +8,20 @@ namespace OnlineGroceryHub.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<HomeController> logger;
+        private readonly IProductService productService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> _logger, IProductService _productService)
         {
-            _logger = logger;
+            logger = _logger;
+            productService = _productService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var products = await productService.GetAllProducts();
+            var viewModel = new ProductsViewModel(products);
+            return View(viewModel);
         }
 
         public IActionResult Privacy()
