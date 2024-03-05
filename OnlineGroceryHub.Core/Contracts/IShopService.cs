@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace OnlineGroceryHub.Core.Contracts
 {
-    public interface IProductService
+    public interface IShopService
     {
-
+        Task<List<ShortProductDTO>> GetAllProducts();
+        Task<IEnumerable<string>> GetAllSubCategories();
     }
 }

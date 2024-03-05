@@ -8,15 +8,15 @@ namespace OnlineGroceryHub.Controllers
 {
     public class ShopController : BaseController
     {
-        private readonly IProductService productService;
+        private readonly IShopService shopService;
 
-        public ShopController(IProductService _productService)
+        public ShopController(IShopService _shopService)
         {
-            productService = _productService;
+            shopService = _shopService;
         }
         public async Task<IActionResult> GetAllProducts()
         {
-            var products = await productService.GetAllProducts();
+            var products = await shopService.GetAllProducts();
             var viewModel = new ProductsViewModel(products);
             return View(viewModel);
         }

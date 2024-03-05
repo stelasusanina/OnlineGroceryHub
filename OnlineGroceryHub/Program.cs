@@ -13,6 +13,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IShopService, ShopService>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
