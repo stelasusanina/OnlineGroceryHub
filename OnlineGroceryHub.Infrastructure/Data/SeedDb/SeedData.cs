@@ -173,7 +173,7 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
                 Quantity = 0.06,
                 Price = 1.99M,
                 ExpirationDate = expirationDate3,
-                ImageUrl = "https://i0.wp.com/packagingoftheworld.com/wp-content/uploads/2023/12/02_LIVITY_3.jpg?fit=1181%2C1181&ssl=1",
+                ImageUrl = "https://www.ebag.bg/en/products/images/133238/200/webp",
                 Origin = "Bulgaria",
                 SubCategoryId = 7
             };
