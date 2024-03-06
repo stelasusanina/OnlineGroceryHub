@@ -14,6 +14,17 @@
         </div>
     </div>
 
+    <form asp-controller="Shop" asp-action="GetAllProducts">
+        <div class="row">
+            <div class="col-md-8">
+                <input name="term" class="form-control" placeholder="Search by name" />
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-info">Search</button>
+            </div>
+        </div>
+    </form>
+
     <section class="ftco-section">
         <div class="container">
             <div class="row justify-content-center">

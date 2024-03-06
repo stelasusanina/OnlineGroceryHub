@@ -9,7 +9,7 @@ namespace OnlineGroceryHub.Core.Contracts
 {
     public interface IShopService
     {
-        Task<List<ShortProductDTO>> GetAllProducts();
+        Task<List<ShortProductDTO>> GetAllProducts(string searchTerm);
         Task<IEnumerable<string>> GetAllSubCategories();
     }
 }

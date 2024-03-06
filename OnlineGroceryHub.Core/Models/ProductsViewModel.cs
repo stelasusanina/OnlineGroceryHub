@@ -17,5 +17,6 @@ namespace OnlineGroceryHub.Core.Models
         }
 
         public List<ShortProductDTO> Products  { get; set; }
+        public string SearchTerm { get; set; }
     }
 }
