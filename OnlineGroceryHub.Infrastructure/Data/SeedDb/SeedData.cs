@@ -173,6 +173,7 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
                 Quantity = 0.06,
                 Price = 1.99M,
                 ExpirationDate = expirationDate3,
+                Discount = 15,
                 ImageUrl = "https://www.ebag.bg/en/products/images/133238/200/webp",
                 Origin = "Bulgaria",
                 SubCategoryId = 7

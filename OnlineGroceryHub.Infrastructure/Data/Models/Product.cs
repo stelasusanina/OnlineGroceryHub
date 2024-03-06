@@ -30,6 +30,9 @@ namespace OnlineGroceryHub.Infrastructure.Data.Models
         [Comment("Product price")]
         public decimal Price { get; set; }
 
+        [Comment("Product discount")]
+        public int? Discount { get; set; }
+
         [Comment("Product expiration date")]
         public DateTime? ExpirationDate { get; set; }
 
