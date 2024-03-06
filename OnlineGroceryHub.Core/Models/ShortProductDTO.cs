@@ -16,5 +16,6 @@ namespace OnlineGroceryHub.Core.Models
         public double Quantity { get; set; }
         public decimal Price { get; set; }
         public string ImageUrl { get; set; } = null!;
+        public int Discount {  get; set; }
     }
 }
