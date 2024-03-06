@@ -21,19 +21,32 @@ namespace OnlineGroceryHub.Core.Services
 
         public async Task<List<ShortProductDTO>> GetAllProducts(string searchTerm = "")
         {
-            searchTerm = searchTerm.ToLower();
+            var products = await context.Products.ToListAsync();
 
-            var products = await context.Products
-                .Where(product => string.IsNullOrEmpty(searchTerm) || product.Name.ToLower().Contains(searchTerm))
-                .Select(product => new ShortProductDTO
-                {
-                    Id = product.Id,
-                    Name = product.Name,
-                    Price = product.Price
-                })
-                .ToListAsync();
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                return products
+                    .Where(product => product.Name.ToLower().Contains(searchTerm.ToLower()))
+                    .Select(product => new ShortProductDTO
+                    {
+                        Id = product.Id,
+                        Name = product.Name,
+                        Price = product.Price,
+                        Quantity = product.Quantity,
+                        ImageUrl = product.ImageUrl
+                    })
+                    .ToList();
+            }
 
-            return products;
+            return products.Select(product => new ShortProductDTO
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Price = product.Price,
+                Quantity = product.Quantity,
+                ImageUrl = product.ImageUrl
+            })
+            .ToList();
         }
 
         public async Task<IEnumerable<string>> GetAllSubCategories()

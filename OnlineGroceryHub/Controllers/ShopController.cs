@@ -14,12 +14,12 @@ namespace OnlineGroceryHub.Controllers
         {
             shopService = _shopService;
         }
-        public async Task<IActionResult> GetAllProducts(string term = "")
+        public async Task<IActionResult> GetAllProducts([FromQuery] string searchTerm)
         {
-            var products = await shopService.GetAllProducts(term);
+            var products = await shopService.GetAllProducts(searchTerm);
             var viewModel = new ProductsViewModel(products)
             {
-                SearchTerm = term
+                SearchTerm = searchTerm
             };
             return View(viewModel);
         }
