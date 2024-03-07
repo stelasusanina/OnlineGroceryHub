@@ -168,7 +168,7 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
             RiceChips = new Product()
             {
                 Id = 3,
-                Name = "Rice Chips Livity Cheddar with Tomato Chutney Sauce",
+                Name = "Rice Chips Livity Cheddar",
                 Description = "In the development of our recipe, we were inspired by a unique taste profile born back 800 years ago in the small Cheddar village in the UK. Right there, in the caves, close to nature, an exclusive taste palette was born – rich, mellow and slightly salty. It conquered the world.",
                 Quantity = 0.06,
                 Price = 1.99M,

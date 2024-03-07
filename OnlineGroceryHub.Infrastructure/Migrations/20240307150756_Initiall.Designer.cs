@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineGroceryHub.Data;
 
@@ -11,9 +12,10 @@ using OnlineGroceryHub.Data;
 namespace OnlineGroceryHub.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240307150756_Initiall")]
+    partial class Initiall
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -285,7 +287,7 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                             Discount = 15,
                             ExpirationDate = new DateTime(2025, 2, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "https://www.ebag.bg/en/products/images/133238/200/webp",
-                            Name = "Rice Chips Livity Cheddar",
+                            Name = "Rice Chips Livity Cheddar with Tomato Chutney Sauce",
                             Origin = "Bulgaria",
                             Price = 1.99m,
                             Quantity = 0.059999999999999998,
