@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OnlineGroceryHub.Infrastructure.Data.Models;
 
 namespace OnlineGroceryHub.Core.Models
 {
@@ -18,5 +19,6 @@ namespace OnlineGroceryHub.Core.Models
 
         public List<ShortProductDTO> Products  { get; set; }
         public string SearchTerm { get; set; }
+        public ProductSorting Sorting { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using OnlineGroceryHub.Core.Contracts;
 using OnlineGroceryHub.Core.Models;
 using OnlineGroceryHub.Core.Services;
+using OnlineGroceryHub.Infrastructure.Data.Models;
 
 namespace OnlineGroceryHub.Controllers
 {
@@ -14,12 +15,13 @@ namespace OnlineGroceryHub.Controllers
         {
             shopService = _shopService;
         }
-        public async Task<IActionResult> GetAllProducts([FromQuery] string searchTerm)
+        public async Task<IActionResult> GetAllProducts([FromQuery] string searchTerm, [FromQuery] ProductSorting sorting = ProductSorting.AscendingByPrice)
         {
-            var products = await shopService.GetAllProducts(searchTerm);
+            var products = await shopService.GetAllProducts(searchTerm, sorting);
             var viewModel = new ProductsViewModel(products)
             {
-                SearchTerm = searchTerm
+                SearchTerm = searchTerm,
+                Sorting = sorting   
             };
             return View(viewModel);
         }

@@ -2,6 +2,7 @@
 using OnlineGroceryHub.Core.Contracts;
 using OnlineGroceryHub.Core.Models;
 using OnlineGroceryHub.Data;
+using OnlineGroceryHub.Infrastructure.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace OnlineGroceryHub.Core.Services
             this.context = context;
         }
 
-        public async Task<List<ShortProductDTO>> GetAllProducts(string searchTerm = "")
+        public async Task<List<ShortProductDTO>> GetAllProducts(string searchTerm = "", ProductSorting sorting = ProductSorting.AscendingByPrice)
         {
             var products = await context.Products.ToListAsync();
 
@@ -39,6 +40,18 @@ namespace OnlineGroceryHub.Core.Services
                     .ToList();
             }
 
+            products = sorting switch
+            {
+                ProductSorting.AscendingByPrice => products
+                    .OrderBy(p => p.Price).ToList(),
+                ProductSorting.DescendingByPrice => products
+                    .OrderByDescending(p => p.Price).ToList(),
+                ProductSorting.AscendingByName => products
+                    .OrderBy(p => p.Name).ToList(),
+                ProductSorting.DescendingByName => products
+                    .OrderByDescending(p => p.Name).ToList()
+            };
+
             return products.Select(product => new ShortProductDTO
             {
                 Id = product.Id,
@@ -49,6 +62,7 @@ namespace OnlineGroceryHub.Core.Services
                 Discount = product.Discount
             })
             .ToList();
+
         }
 
         public async Task<IEnumerable<string>> GetAllSubCategories()
