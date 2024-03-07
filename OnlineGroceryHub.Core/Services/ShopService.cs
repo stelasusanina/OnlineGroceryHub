@@ -33,7 +33,8 @@ namespace OnlineGroceryHub.Core.Services
                         Name = product.Name,
                         Price = product.Price,
                         Quantity = product.Quantity,
-                        ImageUrl = product.ImageUrl
+                        ImageUrl = product.ImageUrl,
+                        Discount = product.Discount
                     })
                     .ToList();
             }
@@ -44,7 +45,8 @@ namespace OnlineGroceryHub.Core.Services
                 Name = product.Name,
                 Price = product.Price,
                 Quantity = product.Quantity,
-                ImageUrl = product.ImageUrl
+                ImageUrl = product.ImageUrl,
+                Discount = product.Discount
             })
             .ToList();
         }
