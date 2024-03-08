@@ -15,13 +15,18 @@ namespace OnlineGroceryHub.Controllers
         {
             shopService = _shopService;
         }
-        public async Task<IActionResult> GetAllProducts([FromQuery] string searchTerm, [FromQuery] ProductSorting sorting = ProductSorting.AscendingByPrice)
+        public async Task<IActionResult> GetAllProducts([FromQuery] string searchTerm,
+            [FromQuery] int totalProductsCount,
+            [FromQuery] int currentPage,
+            [FromQuery] ProductSorting sorting = ProductSorting.AscendingByPrice)
         {
-            var products = await shopService.GetAllProducts(searchTerm, sorting);
+            var products = await shopService.GetAllProducts(searchTerm, sorting, currentPage, ProductsViewModel.ProductsPerPage);
             var viewModel = new ProductsViewModel(products)
             {
                 SearchTerm = searchTerm,
-                Sorting = sorting   
+                Sorting = sorting,
+                CurrentPage = currentPage,
+                TotalProductsCount = totalProductsCount
             };
             return View(viewModel);
         }

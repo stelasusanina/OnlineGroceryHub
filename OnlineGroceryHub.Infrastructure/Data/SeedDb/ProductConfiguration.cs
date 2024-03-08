@@ -16,7 +16,19 @@ namespace OnlineGroceryHub.Infrastructure.Data.SeedDb
         {
             var data = new SeedData();
 
-            builder.HasData(new Product[] { data.RiceChips, data.CoffeeLavazza, data.CheeseMadzharov });
+            builder.HasData(new Product[] 
+            { 
+                data.RiceChips, 
+                data.CoffeeLavazza, 
+                data.CheeseMadzharov ,
+                data.ApplesGala,
+                data.Bruschette,
+                data.CheeseHarmonica,
+                data.ChickenRoso,
+                data.CoffeeNescafe,
+                data.CucumbersGr,
+                data.SticksScala
+            });
         }
     }
 }

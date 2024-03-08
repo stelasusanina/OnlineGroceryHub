@@ -1,4 +1,7 @@
 ﻿@model ProductsViewModel
+@{
+    int totalPages = (int)Math.Ceiling((double)Model.TotalProductsCount / 6);
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -119,18 +122,16 @@
             <div class="row mt-5">
                 <div class="col text-center">
                     <div class="block-27">
-                        <ul>
-                            <li><a href="#">&lt;</a></li>
-                            <li class="active"><span>1</span></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">&gt;</a></li>
-                        </ul>
+                        <div>
+                            @for (int i = 1; i <= totalPages; i++)
+                            {
+                                <a asp-action="GetAllProducts" asp-route-page="@i">@i</a>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 </body>

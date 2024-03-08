@@ -28,6 +28,13 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
         public Product CheeseMadzharov {  get; set; }
         public Product CoffeeLavazza { get; set; }
         public Product RiceChips { get; set; }
+        public Product CheeseHarmonica { get; set; }
+        public Product Bruschette { get; set; }
+        public Product ApplesGala {  get; set; }
+        public Product CoffeeNescafe {  get; set; }
+        public Product ChickenRoso { get; set; }
+        public Product SticksScala {  get; set; }
+        public Product CucumbersGr { get; set; }
 
         public SeedData()
         {
@@ -138,6 +145,11 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
             DateTime expirationDate1 = new DateTime(2024, 08, 29);
             DateTime expirationDate2 = new DateTime(2025, 08, 30);
             DateTime expirationDate3 = new DateTime(2025, 02, 08);
+            DateTime expirationDate4 = new DateTime(2024, 10, 21);
+            DateTime expirationDate5 = new DateTime(2025, 02, 02);
+            DateTime expirationDate6 = new DateTime(2025, 12, 30);
+            DateTime expirationDate7 = new DateTime(2024, 04, 26);
+            DateTime expirationDate8 = new DateTime(2024, 09, 27);
 
             CheeseMadzharov = new Product()
             {
@@ -178,6 +190,98 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
                 Origin = "Bulgaria",
                 SubCategoryId = 7
             };
+
+            CheeseHarmonica = new Product()
+            {
+                Id = 4,
+                Name = "Organic Cow Cheese Harmonica",
+                Description = "Prepare it with natural fresh whole milk and without taking away any ingredients. The cheese thus acquires a specific taste. The traditional Bulgarian cultures of Lactobacilus bulgaricus and Streptococcus thermophilus are used for the starter, and this also adds probiotic properties. The cheese contains huge amounts of protein, also the very useful fatty acids that are characteristic of the milk of the pasture cows.",
+                Quantity = 0.4,
+                Price = 12.99M,
+                ExpirationDate = expirationDate4,
+                ImageUrl = "https://production.balevbiomarket-contents.com/p/020022/sirene-ot-krave-mlqko-zoom.jpeg",
+                Origin = "Bulgaria",
+                SubCategoryId = 3
+            };
+
+            Bruschette = new Product()
+            {
+                Id = 5,
+                Name = "Bruschette Maretti Cream & Onion",
+                Description = "Maretti are crispy and delicious oven baked bite-size chips offered in variety of rich flavors with Mediterranean twist. Our Bruschette style chips are oven baked in small batches and are made in traditional Bruschette style with two sides of taste – Both good. Only one side seasoned – that gives you a choice how to eat it – spices down for more intensive taste and spices up for delicate taste.",
+                Quantity = 0.07,
+                Price = 1.49M,
+                Discount = 5,
+                ExpirationDate = expirationDate5,
+                ImageUrl = "https://www.superbagplovdiv.bg/media/99/27815.png",
+                Origin = "Bulgaria",
+                SubCategoryId = 7
+            };
+
+            ApplesGala = new Product()
+            {
+                Id = 6,
+                Name = "Apples Gala",
+                Description = "Apples Gala",
+                Quantity = 1,
+                Price = 3.29M,
+                ImageUrl = "https://i5.walmartimages.com/asr/c16b1c2d-6fc9-42c3-865f-575b2dcacb05.b3094ff47e723cb532823dbf849c95a7.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
+                Origin = "Bulgaria",
+                SubCategoryId = 1
+            };
+
+            CoffeeNescafe = new Product()
+            {
+                Id = 7,
+                Name = "Coffee Nescafe Classic Crema Instant",
+                Description = "Nescafe Classic Crema   It has a strong taste and aroma combined with seductive cream for even more pleasant awakening! Prepare easily and quickly with only hot water.",
+                Quantity = 0.095,
+                Price = 8.99M,
+                Discount = 10,
+                ExpirationDate = expirationDate6,
+                ImageUrl = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRDmVUgwXGAkU8D7V6kBnl4NvDI9FUcY63hNZdP3J0s_H2cqcPN",
+                Origin = "France",
+                SubCategoryId = 5
+            };
+
+            ChickenRoso = new Product()
+            {
+                Id = 8,
+                Name = "Chicken Roso Chilled",
+                Description = "Chicken Roso Chilled about 1.700 kg. The price for one piece.",
+                Quantity= 1.7,
+                Price = 21.80M,
+                ExpirationDate = expirationDate7,
+                ImageUrl = "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRPlEr7YWqKnhB4KfPQvFyhWSjALQkLtyYd_6ehdG3F6AVzQoQB",
+                Origin = "Bulgaria",
+                SubCategoryId = 4
+            };
+
+            SticksScala = new Product()
+            {
+                Id = 9,
+                Name = "Salted Sticks Scala",
+                Description = "Hand-made chickens with a balanced, natural taste that brings the authentic taste of home-made brine! Each ingredient is precisely chosen, paying special attention to quality and usefulness!",
+                Quantity = 0.1,
+                Price = 3.49M,
+                ExpirationDate = expirationDate8,
+                ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7aiWvHuLvvN50dBQ_0L6X5WHKVaXTYjKN0tNjvF2LbnJkTfgW",
+                Origin = "Bulgaria",
+                SubCategoryId = 7
+            };
+
+            CucumbersGr = new Product
+            {
+                Id = 10,
+                Name = "Cucumbers",
+                Description = "Cucumbers from Greece",
+                Quantity = 1,
+                Price = 5.49M,
+                ImageUrl = "https://www.ebag.bg/en/products/images/137845/200/webp",
+                Origin = "Greece",
+                SubCategoryId = 2
+            };
+
         }
     }
 }

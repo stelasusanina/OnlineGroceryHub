@@ -20,13 +20,16 @@ namespace OnlineGroceryHub.Core.Services
             this.context = context;
         }
 
-        public async Task<List<ShortProductDTO>> GetAllProducts(string searchTerm = "", ProductSorting sorting = ProductSorting.AscendingByPrice)
+        public async Task<List<ShortProductDTO>> GetAllProducts(string searchTerm = "",
+            ProductSorting sorting = ProductSorting.AscendingByPrice,
+            int currentPage = 1,
+            int productsPerPage = 6)
         {
-            var products = await context.Products.ToListAsync();
+            var productsQuery = await context.Products.ToListAsync();
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                return products
+                return productsQuery
                     .Where(product => product.Name.ToLower().Contains(searchTerm.ToLower()))
                     .Select(product => new ShortProductDTO
                     {
@@ -40,19 +43,34 @@ namespace OnlineGroceryHub.Core.Services
                     .ToList();
             }
 
-            products = sorting switch
+            productsQuery = sorting switch
             {
-                ProductSorting.AscendingByPrice => products
+                ProductSorting.AscendingByPrice => productsQuery
                     .OrderBy(p => p.Price).ToList(),
-                ProductSorting.DescendingByPrice => products
+                ProductSorting.DescendingByPrice => productsQuery
                     .OrderByDescending(p => p.Price).ToList(),
-                ProductSorting.AscendingByName => products
+                ProductSorting.AscendingByName => productsQuery
                     .OrderBy(p => p.Name).ToList(),
-                ProductSorting.DescendingByName => products
+                ProductSorting.DescendingByName => productsQuery
                     .OrderByDescending(p => p.Name).ToList()
             };
 
-            return products.Select(product => new ShortProductDTO
+            var products = productsQuery
+                .Skip((currentPage - 1) * productsPerPage)
+                .Take(productsPerPage)
+                .Select(product => new ShortProductDTO
+                {
+                    Id = product.Id,
+                    Name = product.Name,
+                    Price = product.Price,
+                    Quantity = product.Quantity,
+                    ImageUrl = product.ImageUrl,
+                    Discount = product.Discount
+                }).ToList();
+
+            var totalProducts = productsQuery.Count();
+
+            return productsQuery.Select(product => new ShortProductDTO
             {
                 Id = product.Id,
                 Name = product.Name,

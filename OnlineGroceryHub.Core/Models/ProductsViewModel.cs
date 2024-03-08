@@ -20,5 +20,10 @@ namespace OnlineGroceryHub.Core.Models
         public List<ShortProductDTO> Products  { get; set; }
         public string SearchTerm { get; set; }
         public ProductSorting Sorting { get; set; }
+        public int TotalProductsCount { get; set; }
+
+        public const int ProductsPerPage = 6;
+
+        public int CurrentPage = 1;
     }
 }
