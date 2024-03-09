@@ -1,138 +1,159 @@
 ﻿@model ProductsViewModel
 @{
-    int totalPages = (int)Math.Ceiling((double)Model.TotalProductsCount / 6);
+	int totalPages = (int)Math.Ceiling((double)Model.TotalProductsCount / Model.ProductsPerPage);
+	var previousPage = Model.CurrentPage - 1;
+	if (previousPage < 1)
+	{
+		previousPage = 1;
+	}
 }
 
 <!DOCTYPE html>
 <html lang="en">
+<head>
+	<link rel="stylesheet" href="~/css/main.css">
+</head>
 <body class="goto-here">
-    <div class="hero-wrap hero-bread" style="background-image: url('https://pbs.twimg.com/media/D7vU-BDVUAAWHgM?format=jpg&name=medium');">
-        <div class="container">
-            <div class="row no-gutters slider-text align-items-center justify-content-center">
-                <div class="col-md-9 ftco-animate text-center">
-                    <h1 class="mb-0 bread">Products</h1>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="hero-wrap hero-bread" style="background-image: url('https://pbs.twimg.com/media/D7vU-BDVUAAWHgM?format=jpg&name=medium');">
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-center justify-content-center">
+				<div class="col-md-9 ftco-animate text-center">
+					<h1 class="mb-0 bread">Products</h1>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <div class="container mt-4">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <form method="get" asp-action="GetAllProducts" asp-controller="Shop" class="form-inline">
-                    <input class="form-control form-control-sm mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="searchTerm">
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </form>
-            </div>
-            <div class="col-md-6">
-                <form method="get" asp-action="GetAllProducts" asp-controller="Shop" class="form-inline">
-                    <div class="form-group">
-                        <label asp-for="Sorting">Sort by: </label>
-                        <select name="sorting" class="form-control">
-                            <option value="AscendingByName">Ascending by name</option>
-                            <option value="DescendingByName">Descending by name</option>
-                            <option value="AscendingByPrice">Ascending by price</option>
-                            <option value="DescendingByPrice">Descending by price</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Sort</button>
-                </form>
-            </div>
-        </div>
-    </div>
+	<div class="container mt-4">
+		<form method="get" asp-action="GetAllProducts" asp-controller="Shop" class="form-inline">
+			<div class="row justify-content-center">
+				<div class="col-md-6">
+					<input class="form-control form-control-sm mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="searchTerm">
+					<button type="submit" class="btn btn-primary">Search</button>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label asp-for="Sorting">Sort by: </label>
+						<select name="sorting" class="form-control">
+							<option value="AscendingByName">Ascending by name</option>
+							<option value="DescendingByName">Descending by name</option>
+							<option value="AscendingByPrice">Ascending by price</option>
+							<option value="DescendingByPrice">Descending by price</option>
+						</select>
+					</div>
+					<button type="submit" class="btn btn-primary">Sort</button>
+				</div>
+			</div>
+		</form>
+	</div>
 
 
 
-    <section class="ftco-section">
-        <div class="container">
-            
-            <div class="row">
-                @foreach (var product in Model.Products)
-                {
-                    @if(product.Discount > 0)
-                    {
-                        <div class="col-md-6 col-lg-3 ftco-animate">
-                            <div class="product">
-                                <a href="#" class="img-prod">
-                                    <img class="img-fluid" src="@product.ImageUrl" alt="Colorlib Template">
-                                    <span class="status">@($"-{product.Discount}%")</span>
-                                    <div class="overlay"></div>
-                                </a>
-                                <div class="text py-3 pb-4 px-3 text-center">
-                                    <h3><a href="#">@product.Name</a></h3>
-                                    <div class="d-flex">
-                                        <div class="pricing">
-                                            <p class="price">
-                                                <span class="mr-2 price-dc">$@product.Price</span><span class="price-sale">$@($"{product.Price - (product.Price * product.Discount / 100):F2}")</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="bottom-area d-flex px-3">
-                                        <div class="m-auto d-flex">
-                                            <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                                                <span><i class="ion-ios-menu"></i></span>
-                                            </a>
-                                            <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-                                                <span><i class="ion-ios-cart"></i></span>
-                                            </a>
-                                            <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                                                <span><i class="ion-ios-heart"></i></span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="col-md-6 col-lg-3 ftco-animate">
-                            <div class="product">
-                                <a href="#" class="img-prod">
-                                    <img class="img-fluid" src="@product.ImageUrl" alt="Colorlib Template">
-                                    <div class="overlay"></div>
-                                </a>
-                                <div class="text py-3 pb-4 px-3 text-center">
-                                    <h3><a href="#">@product.Name</a></h3>
-                                    <div class="d-flex">
-                                        <div class="pricing">
-                                            <p class="price"><span>$@product.Price</span></p>
-                                        </div>
-                                    </div>
-                                    <div class="bottom-area d-flex px-3">
-                                        <div class="m-auto d-flex">
-                                            <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                                                <span><i class="ion-ios-menu"></i></span>
-                                            </a>
-                                            <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-                                                <span><i class="ion-ios-cart"></i></span>
-                                            </a>
-                                            <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                                                <span><i class="ion-ios-heart"></i></span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                }
-               
-            </div>
-            <div class="row mt-5">
-                <div class="col text-center">
-                    <div class="block-27">
-                        <div>
-                            @for (int i = 1; i <= totalPages; i++)
-                            {
-                                <a asp-action="GetAllProducts" asp-route-page="@i">@i</a>
-                            }
-                        </div>
-                    </div>
-                </div>
-            </div>
+	<section class="ftco-section">
+		<div class="container">
 
-        </div>
-    </section>
+			<div class="row">
+				@foreach (var product in Model.Products)
+				{
+					@if (product.Discount > 0)
+					{
+						<div class="col-md-6 col-lg-3 ftco-animate">
+							<div class="product pr-content">
+								<a href="#" class="img-prod">
+									<img class="img-fluid" src="@product.ImageUrl" alt="Colorlib Template">
+									<span class="status">@($"-{product.Discount}%")</span>
+									<div class="overlay"></div>
+								</a>
+								<div class="text py-3 pb-4 px-3 text-center">
+									<h3><a href="#">@product.Name</a></h3>
+									<div class="d-flex">
+										<div class="pricing">
+											<p class="price">
+												<span class="mr-2 price-dc">$@product.Price</span><span class="price-sale">$@($"{product.Price - (product.Price * product.Discount / 100):F2}")</span>
+											</p>
+										</div>
+									</div>
+									<div class="bottom-area d-flex px-3">
+										<div class="m-auto d-flex">
+											<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+												<span><i class="ion-ios-menu"></i></span>
+											</a>
+											<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+												<span><i class="ion-ios-cart"></i></span>
+											</a>
+											<a href="#" class="heart d-flex justify-content-center align-items-center ">
+												<span><i class="ion-ios-heart"></i></span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					}
+					else
+					{
+						<div class="col-md-6 col-lg-3 ftco-animate">
+							<div class="product pr-content">
+								<a href="#" class="img-prod">
+									<img class="img-fluid" src="@product.ImageUrl" alt="Colorlib Template">
+									<div class="overlay"></div>
+								</a>
+								<div class="text py-3 pb-4 px-3 text-center">
+									<h3><a href="#">@product.Name</a></h3>
+									<div class="d-flex">
+										<div class="pricing">
+											<p class="price"><span>$@product.Price</span></p>
+										</div>
+									</div>
+									<div class="bottom-area d-flex px-3">
+										<div class="m-auto d-flex">
+											<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+												<span><i class="ion-ios-menu"></i></span>
+											</a>
+											<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+												<span><i class="ion-ios-cart"></i></span>
+											</a>
+											<a href="#" class="heart d-flex justify-content-center align-items-center ">
+												<span><i class="ion-ios-heart"></i></span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					}
+				}
+
+			</div>
+			<div class="row mb-5">
+				<div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-start">
+					<a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+					   asp-controller="Shop"
+					   asp-action="GetAllProducts"
+					   asp-route-currentPage="@previousPage"
+					   asp-route-searchTerm="@Model.SearchTerm"
+					   asp-route-sorting="@((int)Model.Sorting)"><<</a>
+				</div>
+
+				@{
+					var shouldButtonBeDisabled = Model.CurrentPage == totalPages ||
+					!Model.Products.Any();
+				}
+
+				<div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-end">
+					<a class="btn btn-primary
+           @(shouldButtonBeDisabled ? "disabled" : string.Empty)"
+					   asp-controller="Shop"
+					   asp-action="GetAllProducts"
+					   asp-route-currentPage="@(Model.CurrentPage + 1)"
+					   asp-route-searchTerm="@Model.SearchTerm"
+					   asp-route-sorting="@((int)Model.Sorting)">>></a>
+				</div>
+			</div>
+
+
+
+		</div>
+	</section>
 </body>
 </html>
