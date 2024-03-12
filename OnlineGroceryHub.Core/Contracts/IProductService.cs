@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace OnlineGroceryHub.Core.Contracts
 {
     public interface IProductService
-    {
-
+    { 
+        Task<ExtendedProductDTO> SingleProductInfo(int id);
     }
 }

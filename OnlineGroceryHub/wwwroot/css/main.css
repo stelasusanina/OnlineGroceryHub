@@ -26,3 +26,8 @@
 .row.justify-content-center.search-sort-filter {
     margin-top: 20px;
 }
+
+p.text-left.mr-3 {
+    font-size: 12px;
+}
+
