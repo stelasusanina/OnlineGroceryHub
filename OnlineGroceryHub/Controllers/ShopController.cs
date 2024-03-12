@@ -7,28 +7,32 @@ using OnlineGroceryHub.Infrastructure.Data.Models;
 
 namespace OnlineGroceryHub.Controllers
 {
-    public class ShopController : BaseController
-    {
-        private readonly IShopService shopService;
+	public class ShopController : BaseController
+	{
+		private readonly IShopService shopService;
+		private const int productsPerPage = 8;
+		public ShopController(IShopService _shopService)
+		{
+			shopService = _shopService;
+		}
+		public async Task<IActionResult> GetAllProducts(
+			[FromQuery] string searchTerm = "",
+			[FromQuery] string subCategory = "",
+			[FromQuery] int currentPage = 1,
+			[FromQuery] ProductSorting sorting = ProductSorting.AscendingByPrice)
+		{
 
-        public ShopController(IShopService _shopService)
-        {
-            shopService = _shopService;
-        }
-        public async Task<IActionResult> GetAllProducts([FromQuery] string searchTerm,
-            [FromQuery] int totalProductsCount,
-            [FromQuery] int currentPage,
-            [FromQuery] ProductSorting sorting = ProductSorting.AscendingByPrice)
-        {
-            var products = await shopService.GetAllProducts(searchTerm, sorting, currentPage, ProductsViewModel.ProductsPerPage);
-            var viewModel = new ProductsViewModel(products)
-            {
-                SearchTerm = searchTerm,
-                Sorting = sorting,
-                CurrentPage = currentPage,
-                TotalProductsCount = totalProductsCount
-            };
-            return View(viewModel);
-        }
-    }
+			var subCategories = await shopService.GetAllSubCategories();
+			var productsAndCount = await shopService.GetAllProducts(searchTerm, subCategory, sorting, currentPage, productsPerPage);
+			var viewModel = new ProductsViewModel(productsAndCount.Products, productsAndCount.TotalProductsCount)
+			{
+				SearchTerm = searchTerm,
+				Sorting = sorting,
+				SubCategories = subCategories,
+				CurrentPage = currentPage
+			};
+			return View(viewModel);
+		}
+
+	}
 }

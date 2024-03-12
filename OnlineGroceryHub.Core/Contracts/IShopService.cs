@@ -10,10 +10,11 @@ namespace OnlineGroceryHub.Core.Contracts
 {
     public interface IShopService
     {
-        Task<List<ShortProductDTO>> GetAllProducts(string searchTerm,
-            ProductSorting sorting = ProductSorting.AscendingByPrice,
-            int currentPage = 1,
-            int productsPerPage = 6);
+        Task<ProductsAndCount> GetAllProducts(string searchTerm,
+            string subCategory,
+            ProductSorting sorting,
+            int currentPage,
+            int productsPerPage);
         Task<IEnumerable<string>> GetAllSubCategories();
     }
 }

@@ -10,10 +10,19 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-.pr-content .pr-content{
-    height: 390px;
+.product.pr-content{
+    height: 360px;
 }
 
 .img-prod{
-    padding: 15px;
+    padding: 20px;
+}
+
+.search, .sort, .filter {
+    display: flex;
+    margin-top: 30px;
+}
+
+.row.justify-content-center.search-sort-filter {
+    margin-top: 20px;
 }

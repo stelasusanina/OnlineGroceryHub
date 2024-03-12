@@ -20,70 +20,67 @@ namespace OnlineGroceryHub.Core.Services
             this.context = context;
         }
 
-        public async Task<List<ShortProductDTO>> GetAllProducts(string searchTerm = "",
-            ProductSorting sorting = ProductSorting.AscendingByPrice,
-            int currentPage = 1,
-            int productsPerPage = 6)
-        {
-            var productsQuery = await context.Products.ToListAsync();
+		public async Task<ProductsAndCount> GetAllProducts(string searchTerm,
+			string subCategory,
+			ProductSorting sorting,
+			int currentPage,
+			int productsPerPage)
+		{
+			var productsQuery = context.Products.AsQueryable();
 
-            if (!string.IsNullOrEmpty(searchTerm))
-            {
-                return productsQuery
-                    .Where(product => product.Name.ToLower().Contains(searchTerm.ToLower()))
-                    .Select(product => new ShortProductDTO
-                    {
-                        Id = product.Id,
-                        Name = product.Name,
-                        Price = product.Price,
-                        Quantity = product.Quantity,
-                        ImageUrl = product.ImageUrl,
-                        Discount = product.Discount
-                    })
-                    .ToList();
-            }
+			if (!string.IsNullOrWhiteSpace(searchTerm))
+			{
+				productsQuery = context.Products
+					.Where(product => product.Name.ToLower().Contains(searchTerm.ToLower()));
+			}
 
-            productsQuery = sorting switch
-            {
-                ProductSorting.AscendingByPrice => productsQuery
-                    .OrderBy(p => p.Price).ToList(),
-                ProductSorting.DescendingByPrice => productsQuery
-                    .OrderByDescending(p => p.Price).ToList(),
-                ProductSorting.AscendingByName => productsQuery
-                    .OrderBy(p => p.Name).ToList(),
-                ProductSorting.DescendingByName => productsQuery
-                    .OrderByDescending(p => p.Name).ToList()
-            };
+			if (!string.IsNullOrWhiteSpace(subCategory))
+			{
+				productsQuery = context.Products
+					.Where(product => product.SubCategory.Name == subCategory);
+			}
 
-            var products = productsQuery
-                .Skip((currentPage - 1) * productsPerPage)
-                .Take(productsPerPage)
-                .Select(product => new ShortProductDTO
-                {
-                    Id = product.Id,
-                    Name = product.Name,
-                    Price = product.Price,
-                    Quantity = product.Quantity,
-                    ImageUrl = product.ImageUrl,
-                    Discount = product.Discount
-                }).ToList();
+			switch (sorting)
+			{
+				case ProductSorting.AscendingByPrice:
+					productsQuery = productsQuery.OrderBy(p => p.Price);
+					break;
+				case ProductSorting.DescendingByPrice:
+					productsQuery = productsQuery.OrderByDescending(p => p.Price);
+					break;
+				case ProductSorting.AscendingByName:
+					productsQuery = productsQuery.OrderBy(p => p.Name);
+					break;
+				case ProductSorting.DescendingByName:
+					productsQuery = productsQuery.OrderByDescending(p => p.Name);
+					break;
+			}
 
-            var totalProducts = productsQuery.Count();
+			var products = await productsQuery
+				.Skip((currentPage - 1) * productsPerPage)
+				.Take(productsPerPage)
+				.Select(product => new ShortProductDTO
+				{
+					Id = product.Id,
+					Name = product.Name,
+					Price = product.Price,
+					Quantity = product.Quantity,
+					ImageUrl = product.ImageUrl,
+					Discount = product.Discount
+				})
+				.ToListAsync();
 
-            return productsQuery.Select(product => new ShortProductDTO
-            {
-                Id = product.Id,
-                Name = product.Name,
-                Price = product.Price,
-                Quantity = product.Quantity,
-                ImageUrl = product.ImageUrl,
-                Discount = product.Discount
-            })
-            .ToList();
+			var totalProductsCount = await productsQuery.CountAsync();
 
-        }
+			return new ProductsAndCount
+			{
+				Products = products,
+				TotalProductsCount = totalProductsCount
+			};
+		}
 
-        public async Task<IEnumerable<string>> GetAllSubCategories()
+
+		public async Task<IEnumerable<string>> GetAllSubCategories()
         {
             return await context.SubCategories
                 .Select(sc => sc.Name)
