@@ -17,6 +17,9 @@ namespace OnlineGroceryHub.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
+        public DbSet<Article> Articles { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<ArticleComment> ArticlesComments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -27,6 +30,13 @@ namespace OnlineGroceryHub.Data
             builder.Entity<Product>()
                 .Property(p => p.Price)
                 .HasPrecision(18, 2);
+
+            builder.Entity<ArticleComment>()
+                .HasKey(ac => new
+                {
+                    ac.ArticleId,
+                    ac.CommentId
+                });
 
             base.OnModelCreating(builder);
         }
