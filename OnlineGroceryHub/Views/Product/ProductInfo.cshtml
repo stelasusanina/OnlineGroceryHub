@@ -17,14 +17,40 @@
 						<p class="text-left mr-3">
 							Origin: <span style="color: #000;">@Model.Origin</span>
 						</p>
-						<p class="text-left mr-3">
-							Best before: <span style="color: #000;">@Model.ExpirationDate</span>
-						</p>
-						<p class="text-left mr-3">
-							Quantity: <span style="color: #000;">@Model.Quantity</span>
+
+						@if (Model.Quantity < 1)
+						{
+							<p class="text-left mr-3">
+								Quantity: <span style="color: #000;">@($"{Model.Quantity * 1000} g")</span>
+							</p>
+						}
+						else if (@Model.Quantity >= 1)
+						{
+							<p class="text-left mr-3">
+								Quantity: <span style="color: #000;">@Model.Quantity kg</span>
+							</p>
+						}
+
+						@if (Model.ExpirationDate != null)
+						{
+							<p class="text-left mr-3">
+								Best before: <span style="color: #000;">@Model.ExpirationDate</span>
+							</p>
+						}
+					</div>
+					<div class="pricing">
+						<p class="price">
+							@if (Model.Discount > 0)
+							{
+								<span class="mr-2 without-discount">$@Model.Price</span>
+								<span class="mr-2 real-price">$@($"{Model.Price - (Model.Price * Model.Discount / 100):F2}")</span>
+							}
+							else
+							{
+								<span class="mr-2 real-price">$@Model.Price</span>
+							}
 						</p>
 					</div>
-					<p class="price"><span>$@Model.Price</span></p>
 					<p>
 						@Model.Description
 					</p>
