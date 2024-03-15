@@ -38,3 +38,7 @@ p.text-left.mr-3 {
 .real-price {
     color: #82ae46 !important;
 }
+
+.select-filter {
+    display: flex;
+}
