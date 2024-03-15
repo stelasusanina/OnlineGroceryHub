@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using OnlineGroceryHub.Core.Contracts;
-using OnlineGroceryHub.Core.Models;
-using OnlineGroceryHub.Core.Services;
+using OnlineGroceryHub.Core.Models.Shop;
 using OnlineGroceryHub.Infrastructure.Data.Models;
 
 namespace OnlineGroceryHub.Controllers
