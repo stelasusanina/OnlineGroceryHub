@@ -12,9 +12,10 @@ namespace OnlineGroceryHub.Controllers
 		{
 			blogService = _blogService;
 		}
-		public IActionResult Index()
+		public async Task<IActionResult> GetAllArticles()
 		{
-			return View();
+			var viewModel = await blogService.GetAllArticles();
+			return View(viewModel);
 		}
 	}
 }
