@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineGroceryHub.Core.Contracts;
-using OnlineGroceryHub.Core.Models;
+using OnlineGroceryHub.Core.Models.Product;
 using OnlineGroceryHub.Data;
 using System.Globalization;
 
 namespace OnlineGroceryHub.Core.Services
 {
-	public class ProductService : IProductService
+    public class ProductService : IProductService
 	{
 		private readonly ApplicationDbContext context;
 

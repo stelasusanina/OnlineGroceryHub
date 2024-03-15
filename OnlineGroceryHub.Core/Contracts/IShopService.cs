@@ -1,4 +1,4 @@
-﻿using OnlineGroceryHub.Core.Models;
+﻿using OnlineGroceryHub.Core.Models.Shop;
 using OnlineGroceryHub.Infrastructure.Data.Models;
 using System;
 using System.Collections.Generic;
