@@ -17,6 +17,7 @@
 <html lang="en">
 <head>
 	<link rel="stylesheet" href="~/css/main.css">
+	<link href="~/css/aos.css" rel="stylesheet">
 </head>
 <body class="goto-here">
 	<div class="hero-wrap hero-bread" style="background-image: url('https://pbs.twimg.com/media/D7vU-BDVUAAWHgM?format=jpg&name=medium');">
@@ -28,7 +29,6 @@
 			</div>
 		</div>
 	</div>
-	<link href="~/css/aos.css" rel="stylesheet" />
 	<div class="container mt-4">
 		<form method="get" asp-action="GetAllProducts" asp-controller="Shop" class="form-inline">
 			<div class="row justify-content-center">
@@ -50,14 +50,16 @@
 				</div>
 				<div class="col-md-4">
 					<p>Filter by Subcategory</p>
-					<div class="filter-content">
-						<select asp-for="SubCategory" class="form-control" onchange="this.form.submit()">
-							<option value="">All</option>
-							@foreach (var subcategory in Model.SubCategories)
-							{
-								<option value="@subcategory">@subcategory</option>
-							}
-						</select>
+					<div class="sidenav filter-content">
+						@foreach(var subcategory in Model.SubCategories)
+						{
+							<div class="select-filter">
+							<input asp-route-subCategory = "@Model.SubCategory" type="checkbox" id="@subcategory" name="subCategory" value="@subcategory">
+							<label for="@subcategory"> @subcategory</label>
+							</div>
+						}
+
+						<input type="submit" value="Submit">
 					</div>
 				</div>
 			</div>
