@@ -26,6 +26,9 @@ namespace OnlineGroceryHub.Data
             builder.ApplyConfiguration(new CategoryConfiguration());
             builder.ApplyConfiguration(new SubCategoryConfiguration());
             builder.ApplyConfiguration(new ProductConfiguration());
+            builder.ApplyConfiguration(new ArticleConfiguration());
+            builder.ApplyConfiguration(new CommentConfiguration());
+            builder.ApplyConfiguration(new ArticleCommentConfiguration());
 
             builder.Entity<Product>()
                 .Property(p => p.Price)

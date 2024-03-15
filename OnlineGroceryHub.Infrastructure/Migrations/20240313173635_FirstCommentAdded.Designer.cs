@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineGroceryHub.Data;
 
@@ -11,9 +12,10 @@ using OnlineGroceryHub.Data;
 namespace OnlineGroceryHub.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240313173635_FirstCommentAdded")]
+    partial class FirstCommentAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -200,7 +202,7 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                             Id = 1,
                             Content = "Think about it. Your brain is always \"on.\" It takes care of your thoughts and movements, your breathing and heartbeat, your senses — it works hard 24/7, even while you're asleep. This means your brain requires a constant supply of fuel. That \"fuel\" comes from the foods you eat — and what's in that fuel makes all the difference. Put simply, what you eat directly affects the structure and function of your brain and, ultimately, your mood.\r\n\r\nLike an expensive car, your brain functions best when it gets only premium fuel. Eating high-quality foods that contain lots of vitamins, minerals, and antioxidants nourishes the brain and protects it from oxidative stress — the \"waste\" (free radicals) produced when the body uses oxygen, which can damage cells.\r\n\r\nUnfortunately, just like an expensive car, your brain can be damaged if you ingest anything other than premium fuel. If substances from \"low-premium\" fuel (such as what you get from processed or refined foods) get to the brain, it has little ability to get rid of them. Diets high in refined sugars, for example, are harmful to the brain. In addition to worsening your body's regulation of insulin, they also promote inflammation and oxidative stress. Multiple studies have found a correlation between a diet high in refined sugars and impaired brain function — and even a worsening of symptoms of mood disorders, such as depression.\r\n\r\nIt makes sense. If your brain is deprived of good-quality nutrition, or if free radicals or damaging inflammatory cells are circulating within the brain's enclosed space, further contributing to brain tissue injury, consequences are to be expected. What's interesting is that for many years, the medical field did not fully acknowledge the connection between mood and food.\r\n\r\nToday, fortunately, the burgeoning field of nutritional psychiatry is finding there are many consequences and correlations between not only what you eat, how you feel, and how you ultimately behave, but also the kinds of bacteria that live in your gut.\r\n\r\nHow the foods you eat affect your mental health\r\nSerotonin is a neurotransmitter that helps regulate sleep and appetite, mediate moods, and inhibit pain. Since about 95% of your serotonin is produced in your gastrointestinal tract, and your gastrointestinal tract is lined with a hundred million nerve cells, or neurons, it makes sense that the inner workings of your digestive system don't just help you digest food, but also guide your emotions. What's more, the function of these neurons — and the production of neurotransmitters like serotonin — is highly influenced by the billions of \"good\" bacteria that make up your intestinal microbiome. These bacteria play an essential role in your health. They protect the lining of your intestines and ensure they provide a strong barrier against toxins and \"bad\" bacteria; they limit inflammation; they improve how well you absorb nutrients from your food; and they activate neural pathways that travel directly between the gut and the brain.\r\n\r\nStudies have compared \"traditional\" diets, like the Mediterranean diet and the traditional Japanese diet, to a typical \"Western\" diet and have shown that the risk of depression is 25% to 35% lower in those who eat a traditional diet. Scientists account for this difference because these traditional diets tend to be high in vegetables, fruits, unprocessed grains, and fish and seafood, and to contain only modest amounts of lean meats and dairy. They are also void of processed and refined foods and sugars, which are staples of the \"Western\" dietary pattern. In addition, many of these unprocessed foods are fermented, and therefore act as natural probiotics.\r\n\r\nThis may sound implausible to you, but the notion that good bacteria not only influence what your gut digests and absorbs, but that they also affect the degree of inflammation throughout your body, as well as your mood and energy level, is gaining traction among researchers.\r\n\r\nNutritional psychiatry: What does it mean for you?\r\nStart paying attention to how eating different foods makes you feel — not just in the moment, but the next day. Try eating a \"clean\" diet for two to three weeks — that means cutting out all processed foods and sugar. See how you feel. Then slowly introduce foods back into your diet, one by one, and see how you feel.\r\n\r\nWhen some people \"go clean,\" they cannot believe how much better they feel both physically and emotionally, and how much worse they then feel when they reintroduce the foods that are known to enhance inflammation.",
                             ImageUrl = "https://d2jx2rerrg6sh3.cloudfront.net/images/Article_Images/ImageForArticle_21990_16425136005131910.jpg",
-                            PublishDate = new DateTime(2024, 3, 15, 13, 23, 42, 560, DateTimeKind.Local).AddTicks(556),
+                            PublishDate = new DateTime(2024, 3, 13, 19, 36, 35, 382, DateTimeKind.Local).AddTicks(5610),
                             Title = "Nutritional psychiatry: Your brain on food"
                         });
                 });
@@ -222,13 +224,6 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                     b.ToTable("ArticlesComments");
 
                     b.HasComment("Mapping table for Article and Comment");
-
-                    b.HasData(
-                        new
-                        {
-                            ArticleId = 1,
-                            CommentId = 1
-                        });
                 });
 
             modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.Category", b =>
@@ -331,7 +326,7 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                         {
                             Id = 1,
                             Author = "Eva Selhub",
-                            CommentDate = new DateTime(2024, 3, 15, 13, 23, 42, 560, DateTimeKind.Local).AddTicks(624),
+                            CommentDate = new DateTime(2024, 3, 13, 19, 36, 35, 382, DateTimeKind.Local).AddTicks(5686),
                             Content = "Great article! Learned a lot from it!"
                         });
                 });
