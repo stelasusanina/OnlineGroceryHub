@@ -42,3 +42,10 @@ p.text-left.mr-3 {
 .select-filter {
     display: flex;
 }
+
+p.article-content {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
