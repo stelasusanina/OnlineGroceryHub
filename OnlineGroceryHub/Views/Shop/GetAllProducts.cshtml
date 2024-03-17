@@ -13,13 +13,7 @@
 	}
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<link rel="stylesheet" href="~/css/main.css">
-	<link href="~/css/aos.css" rel="stylesheet">
-</head>
-<body class="goto-here">
+	<form method="get" asp-action="GetAllProducts" asp-controller="Shop" class="form-inline">
 	<div class="hero-wrap hero-bread" style="background-image: url('https://pbs.twimg.com/media/D7vU-BDVUAAWHgM?format=jpg&name=medium');">
 		<div class="container">
 			<div class="row no-gutters slider-text align-items-center justify-content-center">
@@ -30,10 +24,16 @@
 		</div>
 	</div>
 	<div class="container mt-4">
-		<form method="get" asp-action="GetAllProducts" asp-controller="Shop" class="form-inline">
 			<div class="row justify-content-center">
 				<div class="col-md-4">
-					<input class="form-control form-control-sm mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="searchTerm">
+					@if(Model.SearchTerm != "" && Model.SearchTerm != null)
+					{
+						<input class="form-control form-control-sm mr-sm-2" type="text" aria-label="Search" name="searchTerm" value="@Model.SearchTerm">
+					}
+					else
+					{
+						<input class="form-control form-control-sm mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="searchTerm">
+					}
 					<button type="submit" class="btn btn-primary">Search</button>
 				</div>
 				<div class="col-md-4">
@@ -51,11 +51,14 @@
 				<div class="col-md-4">
 					<p>Filter by Subcategory</p>
 					<div class="sidenav filter-content">
-						@foreach(var subcategory in Model.SubCategories)
+						@foreach (var subcategory in Model.SubCategories)
 						{
 							<div class="select-filter">
-							<input asp-route-subCategory = "@Model.SubCategory" type="checkbox" id="@subcategory" name="subCategory" value="@subcategory">
-							<label for="@subcategory"> @subcategory</label>
+								@{
+									bool isChecked = (subcategory == Model.SubCategory);
+								}
+								<input type="checkbox" id="@subcategory" name="subCategory" value="@subcategory" @(isChecked ? "checked" : "")>
+								<label for="@subcategory">@subcategory</label>
 							</div>
 						}
 
@@ -63,7 +66,6 @@
 					</div>
 				</div>
 			</div>
-		</form>
 	</div>
 
 	<section class="ftco-section">
@@ -189,5 +191,4 @@
 
 		</div>
 	</section>
-</body>
-</html>
+	</form>
