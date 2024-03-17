@@ -26,6 +26,7 @@ namespace OnlineGroceryHub.Controllers
 			{
 				SearchTerm = searchTerm,
 				Sorting = sorting,
+				SubCategory = subCategory,
 				SubCategories = subCategories,
 				CurrentPage = currentPage
 			};
