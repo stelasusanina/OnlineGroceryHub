@@ -25,13 +25,13 @@ namespace OnlineGroceryHub.Core.Services
 
 			if (!string.IsNullOrWhiteSpace(searchTerm))
 			{
-				productsQuery = context.Products
+				productsQuery = productsQuery
 					.Where(product => product.Name.ToLower().Contains(searchTerm.ToLower()));
 			}
 
 			if (!string.IsNullOrWhiteSpace(subCategory))
 			{
-				productsQuery = context.Products
+				productsQuery = productsQuery
 					.Where(product => product.SubCategory.Name == subCategory);
 			}
 

@@ -10,8 +10,4 @@
     <ProjectReference Include="..\OnlineGroceryHub.Infrastructure\OnlineGroceryHub.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\Blog\" />
-  </ItemGroup>
-
 </Project>
