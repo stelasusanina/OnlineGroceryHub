@@ -192,7 +192,7 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
                 Price = 1.99M,
                 ExpirationDate = expirationDate3,
                 Discount = 15,
-                ImageUrl = "https://www.ebag.bg/en/products/images/133238/200/webp",
+                ImageUrl = "https://m.ebag.bg/en/products/images/133238/800",
                 Origin = "Bulgaria",
                 SubCategoryId = 7
             };
@@ -245,7 +245,7 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
                 Price = 8.99M,
                 Discount = 10,
                 ExpirationDate = expirationDate6,
-                ImageUrl = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRDmVUgwXGAkU8D7V6kBnl4NvDI9FUcY63hNZdP3J0s_H2cqcPN",
+                ImageUrl = "https://www.nescafe.com/bg/sites/default/files/2023-08/11_3.png",
                 Origin = "France",
                 SubCategoryId = 5
             };
@@ -258,7 +258,7 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
                 Quantity= 1.7,
                 Price = 21.80M,
                 ExpirationDate = expirationDate7,
-                ImageUrl = "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRPlEr7YWqKnhB4KfPQvFyhWSjALQkLtyYd_6ehdG3F6AVzQoQB",
+                ImageUrl = "https://m.ebag.bg/en/products/images/85639/800",
                 Origin = "Bulgaria",
                 SubCategoryId = 4
             };
@@ -271,7 +271,7 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
                 Quantity = 0.1,
                 Price = 3.49M,
                 ExpirationDate = expirationDate8,
-                ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7aiWvHuLvvN50dBQ_0L6X5WHKVaXTYjKN0tNjvF2LbnJkTfgW",
+                ImageUrl = "https://m.ebag.bg/en/products/images/111780/800",
                 Origin = "Bulgaria",
                 SubCategoryId = 7
             };
@@ -283,7 +283,7 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
                 Description = "Cucumbers from Greece",
                 Quantity = 1,
                 Price = 5.49M,
-                ImageUrl = "https://www.ebag.bg/en/products/images/137845/200/webp",
+                ImageUrl = "https://m.ebag.bg/en/products/images/125683/800",
                 Origin = "Greece",
                 SubCategoryId = 2
             };
