@@ -1,13 +1,5 @@
-﻿.nav-logout-btn.nav-logout-btn {
-    margin: 10px 18px;
-    padding: 13px 10px;
-    font-size: 11px;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    opacity: 1;
-    background-color: #82ae46;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+﻿button.btn.btn-primary.nav-logout-btn {
+    margin: 18px;
 }
 
 .product.pr-content{
@@ -55,4 +47,39 @@ a.nav-link.text-dark {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.products-filters{
+    display: flex;
+}
+
+.row.justify-content-sm-evenly, input.form-control.form-control-sm.mr-sm-2, button.btn.btn-primary, select.form-control, .filter-content.ml-4.mr-4 {
+    font-size: 11px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.row.justify-content-center, input.form-control.form-control-sm.mr-sm-2, select.form-control, .filter-content.ml-4.mr-4 {
+    color: black;
+}
+
+.select-filter{
+    margin: 5px 0;
+}
+
+label{
+    margin-left: 10px;
+}
+
+button.btn.btn-primary.submit{
+    margin-top:10px;
+}
+
+.filter-content.ml-4.mr-4 {
+    margin-top: 60px;
+}
+
+label.sort-label{
+    margin-right: 10px;
 }
