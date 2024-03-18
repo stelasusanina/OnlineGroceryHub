@@ -49,3 +49,10 @@ p.article-content {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+a.nav-link.text-dark {
+    max-width: 153px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
