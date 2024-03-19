@@ -34,10 +34,10 @@ namespace OnlineGroceryHub.Core.Services
 					Id = a.Id,
 					Title = a.Title,
 					ImageUrl = a.ImageUrl,
-					PublishDate = a.PublishDate,
+					PublishDate = a.PublishDate.ToString("MM/dd/yyyy"),
 					Content = a.Content,
-					Comments = a.Comments.ToList()
-				})
+					Comments = a.ArticleComments.Select(ac => ac.Comment).ToList()
+			})
 				.ToListAsync();
 		}
 	}
