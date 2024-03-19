@@ -46,7 +46,7 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
             SeedProducts();
             SeedArticles();
             SeedComments();
-            SeedArticlesComments();
+            SeedArticleComments();
         }
 
         private void SeedCategories()
@@ -312,14 +312,13 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
 			};
         }
 
-        private void SeedArticlesComments()
+		private void SeedArticleComments()
         {
             FirstArticleComment = new ArticleComment()
             {
                 ArticleId = 1,
                 CommentId = 1
             };
-
-		}
-    }
+        }
+	}
 }
