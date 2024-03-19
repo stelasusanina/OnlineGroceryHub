@@ -15,7 +15,7 @@ namespace OnlineGroceryHub.Core.Models.Blog
 		public string Title { get; set; } = null!;
 		public string ImageUrl { get; set; } = null!;
 		public string Content { get; set; } = null!;
-		public DateTime PublishDate { get; set; }
-		public IEnumerable<Comment> Comments { get; set; } = new List<Comment>();
+		public string PublishDate { get; set; } = null!;
+		public ICollection<Comment> Comments { get; set; } = new List<Comment>();
 	}
 }
