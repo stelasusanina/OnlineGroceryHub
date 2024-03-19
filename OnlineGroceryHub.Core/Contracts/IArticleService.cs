@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace OnlineGroceryHub.Core.Contracts
 {
-	public interface IBlogService
-	{
-		Task<List<ShortArticleDTO>> GetAllArticles(string searchTerm);
-	}
+    public interface IArticleService
+    {
+        Task<ShortArticleDTO> GetArticleContent(int id);
+    }
 }

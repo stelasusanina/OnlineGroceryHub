@@ -19,10 +19,17 @@ namespace OnlineGroceryHub.Core.Services
 			this.context = context;
 		}
 
-		public async Task<IEnumerable<ShortArticleDTO>> GetAllArticles()
+		public async Task<List<ShortArticleDTO>> GetAllArticles(string searchTerm)
 		{
-			return await context.Articles
-				.Select(a => new ShortArticleDTO
+			var articlesQuery = context.Articles.AsQueryable();
+
+			if (!string.IsNullOrWhiteSpace(searchTerm))
+			{
+				articlesQuery = articlesQuery
+					.Where(a => a.Title.ToLower().Contains(searchTerm.ToLower()));
+			}
+
+			return await articlesQuery.Select(a => new ShortArticleDTO
 				{
 					Id = a.Id,
 					Title = a.Title,
