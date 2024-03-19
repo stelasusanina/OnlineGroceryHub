@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OnlineGroceryHub.Core.Contracts;
+using OnlineGroceryHub.Core.Models.Blog;
 
 namespace OnlineGroceryHub.Controllers
 {
@@ -12,9 +13,13 @@ namespace OnlineGroceryHub.Controllers
 		{
 			blogService = _blogService;
 		}
-		public async Task<IActionResult> GetAllArticles()
+		public async Task<IActionResult> GetAllArticles([FromQuery] string searchTerm = "")
 		{
-			var viewModel = await blogService.GetAllArticles();
+			var articles = await blogService.GetAllArticles(searchTerm);
+			var viewModel = new ArticlesViewModel(articles)
+			{
+				SearchTerm = searchTerm
+			};
 			return View(viewModel);
 		}
 	}
