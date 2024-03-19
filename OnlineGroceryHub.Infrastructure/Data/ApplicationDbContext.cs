@@ -41,7 +41,17 @@ namespace OnlineGroceryHub.Data
                     ac.CommentId
                 });
 
-            base.OnModelCreating(builder);
+			builder.Entity<ArticleComment>()
+			.HasOne(ac => ac.Article)
+			.WithMany(a => a.ArticleComments)
+			.HasForeignKey(ac => ac.ArticleId);
+
+			builder.Entity<ArticleComment>()
+				.HasOne(ac => ac.Comment)
+				.WithMany(c => c.ArticleComments)
+				.HasForeignKey(ac => ac.CommentId);
+
+			base.OnModelCreating(builder);
         }
     }
 }

@@ -30,5 +30,7 @@ namespace OnlineGroceryHub.Infrastructure.Data.Models
 		[Required]
 		[Comment("Comment date")]
 		public DateTime CommentDate { get; set; }
+
+		public ICollection<ArticleComment> ArticleComments { get; set; } = new List<ArticleComment>();
 	}
 }

@@ -33,7 +33,6 @@ namespace OnlineGroceryHub.Infrastructure.Data.Models
 		[Comment("Article publish date")]
 		public DateTime PublishDate { get; set; }
 
-		[Comment("Article comments")]
-		public IEnumerable<Comment> Comments { get; set; } = new List<Comment>();
-    }
+		public ICollection<ArticleComment> ArticleComments { get; set; } = new List<ArticleComment>();
+	}
 }

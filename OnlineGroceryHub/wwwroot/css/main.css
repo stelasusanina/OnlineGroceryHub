@@ -36,7 +36,7 @@ p.text-left.mr-3 {
 }
 
 p.article-content {
-    max-width: 150px;
+    max-width: 550px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -82,4 +82,16 @@ button.btn.btn-primary.submit{
 
 label.sort-label{
     margin-right: 10px;
+}
+
+.blog-entry.align-self-stretch.d-md-flex{
+    width: 100%;
+}
+
+.col-md-4{
+    margin-bottom: 20px;
+}
+
+h2.mb-3{
+    text-align: center;
 }

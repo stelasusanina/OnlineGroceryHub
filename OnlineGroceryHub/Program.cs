@@ -15,6 +15,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IShopService, ShopService>();
 builder.Services.AddScoped<IBlogService, BlogService>();
+builder.Services.AddScoped<IArticleService, ArticleService>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
