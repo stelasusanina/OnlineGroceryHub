@@ -10,12 +10,12 @@ namespace OnlineGroceryHub.Core.Models.Blog
 {
     public class ArticlesViewModel
     {
-        public ArticlesViewModel(List<ShortArticleDTO> articles)
+        public ArticlesViewModel(List<ArticleDTO> articles)
         {
             Articles = articles;
         }
 
-        public List<ShortArticleDTO> Articles { get; set; }
+        public List<ArticleDTO> Articles { get; set; }
         public string SearchTerm { get; set; }
     }
 }
