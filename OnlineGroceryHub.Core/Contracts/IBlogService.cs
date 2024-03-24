@@ -9,6 +9,6 @@ namespace OnlineGroceryHub.Core.Contracts
 {
 	public interface IBlogService
 	{
-		Task<List<ShortArticleDTO>> GetAllArticles(string searchTerm);
+		Task<List<ArticleDTO>> GetAllArticles(string searchTerm);
 	}
 }

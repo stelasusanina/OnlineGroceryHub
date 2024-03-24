@@ -9,6 +9,7 @@ namespace OnlineGroceryHub.Core.Contracts
 {
     public interface IArticleService
     {
-        Task<ShortArticleDTO> GetArticleContent(int id);
+        Task<ArticleDTO> GetArticleContent(int id);
+        Task<ArticleDTO> AddComment(CommentFormModel commentFormModel);
     }
 }
