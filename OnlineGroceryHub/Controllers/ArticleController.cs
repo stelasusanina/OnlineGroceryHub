@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineGroceryHub.Core.Contracts;
+using OnlineGroceryHub.Core.Models.Blog;
 
 namespace OnlineGroceryHub.Controllers
 {
@@ -14,6 +15,16 @@ namespace OnlineGroceryHub.Controllers
         {
             var product = await articleService.GetArticleContent(id);
             return View(product);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddComment(CommentFormModel commentFormModel)
+        {
+            var usrId = this.User;
+
+            fawait articleService.AddComment(commentFormModel);
+
+            return RedirectToAction("GetArticleContent", "Article", new {Id = commentFormModel.ArticleId});
         }
     }
 }
