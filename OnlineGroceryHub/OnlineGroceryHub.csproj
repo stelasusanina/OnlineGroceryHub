@@ -8,6 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\NewFolder\**" />
+    <Compile Remove="Views\WishlistViews\**" />
+    <Content Remove="Views\NewFolder\**" />
+    <Content Remove="Views\WishlistViews\**" />
+    <EmbeddedResource Remove="Views\NewFolder\**" />
+    <EmbeddedResource Remove="Views\WishlistViews\**" />
+    <None Remove="Views\NewFolder\**" />
+    <None Remove="Views\WishlistViews\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\css\.DS_Store" />
     <None Include="wwwroot\css\bootstrap\.DS_Store" />
     <None Include="wwwroot\css\css\.DS_Store" />

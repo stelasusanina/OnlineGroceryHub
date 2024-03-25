@@ -69,7 +69,15 @@
 					<li class="nav-item"><a asp-controller="Blog" asp-action="GetAllArticles" class="nav-link">Blog</a></li>
 					<partial name="_LoginPartial" />
 					<li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
-					<li class="nav-item cta cta-colored"><a asp-controller="Wishlist" asp-action="GetAllProductsInWishlist" class="nav-link"><span class="icon-heart"></span></a></li>
+					<li class="nav-item cta cta-colored">
+						<form id="wishlistForm" method="post" asp-controller="Wishlist" asp-action="GetAll">
+							<input type="hidden" name="wishlistId" id="wishlistId"  /> <!-- Set the initial value of wishlistId -->
+							<button type="submit" class="nav-link" style="background-color: transparent; border: none; cursor: pointer;">
+								<span class="icon-heart"></span>
+							</button>
+						</form>
+					</li>
+
 				</ul>
 			</div>
 		</div>

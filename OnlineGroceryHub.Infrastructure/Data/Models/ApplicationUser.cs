@@ -6,8 +6,6 @@ namespace OnlineGroceryHub.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        [ForeignKey(nameof(WishlistId))]
-        public int WishlistId { get; set; }
-        public Wishlist Wishlist { get; set; }
+        
     }
 }
