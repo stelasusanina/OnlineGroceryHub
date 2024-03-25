@@ -20,9 +20,7 @@ namespace OnlineGroceryHub.Controllers
         [HttpPost]
         public async Task<IActionResult> AddComment(CommentFormModel commentFormModel)
         {
-            var usrId = this.User;
-
-            fawait articleService.AddComment(commentFormModel);
+            await articleService.AddComment(commentFormModel);
 
             return RedirectToAction("GetArticleContent", "Article", new {Id = commentFormModel.ArticleId});
         }
