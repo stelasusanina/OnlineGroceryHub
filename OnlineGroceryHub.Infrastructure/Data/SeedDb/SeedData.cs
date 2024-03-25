@@ -308,8 +308,8 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
                 Id = 1,
                 Author = "Eva Selhub",
                 Content = "Great article! Learned a lot from it!",
-                CommentDate = DateTime.Now
-            };
+                CommentDate = new DateTime(2024, 03, 24)
+			};
         }
 
         private void SeedArticleComments()
