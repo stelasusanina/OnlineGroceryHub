@@ -36,5 +36,12 @@ namespace OnlineGroceryHub.Infrastructure.Constants
 			public const int AuthorMaxLength = 50;
             public const int ContentMaxLength = 500;
 		}
+
+        public static class ApplicationUser
+        {
+            public const int FirstNameMaxLength = 100;
+			public const int LastNameMaxLength = 100;
+			public const int AddressMaxLength = 150;
+		}
 	}
 }
