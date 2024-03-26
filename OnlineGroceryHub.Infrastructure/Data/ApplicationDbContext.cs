@@ -70,6 +70,13 @@ namespace OnlineGroceryHub.Data
 				.WithMany()
 				.HasForeignKey(p => p.ProductId);
 
+			builder.Entity<ApplicationUser>()
+			  .HasOne(u => u.Wishlist)
+			  .WithOne(w => w.ApplicationUser)
+			  .HasForeignKey<Wishlist>(w => w.ApplicationUserId)
+			  .IsRequired()
+			  .OnDelete(DeleteBehavior.Cascade);
+
 			base.OnModelCreating(builder);
 		}
 	}

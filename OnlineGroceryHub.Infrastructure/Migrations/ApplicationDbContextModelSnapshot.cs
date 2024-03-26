@@ -588,12 +588,9 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
 
             modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.Wishlist", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)")
                         .HasComment("Wishlist identifier");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ApplicationUserId")
                         .IsRequired()
@@ -602,7 +599,8 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("ApplicationUserId")
+                        .IsUnique();
 
                     b.ToTable("Wishlists");
 
@@ -611,8 +609,8 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
 
             modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.WishlistProduct", b =>
                 {
-                    b.Property<int>("WishlistId")
-                        .HasColumnType("int")
+                    b.Property<string>("WishlistId")
+                        .HasColumnType("nvarchar(450)")
                         .HasComment("Wishlist identifier");
 
                     b.Property<int>("ProductId")
@@ -679,6 +677,10 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("WishListId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -788,8 +790,8 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
             modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.Wishlist", b =>
                 {
                     b.HasOne("OnlineGroceryHub.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId")
+                        .WithOne("Wishlist")
+                        .HasForeignKey("OnlineGroceryHub.Infrastructure.Data.Models.Wishlist", "ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -833,6 +835,12 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
             modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.Wishlist", b =>
                 {
                     b.Navigation("WishlistProducts");
+                });
+
+            modelBuilder.Entity("OnlineGroceryHub.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("Wishlist")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

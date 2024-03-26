@@ -15,7 +15,7 @@ namespace OnlineGroceryHub.Infrastructure.Data.Models
 	{
 		[Key]
 		[Comment("Wishlist identifier")]
-		public int Id { get; set; }
+		public string Id { get; set; }
 
 		[Comment("Wishlist user identifier")]
 		[ForeignKey(nameof(ApplicationUserId))]
