@@ -13,8 +13,8 @@ namespace OnlineGroceryHub.Controllers
         }
         public async Task<IActionResult> GetArticleContent(int id)
         {
-            var product = await articleService.GetArticleContent(id);
-            return View(product);
+            var article = await articleService.GetArticleContent(id);
+            return View(article);
         }
 
         [HttpPost]

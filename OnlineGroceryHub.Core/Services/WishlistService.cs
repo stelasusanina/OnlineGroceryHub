@@ -18,19 +18,18 @@ namespace OnlineGroceryHub.Core.Services
 		{
 			this.context = context;
 		}
-		public async Task<IEnumerable<ShortProductDTO>> GetAll(int wishlistId, string userId)
+		public async Task<IEnumerable<ShortProductDTO>> GetAll(string wishlistId, string userId)
 		{
 			var products = await context.WishlistsProducts
-				.Where(wp => wp.Wishlist.Id == wishlistId && wp.Wishlist.ApplicationUserId == userId)
+				.Where(wp => wp.Wishlist.Id == wishlistId)
 				.Select(wp => new ShortProductDTO
 				{
 					Id = wp.Product.Id,
+					ImageUrl = wp.Product.ImageUrl,
 					Name = wp.Product.Name,
 					Price = wp.Product.Price,
-					Discount = wp.Product.Discount,
-					ImageUrl = wp.Product.ImageUrl
-				})
-				.ToListAsync();
+					Discount = wp.Product.Discount
+				}).ToListAsync();
 
 			return products;
 		}

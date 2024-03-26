@@ -9,6 +9,6 @@ namespace OnlineGroceryHub.Core.Contracts
 {
 	public interface IWishlistService
 	{
-		Task<IEnumerable<ShortProductDTO>> GetAll(int wishlistId, string userId);
+		Task<IEnumerable<ShortProductDTO>> GetAll(string wishlistId, string userId);
 	}
 }

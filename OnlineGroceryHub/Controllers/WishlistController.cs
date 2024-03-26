@@ -13,9 +13,10 @@ namespace OnlineGroceryHub.Controllers
 			this.wishlistService = wishlistService;
 		}
 
-		public async Task<IActionResult> GetAll(int wishlistId)
+		public async Task<IActionResult> GetAll(string wishlistId)
 		{
 			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+			wishlistId = userId;
 			var products = await wishlistService.GetAll(wishlistId, userId);
 			return View(products);
 		}
