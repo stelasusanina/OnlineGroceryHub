@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OnlineGroceryHub.Core.Contracts;
+using OnlineGroceryHub.Core.Models.Wishlist;
 using OnlineGroceryHub.Models;
 using System.Security.Claims;
 
@@ -25,7 +26,21 @@ namespace OnlineGroceryHub.Controllers
 			var wishlistId = user.WishListId;
 			var products = await wishlistService.GetAll(wishlistId, userId);
 
-			return View(products);
+            var viewModel = new WishlistViewModel
+            {
+                ApplicationUser = user,
+                Products = products
+            };
+
+            return View(viewModel);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Remove(int productId, string wishlistId)
+		{
+			await wishlistService.RemoveProduct(productId, wishlistId);
+
+			return RedirectToAction("GetAll", "Wishlist");
 		}
 	}
 }

@@ -33,5 +33,14 @@ namespace OnlineGroceryHub.Core.Services
 
 			return products;
 		}
+
+		public async Task RemoveProduct(int productId, string wishlistId)
+		{
+			var wishlistProduct = await context.WishlistsProducts
+				.FirstOrDefaultAsync(wp => wp.Product.Id == productId && wp.Wishlist.Id == wishlistId);
+
+			context.WishlistsProducts.Remove(wishlistProduct);
+			await context.SaveChangesAsync();
+		}
 	}
 }
