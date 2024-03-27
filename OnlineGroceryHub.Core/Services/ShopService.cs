@@ -16,7 +16,7 @@ namespace OnlineGroceryHub.Core.Services
         }
 
 		public async Task<ProductsAndCount> GetAllProducts(string searchTerm,
-			string subCategory,
+			List<string> subCategory,
 			ProductSorting sorting,
 			int currentPage,
 			int productsPerPage)
@@ -29,10 +29,10 @@ namespace OnlineGroceryHub.Core.Services
 					.Where(product => product.Name.ToLower().Contains(searchTerm.ToLower()));
 			}
 
-			if (!string.IsNullOrWhiteSpace(subCategory))
+			if (subCategory.Count > 0)
 			{
 				productsQuery = productsQuery
-					.Where(product => product.SubCategory.Name == subCategory);
+					.Where(product => subCategory.Contains(product.SubCategory.Name));
 			}
 
 			switch (sorting)

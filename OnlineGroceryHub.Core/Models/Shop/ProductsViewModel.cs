@@ -27,7 +27,7 @@ namespace OnlineGroceryHub.Core.Models.Shop
 
         public List<ShortProductDTO> Products { get; set; }
         public string SearchTerm { get; set; }
-        public string SubCategory { get; set; } = null!;
+        public List<string> SubCategory { get; set; } = null!;
         public IEnumerable<string> SubCategories { get; set; } = null!;
         public ProductSorting Sorting { get; set; }
         public int TotalProductsCount { get; set; }

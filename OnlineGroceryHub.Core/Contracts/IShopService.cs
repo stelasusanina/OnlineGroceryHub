@@ -11,7 +11,7 @@ namespace OnlineGroceryHub.Core.Contracts
     public interface IShopService
     {
         Task<ProductsAndCount> GetAllProducts(string searchTerm,
-            string subCategory,
+            List<string> subCategory,
             ProductSorting sorting,
             int currentPage,
             int productsPerPage);

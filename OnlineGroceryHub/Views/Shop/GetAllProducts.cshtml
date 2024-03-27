@@ -40,10 +40,41 @@
 				<div class="form-group">
 					<label class="sort-label" asp-for="Sorting">Sort by: </label>
 					<select name="sorting" class="form-control" onchange="this.form.submit()">
-						<option value="AscendingByName">A-Z</option>
-						<option value="DescendingByName">Z-A</option>
-						<option value="AscendingByPrice">Price ↑</option>
-						<option value="DescendingByPrice">Price ↓</option>
+						@if (Model.Sorting.ToString() == "AscendingByName")
+						{
+							<option value="AscendingByName" selected>A-Z</option>
+						}
+						else
+						{
+							<option value="AscendingByName">A-Z</option>
+						}
+
+						@if (Model.Sorting.ToString() =="DescendingByName")
+						{
+							<option value="DescendingByName" selected>Z-A</option>
+						}
+						else
+						{
+							<option value="DescendingByName">Z-A</option>
+						}
+
+						@if (Model.Sorting.ToString() == "AscendingByPrice")
+						{
+							<option value="AscendingByPrice" selected>Price ↑</option>
+						}
+						else
+						{
+							<option value="AscendingByPrice">Price ↑</option>
+						}
+
+						@if (Model.Sorting.ToString() == "DescendingByPrice")
+						{
+							<option value="DescendingByPrice" selected>Price ↓</option>
+						}
+						else
+						{
+							<option value="DescendingByPrice">Price ↓</option>
+						}
 					</select>
 				</div>
 
@@ -58,7 +89,7 @@
 			{
 				<div class="select-filter">
 					@{
-						bool isChecked = (subcategory == Model.SubCategory);
+						bool isChecked = (Model.SubCategory.Contains(subcategory));
 					}
 					<input type="checkbox" id="@subcategory" name="subCategory" value="@subcategory" @(isChecked ? "checked" : "")>
 					<label for="@subcategory">@subcategory</label>

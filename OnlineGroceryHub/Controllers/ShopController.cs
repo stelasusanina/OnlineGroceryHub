@@ -15,9 +15,9 @@ namespace OnlineGroceryHub.Controllers
 		}
 		public async Task<IActionResult> GetAllProducts(
 			[FromQuery] string searchTerm = "",
-			[FromQuery] string subCategory = "",
 			[FromQuery] int currentPage = 1,
-			[FromQuery] ProductSorting sorting = ProductSorting.AscendingByPrice)
+			[FromQuery] ProductSorting sorting = ProductSorting.AscendingByName,
+			[FromQuery] List<string> subCategory = null)
 		{
 
 			var subCategories = await shopService.GetAllSubCategories();
