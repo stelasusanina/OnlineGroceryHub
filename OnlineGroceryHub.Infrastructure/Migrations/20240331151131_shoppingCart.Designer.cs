@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineGroceryHub.Data;
 
@@ -11,9 +12,10 @@ using OnlineGroceryHub.Data;
 namespace OnlineGroceryHub.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240331151131_shoppingCart")]
+    partial class shoppingCart
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -190,7 +192,7 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Articles", (string)null);
+                    b.ToTable("Articles");
 
                     b.HasComment("Article model");
 
@@ -219,7 +221,7 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
 
                     b.HasIndex("CommentId");
 
-                    b.ToTable("ArticlesComments", (string)null);
+                    b.ToTable("ArticlesComments");
 
                     b.HasComment("Mapping table for Article and Comment");
 
@@ -248,7 +250,7 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
 
                     b.HasComment("Product category");
 
@@ -317,7 +319,7 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Comments", (string)null);
+                    b.ToTable("Comments");
 
                     b.HasComment("Article comment");
 
@@ -386,7 +388,7 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
 
                     b.HasIndex("SubCategoryId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
 
                     b.HasComment("Product model");
 
@@ -530,7 +532,7 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                     b.HasIndex("ApplicationUserId")
                         .IsUnique();
 
-                    b.ToTable("Shoppingcarts", (string)null);
+                    b.ToTable("Shoppingcarts");
 
                     b.HasComment("User shopping cart");
                 });
@@ -553,7 +555,7 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ShoppingcartsProducts", (string)null);
+                    b.ToTable("ShoppingcartsProducts");
 
                     b.HasComment("Mapping table of Shopping cart and Product");
                 });
@@ -581,7 +583,7 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("SubCategories", (string)null);
+                    b.ToTable("SubCategories");
 
                     b.HasComment("Product subcategory");
 
@@ -646,7 +648,7 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                     b.HasIndex("ApplicationUserId")
                         .IsUnique();
 
-                    b.ToTable("Wishlists", (string)null);
+                    b.ToTable("Wishlists");
 
                     b.HasComment("Wishlist of user's favourite products");
                 });
@@ -665,7 +667,7 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("WishlistsProducts", (string)null);
+                    b.ToTable("WishlistsProducts");
 
                     b.HasComment("Mapping table of Wishlist and Product");
                 });

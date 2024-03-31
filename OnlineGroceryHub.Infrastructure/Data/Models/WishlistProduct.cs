@@ -8,7 +8,7 @@ namespace OnlineGroceryHub.Infrastructure.Data.Models
 	{
 		[ForeignKey(nameof(WishlistId))]
 		[Comment("Wishlist identifier")]
-		public string WishlistId { get; set; }
+		public string WishlistId { get; set; } = null!;
 		public Wishlist Wishlist { get; set; } = null!;
 
 		[ForeignKey(nameof(ProductId))]

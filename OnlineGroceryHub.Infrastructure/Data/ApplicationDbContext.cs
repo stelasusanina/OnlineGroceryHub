@@ -22,6 +22,8 @@ namespace OnlineGroceryHub.Data
 		public DbSet<ArticleComment> ArticlesComments { get; set; }
 		public DbSet<Wishlist> Wishlists { get; set; }
 		public DbSet<WishlistProduct> WishlistsProducts { get; set; }
+		public DbSet<Shoppingcart> Shoppingcarts { get; set; }
+		public DbSet<ShoppingcartProduct> ShoppingcartsProducts { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
@@ -76,6 +78,30 @@ namespace OnlineGroceryHub.Data
 			  .HasForeignKey<Wishlist>(w => w.ApplicationUserId)
 			  .IsRequired()
 			  .OnDelete(DeleteBehavior.Cascade);
+
+			builder.Entity<ShoppingcartProduct>()
+				.HasKey(scp => new
+				{
+					scp.ShoppingcartId,
+					scp.ProductId
+				});
+
+			builder.Entity<ShoppingcartProduct>()
+				.HasOne(scp => scp.Shoppingcart)
+				.WithMany(sc => sc.ShoppingcartProducts)
+				.HasForeignKey(scp => scp.ShoppingcartId);
+
+			builder.Entity<ShoppingcartProduct>()
+				.HasOne(scp => scp.Product)
+				.WithMany()
+				.HasForeignKey(p => p.ProductId);
+
+			builder.Entity<ApplicationUser>()
+				.HasOne(u => u.Shoppingcart)
+				.WithOne(sc => sc.ApplicationUser)
+				.HasForeignKey<Shoppingcart>(sc => sc.ApplicationUserId)
+				.IsRequired()
+				.OnDelete(DeleteBehavior.Cascade);
 
 			base.OnModelCreating(builder);
 		}
