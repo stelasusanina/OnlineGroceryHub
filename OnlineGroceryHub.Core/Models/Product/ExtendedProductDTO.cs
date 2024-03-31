@@ -19,5 +19,6 @@ namespace OnlineGroceryHub.Core.Models.Product
         public string? ExpirationDate { get; set; }
         public string Origin { get; set; } = null!;
         public string Description { get; set; } = null!;
-    }
+		public int Amount { get; set; }
+	}
 }

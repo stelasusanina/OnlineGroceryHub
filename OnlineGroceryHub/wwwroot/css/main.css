@@ -51,6 +51,8 @@ a.nav-link.text-dark {
 
 .products-filters{
     display: flex;
+    justify-content: center;
+    margin-top: 10px;
 }
 
 .row.justify-content-sm-evenly, input.form-control.form-control-sm.mr-sm-2, button.btn.btn-primary, select.form-control, .filter-content.ml-4.mr-4 {
@@ -72,12 +74,8 @@ label{
     margin-left: 10px;
 }
 
-button.btn.btn-primary.submit{
-    margin-top:10px;
-}
-
-.filter-content.ml-4.mr-4 {
-    margin-top: 60px;
+button.btn.btn-primary.filter{
+    margin-top: 0px;
 }
 
 label.sort-label{
@@ -94,4 +92,22 @@ label.sort-label{
 
 h2.mb-3{
     text-align: center;
+}
+
+button.add-to-wishlist.d-flex.justify-content-center.align-items-center.text-center{
+    border: none;
+}
+
+.checkbox-filters{
+    display: flex;
+
+}
+
+.filter-content.ml-4.mr-4 p {
+    text-align: center;
+}
+
+.select-filter label {
+    margin-right: 20px;
+    margin-left: 5px;
 }

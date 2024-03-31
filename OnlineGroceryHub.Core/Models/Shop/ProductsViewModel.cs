@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OnlineGroceryHub.Infrastructure.Data.Models;
+using OnlineGroceryHub.Models;
 
 namespace OnlineGroceryHub.Core.Models.Shop
 {
@@ -28,11 +29,10 @@ namespace OnlineGroceryHub.Core.Models.Shop
         public List<ShortProductDTO> Products { get; set; }
         public string SearchTerm { get; set; }
         public List<string> SubCategory { get; set; } = null!;
-        public IEnumerable<string> SubCategories { get; set; } = null!;
+        public IEnumerable<string> SubCategories { get; set; } = new List<string>();
         public ProductSorting Sorting { get; set; }
         public int TotalProductsCount { get; set; }
         public int ProductsPerPage { get; set; }
         public int CurrentPage { get; set; }
     }
-
 }

@@ -186,8 +186,7 @@ th {
   text-align: inherit; }
 
 label {
-  display: inline-block;
-  margin-bottom: 0.5rem; }
+  display: inline-block; }
 
 button {
   border-radius: 0; }
@@ -8772,17 +8771,18 @@ h1, h2, h3, h4, h5,
       -webkit-transition: all 0.3s ease;
       -ms-transition: all 0.3s ease;
       transition: all 0.3s ease; }
-      .product .text .bottom-area a {
-        color: #fff;
-        width: 100%;
-        background: #82ae46;
-        width: 40px;
-        height: 40px;
-        margin: 0 auto;
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-        -ms-border-radius: 50%;
-        border-radius: 50%; }
+        .product .text .bottom-area a, .product .text .bottom-area button {
+            color: #fff;
+            width: 100%;
+            background: #82ae46;
+            width: 40px;
+            height: 40px;
+            margin: 0 auto;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            border-radius: 50%;
+        }
       .product .text .bottom-area .m-auto {
         margin: 0 auto; }
   .product:hover {
@@ -8883,7 +8883,6 @@ h1, h2, h3, h4, h5,
   padding: 16px 20px; }
 
 .ftco-cart button, .ftco-cart .form-control {
-  height: 54px !important;
   text-align: center;
   bordeR: 1px solid rgba(0, 0, 0, 0.05) !important;
   color: #000000 !important;
@@ -8920,11 +8919,8 @@ h1, h2, h3, h4, h5,
   font-size: 13px;
   color: #000000; }
 
-.cart-list {
-  overflow-x: scroll; }
-
 .table {
-  min-width: 1000px !important;
+  min-width: 800px !important;
   width: 100%;
   text-align: center; }
   .table th {
@@ -8938,23 +8934,26 @@ h1, h2, h3, h4, h5,
   .table tbody tr td {
     text-align: center !important;
     vertical-align: middle;
-    padding: 40px 10px;
+    padding: 40px 0px;
     border: 1px solid transparent !important;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important; }
-    .table tbody tr td.product-remove a {
-      bordeR: 1px solid rgba(0, 0, 0, 0.1);
-      padding: 4px 10px;
-      color: #000000; }
-      .table tbody tr td.product-remove a:hover {
-        border: 1px solid #82ae46;
-        background: #82ae46; }
-        .table tbody tr td.product-remove a:hover span {
-          color: #fff; }
+    .table tbody tr td.product-remove a, .table tbody tr td.product-remove button {
+        bordeR: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 4px 10px;
+        color: #000000;
+    }
+        .table tbody tr td.product-remove a:hover, .table tbody tr td.product-remove button:hover {
+            border: 1px solid #82ae46;
+            background: #82ae46;
+        }
+            .table tbody tr td.product-remove a:hover span, table tbody tr td.product-remove button:hover span {
+                color: #fff;
+            }
     .table tbody tr td.quantity {
       width: 20%; }
     .table tbody tr td.image-prod .img {
       display: block;
-      width: 100px;
+      width: 30%;
       height: 100px;
       margin: 0 auto; }
     .table tbody tr td.product-name {

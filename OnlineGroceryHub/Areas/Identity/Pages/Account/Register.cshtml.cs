@@ -2,30 +2,22 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using OnlineGroceryHub.Data;
 using OnlineGroceryHub.Infrastructure.Data.Models;
 using OnlineGroceryHub.Models;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+using System.Text.Encodings.Web;
 
 namespace OnlineGroceryHub.Areas.Identity.Pages.Account
 {
-    public class RegisterModel : PageModel
+	public class RegisterModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
@@ -122,13 +114,19 @@ namespace OnlineGroceryHub.Areas.Identity.Pages.Account
             {
                 string id = Guid.NewGuid().ToString();
                 var wishlist = new Wishlist() { Id = id };
+                var shoppingCart = new Shoppingcart() { Id = id };
 
                 wishlist.ApplicationUserId = id;
+                shoppingCart.ApplicationUserId = id;
 
                 await _context.Wishlists.AddAsync(wishlist);
-                var user = new ApplicationUser { Id = id, Wishlist = wishlist, WishListId = wishlist.Id };
-
-                //user = CreateUser();
+                await _context.Shoppingcarts.AddAsync(shoppingCart);
+                var user = new ApplicationUser { 
+                    Id = id, 
+                    Wishlist = wishlist, 
+                    WishListId = wishlist.Id, 
+                    Shoppingcart = shoppingCart, 
+                    ShoppingcartId = shoppingCart.Id };
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
