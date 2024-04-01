@@ -137,9 +137,11 @@
 										<a asp-controller="Product" asp-action="ProductInfo" asp-route-id="@product.Id" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 											<span><i class="ion-ios-menu"></i></span>
 										</a>
-										<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-											<span><i class="ion-ios-cart"></i></span>
-										</a>
+										<form method="post" asp-controller="Shoppingcart" asp-action="AddToShoppingcart">
+											<button type="submit" class="buy-now d-flex justify-content-center align-items-center mx-1"><span class="ion-ios-cart"></span></button>
+											<input type="hidden" name="productId" value="@product.Id" />
+											<input type="hidden" name="amount" value="1" />
+										</form>
 										<form method="post" asp-controller="Wishlist" asp-action="AddToWishlist">
 											<button type="submit" class="add-to-wishlist d-flex justify-content-center align-items-center text-center"><span class="ion-ios-heart"></span></button>
 											<input type="hidden" name="productId" value="@product.Id" />
@@ -170,11 +172,13 @@
 										<a asp-controller="Product" asp-action="ProductInfo" asp-route-id="@product.Id" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 											<span><i class="ion-ios-menu"></i></span>
 										</a>
-										<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-											<span><i class="ion-ios-cart"></i></span>
-										</a>
-										<form method="post" asp-controller="Wishlist" asp-action="AddToWishlist" id="bobi-forma">
-											<button type="submit" form="bobi-forma" class="add-to-wishlist d-flex justify-content-center align-items-center text-center"><span class="ion-ios-heart"></span></button>
+										<form method="post" asp-controller="Shoppingcart" asp-action="AddToShoppingcart">
+											<button type="submit" class="buy-now d-flex justify-content-center align-items-center mx-1"><span class="ion-ios-cart"></span></button>
+											<input type="hidden" name="productId" value="@product.Id" />
+											<input type="hidden" name="amount" value="1" />
+										</form>
+										<form method="post" asp-controller="Wishlist" asp-action="AddToWishlist">
+											<button type="submit" class="add-to-wishlist d-flex justify-content-center align-items-center text-center"><span class="ion-ios-heart"></span></button>
 											<input type="hidden" name="productId" value="@product.Id" />
 										</form>
 									</div>

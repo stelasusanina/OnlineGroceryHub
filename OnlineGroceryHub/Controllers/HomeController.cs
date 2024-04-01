@@ -10,12 +10,10 @@ namespace OnlineGroceryHub.Controllers
     public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> logger;
-        private readonly IProductService productService;
 
-        public HomeController(ILogger<HomeController> _logger, IProductService _productService)
+        public HomeController(ILogger<HomeController> _logger)
         {
             logger = _logger;
-            productService = _productService;
         }
 
         [AllowAnonymous]

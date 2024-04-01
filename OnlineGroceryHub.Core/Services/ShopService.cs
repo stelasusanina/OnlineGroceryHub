@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineGroceryHub.Core.Contracts;
+using OnlineGroceryHub.Core.Models.Product;
 using OnlineGroceryHub.Core.Models.Shop;
 using OnlineGroceryHub.Data;
 using OnlineGroceryHub.Infrastructure.Data.Models;
@@ -54,7 +55,7 @@ namespace OnlineGroceryHub.Core.Services
 			var products = await productsQuery
 				.Skip((currentPage - 1) * productsPerPage)
 				.Take(productsPerPage)
-				.Select(product => new ShortProductDTO
+				.Select(product => new ExtendedProductDTO
 				{
 					Id = product.Id,
 					Name = product.Name,

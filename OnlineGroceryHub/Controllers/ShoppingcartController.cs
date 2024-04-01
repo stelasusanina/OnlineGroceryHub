@@ -14,17 +14,19 @@ namespace OnlineGroceryHub.Controllers
 		private readonly IShoppingcartService shoppingcartService;
 		private readonly UserManager<ApplicationUser> userManager;
 
-		public ShoppingcartController(IShoppingcartService shoppingcartService, UserManager<ApplicationUser> userManager)
+		public ShoppingcartController(
+			IShoppingcartService shoppingcartService,
+			UserManager<ApplicationUser> userManager)
 		{
 			this.shoppingcartService = shoppingcartService;
 			this.userManager = userManager;
 		}
 
-		public async Task<IActionResult> GetAll()
+		public async Task<IActionResult> GetAllFromShoppingcart()
 		{
 			var user = await userManager.GetUserAsync(User);
 
-			var products = await shoppingcartService.GetAll(user.ShoppingcartId, user.Id);
+			var products = await shoppingcartService.GetAllFromShoppingcart(user.ShoppingcartId, user.Id);
 
 			var viewModel = new ShoppingcartViewModel
 			{
@@ -42,7 +44,15 @@ namespace OnlineGroceryHub.Controllers
 
 			await shoppingcartService.AddToShoppingcart(productId, user.ShoppingcartId, amount);
 
-			return RedirectToAction("ProductInfo", "Product", new { Id = productId });
+			return RedirectToAction("GetAllProducts", "Shop");
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Remove(int productId, string shoppingcartId)
+		{
+			await shoppingcartService.RemoveFromShoppingcart(productId, shoppingcartId);
+
+			return RedirectToAction("GetAllFromShoppingcart", "Shoppingcart");
 		}
 	}
 }

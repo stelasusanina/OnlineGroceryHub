@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineGroceryHub.Core.Models.Product;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace OnlineGroceryHub.Core.Models.Shop
 {
     public class ProductsAndCount
     {
-        public List<ShortProductDTO> Products { get; set; }
+        public List<ExtendedProductDTO> Products { get; set; }
         public int TotalProductsCount { get; set; }
 
     }

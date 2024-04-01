@@ -2,6 +2,7 @@
 using OnlineGroceryHub.Core.Contracts;
 using OnlineGroceryHub.Core.Models.Shop;
 using OnlineGroceryHub.Data;
+using OnlineGroceryHub.Infrastructure.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace OnlineGroceryHub.Core.Services
 		{
 			this.context = context;
 		}
-		public async Task<IEnumerable<ShortProductDTO>> GetAll(string wishlistId, string userId)
+		public async Task<IEnumerable<ShortProductDTO>> GetAllFromWishlist(string wishlistId, string userId)
 		{
 			var products = await context.WishlistsProducts
 				.Where(wp => wp.Wishlist.Id == wishlistId)
@@ -42,5 +43,28 @@ namespace OnlineGroceryHub.Core.Services
 			context.WishlistsProducts.Remove(wishlistProduct);
 			await context.SaveChangesAsync();
 		}
+
+		 public async Task<WishlistProduct> AddToWishlist(int productId, string wishlistId)
+         {
+            var product = await context.Products.FindAsync(productId);
+            var wishlist = await context.Wishlists.FindAsync(wishlistId);
+
+            var wishlistProduct = new WishlistProduct
+            {
+                Product = product,
+                ProductId = productId,
+                Wishlist = wishlist,
+                WishlistId = wishlistId
+            };
+
+            if (await context.WishlistsProducts
+				.FirstOrDefaultAsync(wp => wp.Product.Id == productId && wp.Wishlist.Id == wishlistId) == null)
+            {
+                context.WishlistsProducts.Add(wishlistProduct);
+                await context.SaveChangesAsync();
+            }
+
+            return wishlistProduct;
+         }
 	}
 }

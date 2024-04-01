@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OnlineGroceryHub.Infrastructure.Data.Models;
 using OnlineGroceryHub.Models;
+using OnlineGroceryHub.Core.Models.Product;
 
 namespace OnlineGroceryHub.Core.Models.Shop
 {
@@ -17,7 +18,7 @@ namespace OnlineGroceryHub.Core.Models.Shop
         private const int DEFAULT_PRODUCTS_COUNT = 1;
         private const int DEFAULT_PRODUCTS_PER_PAGE = 6;
 
-        public ProductsViewModel(List<ShortProductDTO> products,
+        public ProductsViewModel(List<ExtendedProductDTO> products,
             int totalProductsCount)
         {
             Products = products;
@@ -26,7 +27,7 @@ namespace OnlineGroceryHub.Core.Models.Shop
             ProductsPerPage = DEFAULT_PRODUCTS_PER_PAGE;
         }
 
-        public List<ShortProductDTO> Products { get; set; }
+        public List<ExtendedProductDTO> Products { get; set; }
         public string SearchTerm { get; set; }
         public List<string> SubCategory { get; set; } = null!;
         public IEnumerable<string> SubCategories { get; set; } = new List<string>();

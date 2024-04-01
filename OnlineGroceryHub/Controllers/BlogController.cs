@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OnlineGroceryHub.Core.Contracts;
 using OnlineGroceryHub.Core.Models.Blog;
+using OnlineGroceryHub.Models;
 
 namespace OnlineGroceryHub.Controllers
 {
@@ -9,9 +11,10 @@ namespace OnlineGroceryHub.Controllers
 	{
 		private readonly IBlogService blogService;
 
-		public BlogController(IBlogService _blogService)
+		public BlogController(
+			IBlogService blogService)
 		{
-			blogService = _blogService;
+			this.blogService = blogService;
 		}
 		public async Task<IActionResult> GetAllArticles([FromQuery] string searchTerm = "")
 		{

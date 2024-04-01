@@ -8,11 +8,10 @@ namespace OnlineGroceryHub.Controllers
 	public class ProductController : BaseController
 	{
 		private readonly IProductService productService;
-		private readonly UserManager<ApplicationUser> _userManager;
-		public ProductController(IProductService _productService, UserManager<ApplicationUser> userManager)
+		public ProductController(
+			IProductService productService)
 		{
-			productService = _productService;
-			_userManager = userManager;
+			this.productService = productService;
 		}
 		public async Task<IActionResult> ProductInfo(int id)
 		{

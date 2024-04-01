@@ -1,17 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using OnlineGroceryHub.Core.Contracts;
 using OnlineGroceryHub.Core.Models.Shop;
 using OnlineGroceryHub.Infrastructure.Data.Models;
+using OnlineGroceryHub.Models;
 
 namespace OnlineGroceryHub.Controllers
 {
 	public class ShopController : BaseController
 	{
-		private readonly IShopService shopService;
 		private const int productsPerPage = 8;
-		public ShopController(IShopService _shopService)
+		private readonly IShopService shopService;
+		public ShopController(
+			IShopService shopService)
 		{
-			shopService = _shopService;
+			this.shopService = shopService;
 		}
 		public async Task<IActionResult> GetAllProducts(
 			[FromQuery] string searchTerm = "",
@@ -32,6 +35,5 @@ namespace OnlineGroceryHub.Controllers
 			};
 			return View(viewModel);
 		}
-
 	}
 }
