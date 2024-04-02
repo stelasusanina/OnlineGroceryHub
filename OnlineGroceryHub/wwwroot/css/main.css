@@ -111,3 +111,19 @@ button.add-to-wishlist.d-flex.justify-content-center.align-items-center.text-cen
     margin-right: 20px;
     margin-left: 5px;
 }
+
+.cart-list{
+    text-align: center;
+}
+
+.add-products{
+    margin-bottom: 60px;
+}
+
+.free-delivery {
+    color: #82ae46;
+}
+
+button.buy-now.d-flex.justify-content-center.align-items-center.mx-1{
+    border: none;
+}
