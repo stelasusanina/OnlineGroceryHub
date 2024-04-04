@@ -127,3 +127,43 @@ button.add-to-wishlist.d-flex.justify-content-center.align-items-center.text-cen
 button.buy-now.d-flex.justify-content-center.align-items-center.mx-1{
     border: none;
 }
+
+.row{
+    width: 100%;
+    justify-content: center;
+}
+
+.title {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.subtitle {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+input#Input_Email {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    padding: 0 0 0 1rem;
+}
+
+input#Input_Password {
+    padding: 0 0 0 1rem;
+}
+
+.form-floating{
+    margin-bottom: 15px;
+}
+
+.new-user {
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 15px;
+}
