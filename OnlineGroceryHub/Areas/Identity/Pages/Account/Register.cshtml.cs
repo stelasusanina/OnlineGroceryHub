@@ -97,6 +97,10 @@ namespace OnlineGroceryHub.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            public string FirstName { get; set; }
+
+            public string LastName { get; set; }
         }
 
 
@@ -123,10 +127,13 @@ namespace OnlineGroceryHub.Areas.Identity.Pages.Account
                 await _context.Shoppingcarts.AddAsync(shoppingCart);
                 var user = new ApplicationUser { 
                     Id = id, 
+                    FirstName = Input.FirstName,
+                    LastName = Input.LastName,
                     Wishlist = wishlist, 
                     WishListId = wishlist.Id, 
                     Shoppingcart = shoppingCart, 
-                    ShoppingcartId = shoppingCart.Id };
+                    ShoppingcartId = shoppingCart.Id 
+                };
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
