@@ -12,8 +12,8 @@ using OnlineGroceryHub.Data;
 namespace OnlineGroceryHub.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240326202332_Initial")]
-    partial class Initial
+    [Migration("20240405155335_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -516,6 +516,50 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.Shoppingcart", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)")
+                        .HasComment("Shopping cart identifier");
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)")
+                        .HasComment("Shopping cart user identifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId")
+                        .IsUnique();
+
+                    b.ToTable("Shoppingcarts");
+
+                    b.HasComment("User shopping cart");
+                });
+
+            modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.ShoppingcartProduct", b =>
+                {
+                    b.Property<string>("ShoppingcartId")
+                        .HasColumnType("nvarchar(450)")
+                        .HasComment("Shopping cart identifier");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int")
+                        .HasComment("Product identifier");
+
+                    b.Property<int>("ProductAmount")
+                        .HasColumnType("int")
+                        .HasComment("Amount of certain product");
+
+                    b.HasKey("ShoppingcartId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ShoppingcartsProducts");
+
+                    b.HasComment("Mapping table of Shopping cart and Product");
+                });
+
             modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.SubCategory", b =>
                 {
                     b.Property<int>("Id")
@@ -647,6 +691,16 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -671,6 +725,10 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShoppingcartId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -778,6 +836,36 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                     b.Navigation("SubCategory");
                 });
 
+            modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.Shoppingcart", b =>
+                {
+                    b.HasOne("OnlineGroceryHub.Models.ApplicationUser", "ApplicationUser")
+                        .WithOne("Shoppingcart")
+                        .HasForeignKey("OnlineGroceryHub.Infrastructure.Data.Models.Shoppingcart", "ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+                });
+
+            modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.ShoppingcartProduct", b =>
+                {
+                    b.HasOne("OnlineGroceryHub.Infrastructure.Data.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineGroceryHub.Infrastructure.Data.Models.Shoppingcart", "Shoppingcart")
+                        .WithMany("ShoppingcartProducts")
+                        .HasForeignKey("ShoppingcartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Shoppingcart");
+                });
+
             modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.SubCategory", b =>
                 {
                     b.HasOne("OnlineGroceryHub.Infrastructure.Data.Models.Category", "Category")
@@ -829,6 +917,11 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                     b.Navigation("ArticleComments");
                 });
 
+            modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.Shoppingcart", b =>
+                {
+                    b.Navigation("ShoppingcartProducts");
+                });
+
             modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.SubCategory", b =>
                 {
                     b.Navigation("Products");
@@ -841,6 +934,9 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
 
             modelBuilder.Entity("OnlineGroceryHub.Models.ApplicationUser", b =>
                 {
+                    b.Navigation("Shoppingcart")
+                        .IsRequired();
+
                     b.Navigation("Wishlist")
                         .IsRequired();
                 });
