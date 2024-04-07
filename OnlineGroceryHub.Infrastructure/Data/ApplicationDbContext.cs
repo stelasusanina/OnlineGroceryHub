@@ -40,6 +40,10 @@ namespace OnlineGroceryHub.Data
 				.Property(p => p.Price)
 				.HasPrecision(18, 2);
 
+			builder.Entity<Shoppingcart>()
+				.Property(sp => sp.Total)
+				.HasPrecision(18, 2);
+
 			builder.Entity<ArticleComment>()
 				.HasKey(ac => new
 				{

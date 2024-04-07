@@ -23,6 +23,9 @@ namespace OnlineGroceryHub.Infrastructure.Data.Models
 		public string ApplicationUserId { get; set; } = null!;
 		public ApplicationUser ApplicationUser { get; set; } = null!;
 
+		[Comment("Shopping cart total")]
+		public decimal Total {  get; set; }
+
 		[Comment("List of the mapping table ShoppingcartProduct")]
 		public ICollection<ShoppingcartProduct> ShoppingcartProducts { get; set; } = new List<ShoppingcartProduct>();
 	}
