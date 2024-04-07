@@ -24,7 +24,9 @@ namespace OnlineGroceryHub.Data
 		public DbSet<WishlistProduct> WishlistsProducts { get; set; }
 		public DbSet<Shoppingcart> Shoppingcarts { get; set; }
 		public DbSet<ShoppingcartProduct> ShoppingcartsProducts { get; set; }
-
+		public DbSet<Order> Orders { get; set; }
+		public DbSet<UserOrder> UsersOrders { get; set; }
+		public DbSet<ProductOrder> ProductsOrders { get; set; }
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
 			builder.ApplyConfiguration(new CategoryConfiguration());
@@ -102,6 +104,40 @@ namespace OnlineGroceryHub.Data
 				.HasForeignKey<Shoppingcart>(sc => sc.ApplicationUserId)
 				.IsRequired()
 				.OnDelete(DeleteBehavior.Cascade);
+
+			builder.Entity<ProductOrder>()
+				.HasKey(po => new
+				{
+					po.OrderId, 
+					po.ProductId
+				});
+
+			builder.Entity<ProductOrder>()
+				.HasOne(po => po.Product)
+				.WithMany()
+				.HasForeignKey(po => po.ProductId);
+
+			builder.Entity<ProductOrder>()
+				.HasOne(po => po.Order)
+				.WithMany(o => o.ProductsOrders)
+				.HasForeignKey(po => po.OrderId);
+
+			builder.Entity<UserOrder>()
+				.HasKey(uo => new
+				{
+					uo.OrderId, 
+					uo.UserId
+				});
+
+			builder.Entity<UserOrder>()
+				.HasOne(uo => uo.ApplicationUser)
+				.WithMany()
+				.HasForeignKey(uo => uo.UserId);
+
+			builder.Entity<UserOrder>()
+				.HasOne(uo => uo.Order)
+				.WithMany(o => o.UsersOrders)
+				.HasForeignKey(uo => uo.OrderId);
 
 			base.OnModelCreating(builder);
 		}
