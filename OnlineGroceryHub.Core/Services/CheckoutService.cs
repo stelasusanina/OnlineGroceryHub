@@ -55,7 +55,8 @@ namespace OnlineGroceryHub.Core.Services
 				City = checkoutFormModel.City,
 				Postcode = checkoutFormModel.Postcode,
 				AdditionalInfo = checkoutFormModel.AdditionalInfo,
-				StreetAddress = checkoutFormModel.StreetAddress
+				StreetAddress = checkoutFormModel.StreetAddress,
+				UserId = user.Id
 			};
 
 			var shoppingcartProducts = context.ShoppingcartsProducts.Where(scp => scp.ShoppingcartId == shoppingcartId);
