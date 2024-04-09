@@ -11,9 +11,12 @@ namespace OnlineGroceryHub.Infrastructure.Data.Models
 		public int ProductId { get; set; } 
 		public Product Product { get; set; } = null!;
 
-		[ForeignKey(nameof(OrderId))]
+		[Comment("Product amount")]
+		public int Amount { get; set; }
+
+        [ForeignKey(nameof(OrderId))]
 		[Comment("Order identifier")]
-		public int OrderId { get; set; }
+		public string OrderId { get; set; }
 		public Order Order { get; set; } = null!;
 	}
 }

@@ -11,7 +11,9 @@ namespace OnlineGroceryHub.Core.Models.Shoppingcart
 {
 	public class ShoppingcartViewModel
 	{
+		public string ShoppingcartId { get; set; } = null!;
 		public IEnumerable<ExtendedProductDTO> Products { get; set; } = new List<ExtendedProductDTO>();
+		public decimal Total {  get; set; }
 		public ApplicationUser ApplicationUser { get; set; } = new ApplicationUser();
     }
 }

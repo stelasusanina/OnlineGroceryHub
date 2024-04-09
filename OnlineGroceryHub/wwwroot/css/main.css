@@ -205,3 +205,21 @@ button.product-remove:hover {
     background-color: white;
     border: 1px solid #82ae46;
 }
+
+h3.order-done {
+    text-align: center;
+    font-size: 18px;
+    padding-top: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+p.order-done {
+    text-align: justify;
+    font-size: 14px;
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    padding-left: 250px;
+    padding-right: 250px;
+    letter-spacing: 2px;
+}

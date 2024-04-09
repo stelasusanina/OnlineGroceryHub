@@ -12,8 +12,8 @@ using OnlineGroceryHub.Data;
 namespace OnlineGroceryHub.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240407114012_orders")]
-    partial class orders
+    [Migration("20240408191830_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -335,11 +335,39 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
 
             modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.Order", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    b.Property<string>("AdditionalInfo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Postcode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StreetAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -531,13 +559,17 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
 
             modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.ProductOrder", b =>
                 {
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int")
+                    b.Property<string>("OrderId")
+                        .HasColumnType("nvarchar(450)")
                         .HasComment("Order identifier");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int")
                         .HasComment("Product identifier");
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int")
+                        .HasComment("Product amount");
 
                     b.HasKey("OrderId", "ProductId");
 
@@ -558,6 +590,11 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)")
                         .HasComment("Shopping cart user identifier");
+
+                    b.Property<decimal>("Total")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)")
+                        .HasComment("Shopping cart total");
 
                     b.HasKey("Id");
 
@@ -666,8 +703,8 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
 
             modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.UserOrder", b =>
                 {
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int")
+                    b.Property<string>("OrderId")
+                        .HasColumnType("nvarchar(450)")
                         .HasComment("Order identifier");
 
                     b.Property<string>("UserId")

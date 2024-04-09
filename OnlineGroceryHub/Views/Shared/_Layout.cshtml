@@ -77,9 +77,11 @@
 								<input type="hidden" class="form-control" name="ShoppingcartId">
 								@{
 									var user = await userManager.GetUserAsync(User);
+									if (user == null) return;
 									var shoppingCart = await shoppingcartService.GetAllFromShoppingcart(user.ShoppingcartId, user.Id);
+									var itemsCount = shoppingCart.Count();
 								}
-								<span class="icon-shopping_cart"></span>[@shoppingCart.Count()]
+								<span class="icon-shopping_cart"></span>[@itemsCount]
 							</a>
 						</li>
 

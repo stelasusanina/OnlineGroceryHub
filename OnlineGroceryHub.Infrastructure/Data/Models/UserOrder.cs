@@ -14,7 +14,7 @@ namespace OnlineGroceryHub.Infrastructure.Data.Models
 
 		[ForeignKey(nameof(OrderId))]
 		[Comment("Order identifier")]
-		public int OrderId { get; set; }
+		public string OrderId { get; set; }
 		public Order Order { get; set; } = null!;
 	}
 }

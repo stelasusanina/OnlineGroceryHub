@@ -1,0 +1,149 @@
+﻿@model ShoppingcartViewModel
+<div class="hero-wrap hero-bread" style="background-image: url('https://pbs.twimg.com/media/D7vU-BDVUAAWHgM?format=jpg&name=medium');">
+	<div class="container">
+		<div class="row no-gutters slider-text align-items-center justify-content-center">
+			<div class="col-md-9 ftco-animate text-center">
+				<h1 class="mb-0 bread">Checkout</h1>
+			</div>
+		</div>
+	</div>
+</div>
+
+<section class="ftco-section">
+	<div class="container">
+		<form method="post" asp-action="ProcessCheckout" asp-controller="Checkout" class="billing-form">
+			<div class="row justify-content-center">
+				<div class="col-xl-7 ftco-animate">
+					<h3 class="mb-4 billing-heading">Billing Details</h3>
+					<div class="row align-items-end">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="firstname">First Name</label>
+								<input type="text" name="FirstName" class="form-control" placeholder="">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="lastname">Last Name</label>
+								<input type="text" name="LastName" class="form-control" placeholder="">
+							</div>
+						</div>
+						<div class="w-100"></div>
+						<div class="w-100"></div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="streetaddress">Street Address</label>
+								<input type="text" name="StreetAddress" class="form-control" placeholder="House number and street name">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<input type="text" name="AdditionalInfo" class="form-control" placeholder="Appartment, suite, unit etc: (optional)">
+							</div>
+						</div>
+						<div class="w-100"></div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="towncity">City</label>
+								<input type="text" name="City" class="form-control" placeholder="">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="postcodezip">Postcode *</label>
+								<input type="text" name="Postcode" class="form-control" placeholder="">
+							</div>
+						</div>
+						<div class="w-100"></div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="phone">Phone</label>
+								<input type="text" name="Phone" class="form-control" placeholder="">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="emailaddress">Email Address</label>
+								<input type="text" name="Email" class="form-control" placeholder="">
+							</div>
+						</div>
+						<div class="w-100"></div>
+					</div>
+				</div>
+				<div class="col-xl-5">
+					<div class="row mt-5 pt-3">
+						<div class="col-md-12 d-flex mb-5">
+							<div class="cart-detail cart-total p-3 p-md-4">
+								<h3 class="billing-heading mb-4">Cart Total</h3>
+								<p class="d-flex">
+									<span>Subtotal</span>
+									<span>$@Math.Round(Model.Total, 2)</span>
+								</p>
+								<p class="d-flex">
+									<span>Delivery</span>
+									@if (Model.Total < 50)
+									{
+										<span>
+											$5.90
+										</span>
+									}
+									else
+									{
+										<span class="free-delivery">FREE</span>
+									}
+								</p>
+								<hr>
+								<p class="d-flex total-price">
+									<span>Total</span>
+									@if (Model.Total < 50)
+									{
+										<span>$@Math.Round(Model.Total + (decimal)5.90, 2)</span>
+									}
+									else
+									{
+										<span>$@Math.Round(Model.Total, 2)</span>
+									}
+								</p>
+							</div>
+						</div>
+
+						<div class="col-md-12">
+							<div class="cart-detail p-3 p-md-4">
+								<h3 class="billing-heading mb-4">Payment Method</h3>
+								<div class="form-group">
+									<div class="col-md-12">
+										<div class="radio">
+											<label><input type="radio" name="optradio" class="mr-2"> Direct Bank Tranfer</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-md-12">
+										<div class="radio">
+											<label><input type="radio" name="optradio" class="mr-2"> Check Payment</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-md-12">
+										<div class="radio">
+											<label><input type="radio" name="optradio" class="mr-2"> Paypal</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-md-12">
+										<div class="checkbox">
+											<label><input type="checkbox" value="" class="mr-2"> I have read and accept the terms and conditions</label>
+										</div>
+									</div>
+								</div>
+								<input type="submit" value="Place an Order" class="btn btn-primary py-3 px-4">
+							</div>
+						</div>
+					</div>
+				</div> <!-- .col-md-8 -->
+			</div>
+		</form>
+	</div>
+</section> <!-- .section -->

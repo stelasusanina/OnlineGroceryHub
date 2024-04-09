@@ -1,19 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineGroceryHub.Core.Contracts;
 using OnlineGroceryHub.Core.Models.Product;
-using OnlineGroceryHub.Core.Models.Shop;
-using OnlineGroceryHub.Core.Models.Shoppingcart;
 using OnlineGroceryHub.Data;
 using OnlineGroceryHub.Infrastructure.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineGroceryHub.Core.Services
 {
-	public class ShoppingcartService: IShoppingcartService
+	public class ShoppingcartService : IShoppingcartService
 	{
 		private readonly ApplicationDbContext context;
 

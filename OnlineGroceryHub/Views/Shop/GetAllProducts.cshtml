@@ -161,7 +161,12 @@
 								<div class="overlay"></div>
 							</a>
 							<div class="text py-3 pb-4 px-3 text-center">
-								<h3><a href="#">@product.Name</a></h3>
+								<h3 style="    max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;">
+									<a href="#">@product.Name</a>
+								</h3>
 								<div class="d-flex">
 									<div class="pricing">
 										<p class="price"><span>$@product.Price</span></p>
