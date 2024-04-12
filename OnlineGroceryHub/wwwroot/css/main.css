@@ -189,7 +189,8 @@ input#Input_Password {
     display: flex;
 }
 
-.names input, .reg-input input, .log-input input{
+.names input, .reg-input input, .log-input input, .phone-number input,
+input#Input_NewPassword, input#Input_OldPassword, input#Input_ConfirmPassword{
     letter-spacing: 2px;
     font-size: 0.9rem;
     margin-bottom: 20px;
@@ -222,4 +223,89 @@ p.order-done {
     padding-left: 250px;
     padding-right: 250px;
     letter-spacing: 2px;
+}
+
+.container.profile-menu {
+    display: flex;
+    margin-top: 30px;
+}
+
+.profile-menu-heading {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+a#profile, a#change-password, .profile-info, a#orders{
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    color: #82ae46;
+}
+
+a#profile.active, a#change-password.active, a#orders.active{
+    background-color: #82ae46;
+    color:white;
+    border-radius:50px;
+}
+
+h3.profile-info, h3.change-password, h3.orders {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: black;
+}
+
+.profile-info p span{
+    color: black;
+}
+
+button#update-profile-button, button.w-100.btn.btn-lg.btn-primary {
+    margin-bottom: 70px;
+}
+
+.container.profile-menu {
+    margin-bottom: 70px;
+}
+
+.someText {
+    height: 0px;
+    overflow: hidden;
+    display: block;
+}
+
+.theButton {
+    background: #444;
+    color: #fff;
+    padding: 10px;
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+}
+
+#showProducts:checked + .someText {
+    height: auto;
+}
+
+.theButton:after {
+    content: "Show Products";
+}
+
+#showProducts:checked + .someText {
+    height: 100%;
+}
+
+#showProducts:checked ~ .theButton:after {
+    content: "Hide Products";
+}
+
+table tbody tr td:first-child {
+    width: 55%;
+}
+
+.border.border-dark{
+    text-align: center;
 }

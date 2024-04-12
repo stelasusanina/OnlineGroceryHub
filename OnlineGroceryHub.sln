@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineGroceryHub", "OnlineGroceryHub\OnlineGroceryHub.csproj", "{C94FE82B-7096-465E-9318-AD209B8BB632}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineGroceryHub", "OnlineGroceryHub\OnlineGroceryHub.csproj", "{C94FE82B-7096-465E-9318-AD209B8BB632}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineGroceryHub.Core", "OnlineGroceryHub.Core\OnlineGroceryHub.Core.csproj", "{4D94E5F1-1FD1-4101-99A5-44DD2365EAF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineGroceryHub.Core", "OnlineGroceryHub.Core\OnlineGroceryHub.Core.csproj", "{4D94E5F1-1FD1-4101-99A5-44DD2365EAF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineGroceryHub.Infrastructure", "OnlineGroceryHub.Infrastructure\OnlineGroceryHub.Infrastructure.csproj", "{830294CD-694D-4F33-81A7-79A84C5F43A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineGroceryHub.Infrastructure", "OnlineGroceryHub.Infrastructure\OnlineGroceryHub.Infrastructure.csproj", "{830294CD-694D-4F33-81A7-79A84C5F43A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
