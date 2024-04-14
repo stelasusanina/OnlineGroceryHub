@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using OnlineGroceryHub.Infrastructure.Data.Models;
 using OnlineGroceryHub.Infrastructure.Data.SeedDb;
+using OnlineGroceryHub.Infrastructure.SeedDb;
 using OnlineGroceryHub.Models;
 using System.Reflection.Emit;
 
@@ -12,6 +15,7 @@ namespace OnlineGroceryHub.Data
 		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
 			: base(options)
 		{
+			
 		}
 
 		public DbSet<Product> Products { get; set; }
@@ -35,6 +39,8 @@ namespace OnlineGroceryHub.Data
 			builder.ApplyConfiguration(new ArticleConfiguration());
 			builder.ApplyConfiguration(new CommentConfiguration());
 			builder.ApplyConfiguration(new ArticleCommentConfiguration());
+			//builder.ApplyConfiguration(new ApplicationUserConfiguration());
+
 
 			builder.Entity<Product>()
 				.Property(p => p.Price)
@@ -112,7 +118,7 @@ namespace OnlineGroceryHub.Data
 			builder.Entity<ProductOrder>()
 				.HasKey(po => new
 				{
-					po.OrderId, 
+					po.OrderId,
 					po.ProductId
 				});
 
@@ -129,7 +135,7 @@ namespace OnlineGroceryHub.Data
 			builder.Entity<UserOrder>()
 				.HasKey(uo => new
 				{
-					uo.OrderId, 
+					uo.OrderId,
 					uo.UserId
 				});
 

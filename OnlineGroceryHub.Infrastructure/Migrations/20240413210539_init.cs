@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OnlineGroceryHub.Infrastructure.Migrations
 {
-    public partial class Initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,8 +45,8 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    WishListId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ShoppingcartId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    WishListId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ShoppingcartId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -98,25 +98,6 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                     table.PrimaryKey("PK_Comments", x => x.Id);
                 },
                 comment: "Article comment");
-
-            migrationBuilder.CreateTable(
-                name: "Orders",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StreetAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AdditionalInfo = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Postcode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
-                });
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
@@ -222,6 +203,32 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StreetAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AdditionalInfo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Postcode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -445,6 +452,15 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                 values: new object[] { 1, "Think about it. Your brain is always \"on.\" It takes care of your thoughts and movements, your breathing and heartbeat, your senses — it works hard 24/7, even while you're asleep. This means your brain requires a constant supply of fuel. That \"fuel\" comes from the foods you eat — and what's in that fuel makes all the difference. Put simply, what you eat directly affects the structure and function of your brain and, ultimately, your mood.\r\n\r\nLike an expensive car, your brain functions best when it gets only premium fuel. Eating high-quality foods that contain lots of vitamins, minerals, and antioxidants nourishes the brain and protects it from oxidative stress — the \"waste\" (free radicals) produced when the body uses oxygen, which can damage cells.\r\n\r\nUnfortunately, just like an expensive car, your brain can be damaged if you ingest anything other than premium fuel. If substances from \"low-premium\" fuel (such as what you get from processed or refined foods) get to the brain, it has little ability to get rid of them. Diets high in refined sugars, for example, are harmful to the brain. In addition to worsening your body's regulation of insulin, they also promote inflammation and oxidative stress. Multiple studies have found a correlation between a diet high in refined sugars and impaired brain function — and even a worsening of symptoms of mood disorders, such as depression.\r\n\r\nIt makes sense. If your brain is deprived of good-quality nutrition, or if free radicals or damaging inflammatory cells are circulating within the brain's enclosed space, further contributing to brain tissue injury, consequences are to be expected. What's interesting is that for many years, the medical field did not fully acknowledge the connection between mood and food.\r\n\r\nToday, fortunately, the burgeoning field of nutritional psychiatry is finding there are many consequences and correlations between not only what you eat, how you feel, and how you ultimately behave, but also the kinds of bacteria that live in your gut.\r\n\r\nHow the foods you eat affect your mental health\r\nSerotonin is a neurotransmitter that helps regulate sleep and appetite, mediate moods, and inhibit pain. Since about 95% of your serotonin is produced in your gastrointestinal tract, and your gastrointestinal tract is lined with a hundred million nerve cells, or neurons, it makes sense that the inner workings of your digestive system don't just help you digest food, but also guide your emotions. What's more, the function of these neurons — and the production of neurotransmitters like serotonin — is highly influenced by the billions of \"good\" bacteria that make up your intestinal microbiome. These bacteria play an essential role in your health. They protect the lining of your intestines and ensure they provide a strong barrier against toxins and \"bad\" bacteria; they limit inflammation; they improve how well you absorb nutrients from your food; and they activate neural pathways that travel directly between the gut and the brain.\r\n\r\nStudies have compared \"traditional\" diets, like the Mediterranean diet and the traditional Japanese diet, to a typical \"Western\" diet and have shown that the risk of depression is 25% to 35% lower in those who eat a traditional diet. Scientists account for this difference because these traditional diets tend to be high in vegetables, fruits, unprocessed grains, and fish and seafood, and to contain only modest amounts of lean meats and dairy. They are also void of processed and refined foods and sugars, which are staples of the \"Western\" dietary pattern. In addition, many of these unprocessed foods are fermented, and therefore act as natural probiotics.\r\n\r\nThis may sound implausible to you, but the notion that good bacteria not only influence what your gut digests and absorbs, but that they also affect the degree of inflammation throughout your body, as well as your mood and energy level, is gaining traction among researchers.\r\n\r\nNutritional psychiatry: What does it mean for you?\r\nStart paying attention to how eating different foods makes you feel — not just in the moment, but the next day. Try eating a \"clean\" diet for two to three weeks — that means cutting out all processed foods and sugar. See how you feel. Then slowly introduce foods back into your diet, one by one, and see how you feel.\r\n\r\nWhen some people \"go clean,\" they cannot believe how much better they feel both physically and emotionally, and how much worse they then feel when they reintroduce the foods that are known to enhance inflammation.", "https://d2jx2rerrg6sh3.cloudfront.net/images/Article_Images/ImageForArticle_21990_16425136005131910.jpg", new DateTime(2023, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nutritional psychiatry: Your brain on food" });
 
             migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "ShoppingcartId", "TwoFactorEnabled", "UserName", "WishListId" },
+                values: new object[,]
+                {
+                    { "00359143-b644-4d40-ad75-b35df9341f0b", 0, "b5c158c3-311f-4043-a7c3-0e403bc0105b", "stela1234@abv.bg", false, "Stela", "Susanina", false, null, null, null, "AQAAAAEAACcQAAAAEOlPGqdiXxEZA04WDq1HwT8Vgv0lWxW6LdZssQVFm1KPEzE3Inb7MqnahpTIgPYHXw==", null, false, "8e7cceac-b5fd-4453-ad00-258c18c62e68", "00359143-b644-4d40-ad75-b35df9341f0b", false, "stela1234@abv.bg", "00359143-b644-4d40-ad75-b35df9341f0b" },
+                    { "9a2f0ce7-97a9-4806-a706-5e239efd4dd2", 0, "a1756e4d-a810-488f-afed-4d5b35e39cb6", "admin@admin.com", false, "Admin", "Admin", false, null, null, null, "AQAAAAEAACcQAAAAEMkMPL7gtUoVF62e4QTPyYpQHt1vzAjvsA6S1muJvy4nh/wHcyNpxbahiBi3Rhf8CA==", null, false, "47c66eb4-189e-4769-878e-072a8d10522c", null, false, "admin@admin.com", null }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
@@ -542,6 +558,11 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_ApplicationUserId",
+                table: "Orders",
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_SubCategoryId",

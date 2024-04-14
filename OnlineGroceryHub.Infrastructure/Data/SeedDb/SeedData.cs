@@ -1,9 +1,8 @@
-﻿using OnlineGroceryHub.Infrastructure.Data.Models;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
+using OnlineGroceryHub.Infrastructure.Data.Models;
+using OnlineGroceryHub.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineGroceryHub.Infrastructure.SeedDb
 {
@@ -17,7 +16,7 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
         public Category MeatAndFishCategory { get; set; }
         public Category PackagedFoodsCategory { get; set; }
 
-        public SubCategory Apples {  get; set; }
+        public SubCategory Apples { get; set; }
         public SubCategory Cucumbers { get; set; }
         public SubCategory Cheese { get; set; }
         public SubCategory FrozenMeat { get; set; }
@@ -25,20 +24,23 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
         public SubCategory Chicken { get; set; }
         public SubCategory Snacks { get; set; }
 
-        public Product CheeseMadzharov {  get; set; }
+        public Product CheeseMadzharov { get; set; }
         public Product CoffeeLavazza { get; set; }
         public Product RiceChips { get; set; }
         public Product CheeseHarmonica { get; set; }
         public Product Bruschette { get; set; }
-        public Product ApplesGala {  get; set; }
-        public Product CoffeeNescafe {  get; set; }
+        public Product ApplesGala { get; set; }
+        public Product CoffeeNescafe { get; set; }
         public Product ChickenRoso { get; set; }
-        public Product SticksScala {  get; set; }
+        public Product SticksScala { get; set; }
         public Product CucumbersGr { get; set; }
 
         public Article NutritionalPsychiatry { get; set; }
         public Comment FirstComment { get; set; }
         public ArticleComment FirstArticleComment { get; set; }
+
+        public ApplicationUser Admin { get; set; }
+        public ApplicationUser User { get; set; }
         public SeedData()
         {
             SeedCategories();
@@ -47,6 +49,7 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
             SeedArticles();
             SeedComments();
             SeedArticleComments();
+            //SeedUsers();
         }
 
         private void SeedCategories()
@@ -255,7 +258,7 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
                 Id = 8,
                 Name = "Chicken Roso Chilled",
                 Description = "Chicken Roso Chilled about 1.700 kg. The price for one piece.",
-                Quantity= 1.7,
+                Quantity = 1.7,
                 Price = 21.80M,
                 ExpirationDate = expirationDate7,
                 ImageUrl = "https://m.ebag.bg/en/products/images/85639/800",
@@ -309,7 +312,7 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
                 Author = "Eva Selhub",
                 Content = "Great article! Learned a lot from it!",
                 CommentDate = new DateTime(2024, 03, 24)
-			};
+            };
         }
 
         private void SeedArticleComments()
@@ -319,6 +322,35 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
                 ArticleId = 1,
                 CommentId = 1
             };
+        }
+
+        private void SeedUsers()
+        {
+            PasswordHasher<ApplicationUser> hasher = new PasswordHasher<ApplicationUser>();
+
+            Admin = new ApplicationUser()
+            {
+                Id = "9a2f0ce7-97a9-4806-a706-5e239efd4dd2",
+                FirstName = "Admin",
+                LastName = "Admin",
+                Email = "admin@admin.com",
+                UserName = "admin@admin.com",
+            };
+
+            Admin.PasswordHash = hasher.HashPassword(Admin, "a123456789A");
+
+            User = new ApplicationUser()
+            {
+                Id = "00359143-b644-4d40-ad75-b35df9341f0b",
+                FirstName = "Stela",
+                LastName = "Susanina",
+                Email = "stela1234@abv.bg",
+                ShoppingcartId = "00359143-b644-4d40-ad75-b35df9341f0b",
+                WishListId = "00359143-b644-4d40-ad75-b35df9341f0b",
+                UserName = "stela1234@abv.bg",
+            };
+
+            User.PasswordHash = hasher.HashPassword(User, "s123456789S");
         }
     }
 }

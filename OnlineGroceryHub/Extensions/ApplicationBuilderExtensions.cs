@@ -1,0 +1,57 @@
+﻿using Microsoft.AspNetCore.Identity;
+using OnlineGroceryHub.Models;
+
+namespace OnlineGroceryHub.Extensions
+{
+    public static class ApplicationBuilderExtensions
+    {
+        public static async Task CreateAdminRoleAsync(this IApplicationBuilder app)
+        {
+            using var scope = app.ApplicationServices.CreateScope();
+            var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+            if (userManager != null && roleManager != null)
+            {
+                var adminRole = new IdentityRole("Admin");
+                var userRole = new IdentityRole("User");
+
+                await roleManager.CreateAsync(adminRole);
+                await roleManager.CreateAsync(userRole);
+
+                var Admin = new ApplicationUser()
+                {
+                    Id = "9a2f0ce7-97a9-4806-a706-5e239efd4dd2",
+                    FirstName = "Admin",
+                    LastName = "Admin",
+                    Email = "admin@admin.com",
+                    UserName = "admin@admin.com",
+                };
+
+                var User = new ApplicationUser()
+                {
+                    Id = "00359143-b644-4d40-ad75-b35df9341f0b",
+                    FirstName = "Stela",
+                    LastName = "Susanina",
+                    Email = "stela1234@abv.bg",
+                    ShoppingcartId = "00359143-b644-4d40-ad75-b35df9341f0b",
+                    WishListId = "00359143-b644-4d40-ad75-b35df9341f0b",
+                    UserName = "stela1234@abv.bg",
+                };
+
+                await userManager.CreateAsync(Admin, "a123456789A");
+                await userManager.CreateAsync(User, "s123456789S");
+
+                if (Admin != null)
+                {
+                    await userManager.AddToRoleAsync(Admin, adminRole.Name);
+                }
+
+                if(User != null)
+                {
+                    await userManager.AddToRoleAsync(User, userRole.Name);
+                }
+            }
+        }
+    }
+}

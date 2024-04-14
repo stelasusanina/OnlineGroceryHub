@@ -12,6 +12,7 @@ using OnlineGroceryHub.Data;
 using OnlineGroceryHub.Infrastructure.Data.Models;
 using OnlineGroceryHub.Models;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Text.Encodings.Web;
 
@@ -132,8 +133,10 @@ namespace OnlineGroceryHub.Areas.Identity.Pages.Account
                     Wishlist = wishlist, 
                     WishListId = wishlist.Id, 
                     Shoppingcart = shoppingCart, 
-                    ShoppingcartId = shoppingCart.Id 
+                    ShoppingcartId = shoppingCart.Id
                 };
+
+                await _userManager.AddToRoleAsync(user, "User");
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

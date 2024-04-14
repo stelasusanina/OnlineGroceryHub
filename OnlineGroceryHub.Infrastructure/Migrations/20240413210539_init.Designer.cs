@@ -12,14 +12,14 @@ using OnlineGroceryHub.Data;
 namespace OnlineGroceryHub.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240408191830_Initial")]
-    partial class Initial
+    [Migration("20240413210539_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.25")
+                .HasAnnotation("ProductVersion", "6.0.28")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -341,6 +341,9 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                     b.Property<string>("AdditionalInfo")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -369,7 +372,13 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Orders");
                 });
@@ -816,7 +825,6 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ShoppingcartId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -827,7 +835,6 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("WishListId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -841,6 +848,42 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "9a2f0ce7-97a9-4806-a706-5e239efd4dd2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "a1756e4d-a810-488f-afed-4d5b35e39cb6",
+                            Email = "admin@admin.com",
+                            EmailConfirmed = false,
+                            FirstName = "Admin",
+                            LastName = "Admin",
+                            LockoutEnabled = false,
+                            PasswordHash = "AQAAAAEAACcQAAAAEMkMPL7gtUoVF62e4QTPyYpQHt1vzAjvsA6S1muJvy4nh/wHcyNpxbahiBi3Rhf8CA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "47c66eb4-189e-4769-878e-072a8d10522c",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@admin.com"
+                        },
+                        new
+                        {
+                            Id = "00359143-b644-4d40-ad75-b35df9341f0b",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "b5c158c3-311f-4043-a7c3-0e403bc0105b",
+                            Email = "stela1234@abv.bg",
+                            EmailConfirmed = false,
+                            FirstName = "Stela",
+                            LastName = "Susanina",
+                            LockoutEnabled = false,
+                            PasswordHash = "AQAAAAEAACcQAAAAEOlPGqdiXxEZA04WDq1HwT8Vgv0lWxW6LdZssQVFm1KPEzE3Inb7MqnahpTIgPYHXw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "8e7cceac-b5fd-4453-ad00-258c18c62e68",
+                            ShoppingcartId = "00359143-b644-4d40-ad75-b35df9341f0b",
+                            TwoFactorEnabled = false,
+                            UserName = "stela1234@abv.bg",
+                            WishListId = "00359143-b644-4d40-ad75-b35df9341f0b"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -911,6 +954,15 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                     b.Navigation("Article");
 
                     b.Navigation("Comment");
+                });
+
+            modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.Order", b =>
+                {
+                    b.HasOne("OnlineGroceryHub.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.Product", b =>

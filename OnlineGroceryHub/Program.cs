@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using OnlineGroceryHub.Core.Contracts;
 using OnlineGroceryHub.Core.Services;
 using OnlineGroceryHub.Data;
+using OnlineGroceryHub.Extensions;
 using OnlineGroceryHub.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +31,7 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 	options.Password.RequireNonAlphanumeric = false;
 	options.Password.RequiredLength = 10;
 })
+.AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
@@ -59,6 +61,9 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 app.MapRazorPages();
+
+await app.CreateAdminRoleAsync();
 
 app.Run();
