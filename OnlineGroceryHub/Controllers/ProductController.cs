@@ -15,6 +15,11 @@ namespace OnlineGroceryHub.Controllers
 		}
 		public async Task<IActionResult> ProductInfo(int id)
 		{
+			if(await productService.SingleProductInfo(id) == null)
+			{
+				return BadRequest();
+			}
+
 			var product = await productService.SingleProductInfo(id);
 			return View(product);
 		}

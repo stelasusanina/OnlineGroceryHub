@@ -26,7 +26,17 @@ namespace OnlineGroceryHub.Controllers
 		{
 			var user = await userManager.GetUserAsync(User);
 
+			if(user == null)
+			{
+				return BadRequest();
+			}
+
 			var products = await shoppingcartService.GetAllFromShoppingcart(user.ShoppingcartId, user.Id);
+
+			if(products == null)
+			{
+				return BadRequest();
+			}
 
 			var viewModel = new ShoppingcartViewModel
 			{

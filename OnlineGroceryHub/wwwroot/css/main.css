@@ -55,7 +55,7 @@ a.nav-link.text-dark {
     margin-top: 10px;
 }
 
-.row.justify-content-sm-evenly, input.form-control.form-control-sm.mr-sm-2, button.btn.btn-primary, select.form-control, .filter-content.ml-4.mr-4 {
+.row.justify-content-sm-evenly, input.form-control.form-control-sm.mr-sm-2, button.btn.btn-primary, a.btn.btn-primary, select.form-control, .filter-content.ml-4.mr-4 {
     font-size: 11px;
     font-weight: 400;
     text-transform: uppercase;
@@ -308,4 +308,24 @@ table tbody tr td:first-child {
 
 .border.border-dark{
     text-align: center;
+}
+
+.container.not-found{
+    display: flex;
+}
+
+.container.not-found img{
+    width:50%;
+}
+
+.container.not-found .row{
+    justify-content: center;
+}
+
+.text-center {
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: black;
 }

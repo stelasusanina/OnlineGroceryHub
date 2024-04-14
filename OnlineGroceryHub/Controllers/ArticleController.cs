@@ -17,6 +17,11 @@ namespace OnlineGroceryHub.Controllers
 		}
 		public async Task<IActionResult> GetArticleContent(int id)
         {
+            if(await articleService.GetArticleContent(id) == null)
+            {
+                return BadRequest();
+            }
+
             var article = await articleService.GetArticleContent(id);
             return View(article);
         }
