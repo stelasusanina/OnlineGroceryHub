@@ -1,0 +1,62 @@
+﻿@model ProductFormModel
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" placeholder="Enter product name...">
+                <span asp-validation-for="Name" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantity"></label>
+                <input asp-for="Quantity" class="form-control" placeholder="Enter quantity...">
+                <span asp-validation-for="Quantity" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" rows="4" class="form-control" placeholder="Enter description..."></textarea>
+                <span asp-validation-for="Description" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl"></label>
+                <input asp-for="ImageUrl" class="form-control" placeholder="Enter image URL...">
+                <span asp-validation-for="ImageUrl" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price"></label>
+                <input asp-for="Price" class="form-control" placeholder="Enter price...">
+                <span asp-validation-for="Price" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Discount"></label>
+                <input asp-for="Discount" class="form-control" placeholder="Enter discount...">
+                <span asp-validation-for="Discount" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpirationDate"></label>
+                <input asp-for="ExpirationDate" class="form-control" placeholder="Enter expiration date...">
+                <span asp-validation-for="ExpirationDate" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Origin"></label>
+                <input asp-for="Origin" class="form-control" placeholder="Enter origin...">
+                <span asp-validation-for="Origin" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubCategoryId"></label>
+                <select asp-for="SubCategoryId" class="form-control">
+                    @foreach (var subCategory in Model.SubCategories)
+                    {
+                        <option value="@subCategory.Id">@subCategory.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="SubCategoryId" class="small text-danger"></span>
+            </div>
+
+            <div class="text-center">
+                <input class="btn btn-primary mt-3" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>

@@ -14,10 +14,12 @@ namespace OnlineGroceryHub.Infrastructure.Constants
         }
          
         
-        public static class Product
+        public static class ProductConsts
         {
             public const int NameMaxLength = 150;
-            public const int DescriptionMaxLength = 500;
+            public const int NameMinLength = 10;
+            public const int DescriptionMinLength = 10;
+			public const int DescriptionMaxLength = 500;
         }
 
         public static class SubCategory

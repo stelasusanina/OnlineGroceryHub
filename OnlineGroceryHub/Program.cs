@@ -22,6 +22,7 @@ builder.Services.AddScoped<IArticleService, ArticleService>();
 builder.Services.AddScoped<IWishlistService, WishlistService>();
 builder.Services.AddScoped<IShoppingcartService, ShoppingcartService>();
 builder.Services.AddScoped<ICheckoutService, CheckoutService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

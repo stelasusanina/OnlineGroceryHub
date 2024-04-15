@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using static OnlineGroceryHub.Infrastructure.Constants.DataConstants.Product;
+using static OnlineGroceryHub.Infrastructure.Constants.DataConstants.ProductConsts;
 
 namespace OnlineGroceryHub.Infrastructure.Data.Models
 {

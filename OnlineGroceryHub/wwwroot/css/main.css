@@ -310,15 +310,16 @@ table tbody tr td:first-child {
     text-align: center;
 }
 
-.container.not-found{
+.container.not-found, .container.access-denied {
     display: flex;
+    justify-content: center;
 }
 
-.container.not-found img{
+.container.not-found img, .container.access-denied img{
     width:50%;
 }
 
-.container.not-found .row{
+.container.not-found .row, .container.access-denied .row{
     justify-content: center;
 }
 
