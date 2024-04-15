@@ -13,6 +13,12 @@ namespace OnlineGroceryHub.Core.Contracts
 		Task<Product> AddNewProduct(string name, double quantity, decimal price, string imageUrl,
 			int discount, string expirationdate, string origin, string description, int subCategoryId);
 
+		Task<Article> AddNewArticle(string title, string imageUrl, string content);
+
+		Task ModifyArticle(int id, string title, string imageUrl, string content);
+
+		Task<Article> GetArticleById(int id);
+
 		Task<IEnumerable<ProductSubCategoryViewModel>> GetAllSubCategories();
 	}
 }

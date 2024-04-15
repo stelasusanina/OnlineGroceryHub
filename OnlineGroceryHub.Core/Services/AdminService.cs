@@ -21,6 +21,22 @@ namespace OnlineGroceryHub.Core.Services
 			this.context = context;
 		}
 
+		public async Task<Article> AddNewArticle(string title, string imageUrl, string content)
+		{
+			var article = new Article
+			{
+				Title = title,
+				ImageUrl = imageUrl,
+				Content = content,
+				PublishDate = DateTime.Now
+			};
+
+			await context.Articles.AddAsync(article);
+			await context.SaveChangesAsync();
+
+			return article;
+		}
+
 		public async Task<Product> AddNewProduct(string name, double quantity, decimal price, string imageUrl,
 			int discount, string expirationdate, string origin, string description, int subCategoryId)
 		{
@@ -49,7 +65,6 @@ namespace OnlineGroceryHub.Core.Services
 			return product;
 		}
 
-
 		public async Task<IEnumerable<ProductSubCategoryViewModel>> GetAllSubCategories()
 		{
 			return await context.SubCategories
@@ -58,6 +73,34 @@ namespace OnlineGroceryHub.Core.Services
 					Id = sc.Id,
 					Name = sc.Name
 				}).ToListAsync();
+		}
+
+		public async Task<Article> GetArticleById(int id)
+		{
+			var article = await context.Articles.FirstOrDefaultAsync(a => a.Id == id);	
+
+			if(article == null)
+			{
+				return null;
+			}
+
+			return article;
+		}
+
+		public async Task ModifyArticle(int id, string title, string imageUrl, string content)
+		{
+			var article = context.Articles.FirstOrDefault(a => a.Id == id);
+
+			if (article == null)
+			{
+				return;
+			}
+
+			article.Title = title;
+			article.ImageUrl = imageUrl;
+			article.Content = content;	
+			
+			await context.SaveChangesAsync();
 		}
 	}
 }

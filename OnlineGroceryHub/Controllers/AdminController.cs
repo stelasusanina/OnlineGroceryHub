@@ -20,6 +20,80 @@ namespace OnlineGroceryHub.Controllers
 		}
 
 		[HttpPost]
+		public async Task<IActionResult> AddNewArticle(ArticleFormModel articleFormModel)
+		{
+			if (!User.IsAdmin())
+			{
+				return Unauthorized();
+			}
+
+			if (!ModelState.IsValid)
+			{
+				return View();
+			}
+
+			var newArticle = await adminService.AddNewArticle(articleFormModel.Title, articleFormModel.ImageUrl, articleFormModel.Content);
+
+			return RedirectToAction("GetArticleContent", "Article", new { newArticle.Id });
+		}
+
+		[HttpGet]
+		public IActionResult AddNewArticle()
+		{
+			if (!User.IsAdmin())
+			{
+				return Unauthorized();
+			}
+
+			var viewModel = new ArticleFormModel();
+
+			return View(viewModel);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> ModifyArticle(int id, ArticleFormModel articleFormModel)
+		{
+			if (!User.IsAdmin())
+			{
+				return Unauthorized();
+			}
+
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
+			await adminService.ModifyArticle(id, articleFormModel.Title, articleFormModel.ImageUrl, articleFormModel.Content);
+
+			return RedirectToAction("GetArticleContent", "Article", new { id });
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> ModifyArticle(int id)
+		{
+			if (!User.IsAdmin())
+			{
+				return Unauthorized();
+			}
+
+			var existingArticle = await adminService.GetArticleById(id);
+
+			if (existingArticle == null)
+			{
+				return BadRequest();
+			}
+
+			var viewModel = new ArticleFormModel
+			{
+				Title = existingArticle.Title,
+				ImageUrl = existingArticle.ImageUrl,
+				Content = existingArticle.Content
+			};
+
+			return View(viewModel);
+		}
+
+		[HttpPost]
 		public async Task<IActionResult> AddNewProduct(ProductFormModel productFormModel)
 		{
 			if (!User.IsAdmin())

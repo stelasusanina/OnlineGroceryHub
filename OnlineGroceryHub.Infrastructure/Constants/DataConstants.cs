@@ -28,9 +28,11 @@ namespace OnlineGroceryHub.Infrastructure.Constants
 
         }
 
-        public static class Article
+        public static class ArticleConsts
         {
             public const int TitleMaxLength = 150;
+            public const int TitleMinLength = 10;
+            public const int ContentMinLength = 200;
         }
 
 		public static class Comment

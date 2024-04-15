@@ -46,7 +46,13 @@
 											</div>
 											<h3 class="heading"><a href="#">@article.Title</a></h3>
 											<p class="article-content">@article.Content</p>
-											<p><a asp-controller="Article" asp-action="GetArticleContent" asp-route-id="@article.Id" class="btn btn-primary py-2 px-3">Read more</a></p>
+											<p>
+												<a asp-controller="Article" asp-action="GetArticleContent" asp-route-id="@article.Id" class="btn btn-primary py-2 px-3">Read more</a>
+												@if (User.IsAdmin())
+												{
+													<a asp-controller="Admin" asp-action="ModifyArticle" asp-route-id="@article.Id" class="btn btn-primary py-2 px-3">Modify</a>
+												}
+											</p>
 										</div>
 									</div>
 								</div>

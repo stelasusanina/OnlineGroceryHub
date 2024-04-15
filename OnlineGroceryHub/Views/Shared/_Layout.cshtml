@@ -73,11 +73,13 @@
 						<li class="nav-item"><a asp-controller="Blog" asp-action="GetAllArticles" class="nav-link">Blog</a></li>
 					}
 
-					@if (User.IsAdmin() == true)
+					@if (User.IsAdmin())
 					{
 						<li class="nav-item"><a asp-controller="Home" asp-action="Index" class="nav-link">Home</a></li>
 						<li class="nav-item"><a asp-controller="Admin" asp-action="AddNewProduct" class="nav-link">Add Product</a></li>
+						<li class="nav-item"><a asp-controller="Admin" asp-action="AddNewArticle" class="nav-link">Add Article</a></li>
 						<li class="nav-item"><a asp-controller="Shop" asp-action="GetAllProducts" class="nav-link">Shop</a></li>
+						<li class="nav-item"><a asp-controller="Blog" asp-action="GetAllArticles" class="nav-link">Blog</a></li>
 					}
 					<partial name="_LoginPartial" />
 					@if (User.Identity.IsAuthenticated && User.IsInRole("User"))
