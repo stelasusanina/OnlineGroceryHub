@@ -19,6 +19,7 @@ namespace OnlineGroceryHub.Controllers
 		}
 
 		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> AddNewArticle(ArticleFormModel articleFormModel)
 		{
 			if (!User.IsAdmin())
@@ -50,6 +51,7 @@ namespace OnlineGroceryHub.Controllers
 		}
 
 		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> ModifyArticle(int id, ArticleFormModel articleFormModel)
 		{
 			if (!User.IsAdmin())
@@ -93,7 +95,8 @@ namespace OnlineGroceryHub.Controllers
 		}
 
         [HttpPost]
-        public async Task<IActionResult> ModifyProduct(int id, ProductFormModel productFormModel)
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> ModifyProduct(int id, ProductFormModel productFormModel)
         {
             if (!User.IsAdmin())
             {
@@ -147,6 +150,7 @@ namespace OnlineGroceryHub.Controllers
         }
 
         [HttpPost]
+		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> AddNewProduct(ProductFormModel productFormModel)
 		{
 			if (!User.IsAdmin())

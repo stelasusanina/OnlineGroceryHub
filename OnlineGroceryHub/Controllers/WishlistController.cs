@@ -38,6 +38,7 @@ namespace OnlineGroceryHub.Controllers
 		}
 
 		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Remove(int productId, string wishlistId)
 		{
 			await wishlistService.RemoveProduct(productId, wishlistId);
@@ -46,6 +47,7 @@ namespace OnlineGroceryHub.Controllers
 		}
 
 		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> AddToWishlist(int productId)
 		{
 			var user = await userManager.GetUserAsync(User);

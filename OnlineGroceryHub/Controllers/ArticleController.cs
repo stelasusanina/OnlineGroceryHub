@@ -27,7 +27,8 @@ namespace OnlineGroceryHub.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddComment(CommentFormModel commentFormModel)
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> AddComment(CommentFormModel commentFormModel)
         {
             await articleService.AddComment(commentFormModel);
 

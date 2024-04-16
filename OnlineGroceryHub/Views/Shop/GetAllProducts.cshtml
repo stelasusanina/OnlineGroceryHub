@@ -113,17 +113,14 @@
 				{
 					<div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="product pr-content">
-							<a href="#" class="img-prod">
+							<div class="img-prod">
 								<img class="img-fluid" src="@product.ImageUrl" alt="Colorlib Template">
 								<span class="status">@($"-{product.Discount}%")</span>
 								<div class="overlay"></div>
-							</a>
+							</div>
 							<div class="text py-3 pb-4 px-3 text-center" style="    padding-bottom: 0 !important;">
-								<h3 style="    max-width: 100%;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;">
-									<a href="#">@product.Name</a>
+								<h3>
+									@product.Name
 								</h3>
 								<div class="d-flex">
 									<div class="pricing">
@@ -140,11 +137,13 @@
 												<span><i class="ion-ios-menu"></i></span>
 											</a>
 											<form method="post" asp-controller="Shoppingcart" asp-action="AddToShoppingcart">
+												@Html.AntiForgeryToken()
 												<button type="submit" class="buy-now d-flex justify-content-center align-items-center mx-1"><span class="ion-ios-cart"></span></button>
 												<input type="hidden" name="productId" value="@product.Id" />
 												<input type="hidden" name="amount" value="1" />
 											</form>
 											<form method="post" asp-controller="Wishlist" asp-action="AddToWishlist">
+												@Html.AntiForgeryToken()
 												<button type="submit" class="add-to-wishlist d-flex justify-content-center align-items-center text-center"><span class="ion-ios-heart"></span></button>
 												<input type="hidden" name="productId" value="@product.Id" />
 											</form>
@@ -155,6 +154,7 @@
 												<span><i class="ion-ios-menu"></i></span>
 											</a>
 											<form method="post" asp-controller="Admin" asp-action="ModifyProduct">
+												@Html.AntiForgeryToken()
 												<a asp-controller="Admin" asp-action="ModifyProduct" asp-route-id="@product.Id" class="btn btn-primary py-2 px-3 icon-edit ml-1 mr-1"></a>
 											</form>
 										}
@@ -168,16 +168,13 @@
 				{
 					<div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="product pr-content">
-							<a href="#" class="img-prod">
+							<div class="img-prod">
 								<img class="img-fluid" src="@product.ImageUrl" alt="Colorlib Template">
 								<div class="overlay"></div>
-							</a>
+							</div>
 							<div class="text py-3 pb-4 px-3 text-center">
-								<h3 style="    max-width: 100%;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;">
-									<a href="#">@product.Name</a>
+								<h3>
+									@product.Name
 								</h3>
 								<div class="d-flex">
 									<div class="pricing">
@@ -192,11 +189,13 @@
 												<span><i class="ion-ios-menu"></i></span>
 											</a>
 											<form method="post" asp-controller="Shoppingcart" asp-action="AddToShoppingcart">
+												@Html.AntiForgeryToken()
 												<button type="submit" class="buy-now d-flex justify-content-center align-items-center mx-1"><span class="ion-ios-cart"></span></button>
 												<input type="hidden" name="productId" value="@product.Id" />
 												<input type="hidden" name="amount" value="1" />
 											</form>
 											<form method="post" asp-controller="Wishlist" asp-action="AddToWishlist">
+												@Html.AntiForgeryToken()
 												<button type="submit" class="add-to-wishlist d-flex justify-content-center align-items-center text-center"><span class="ion-ios-heart"></span></button>
 												<input type="hidden" name="productId" value="@product.Id" />
 											</form>
@@ -207,6 +206,7 @@
 												<span><i class="ion-ios-menu"></i></span>
 											</a>
 											<form method="post" asp-controller="Admin" asp-action="ModifyProduct">
+												@Html.AntiForgeryToken()
 												<a asp-controller="Admin" asp-action="ModifyProduct" asp-route-id="@product.Id" class="btn btn-primary py-2 px-3 icon-edit ml-1 mr-1"></a>
 											</form>
 										}
@@ -230,7 +230,8 @@
 								   searchTerm = Model.SearchTerm,
 								   sorting = (int)Model.Sorting,
 								   subCategory = Model.SubCategory
-							   })">&lt;&lt;</a>
+							   })">&lt;&lt;
+					</a>
 				}
 				else
 				{
@@ -241,7 +242,8 @@
 								   searchTerm = Model.SearchTerm,
 								   sorting = (int)Model.Sorting,
 								   subCategory = Model.SubCategory
-							   })">&lt;&lt;</a>
+							   })">&lt;&lt;
+				    </a>
 				}
 
 			</div>
@@ -256,7 +258,8 @@
 								   searchTerm = Model.SearchTerm,
 								   sorting = Model.Sorting.ToString(),
 								   subCategory = Model.SubCategory
-							   })">>></a>
+							   })">>>
+					</a>
 				}
 				else
 				{
@@ -267,7 +270,8 @@
 								   searchTerm = Model.SearchTerm,
 								   sorting = Model.Sorting.ToString(),
 								   subCategory = Model.SubCategory
-							   })">>></a>
+							   })">>>
+					</a>
 				}
 
 			</div>

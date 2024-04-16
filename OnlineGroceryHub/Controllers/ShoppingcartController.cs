@@ -48,6 +48,7 @@ namespace OnlineGroceryHub.Controllers
 		}
 
 		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> AddToShoppingcart(int productId, int amount)
 		{
 			var user = await userManager.GetUserAsync(User);
@@ -58,6 +59,7 @@ namespace OnlineGroceryHub.Controllers
 		}
 
 		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Remove(int productId, string shoppingcartId)
 		{
 			await shoppingcartService.RemoveFromShoppingcart(productId, shoppingcartId);

@@ -26,6 +26,9 @@ builder.Services.AddScoped<IAdminService, AdminService>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+builder.Services.AddAntiforgery(options => options.HeaderName = "XSRF-TOKEN");
+
+
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
 	options.SignIn.RequireConfirmedAccount = false;

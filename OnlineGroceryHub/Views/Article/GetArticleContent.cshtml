@@ -34,6 +34,7 @@
 					<div class="comment-form-wrap pt-5">
 						<h3 class="mb-5">Leave a comment</h3>
 						<form method="post" asp-action="AddComment" asp-controller="Article" class="p-5 bg-light">
+							@Html.AntiForgeryToken()
 							<input type="hidden" class="form-control" name="ArticleId" value="@Model.Id">
 
 							<div class="form-group">

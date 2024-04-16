@@ -330,3 +330,14 @@ table tbody tr td:first-child {
     letter-spacing: 2px;
     color: black;
 }
+
+.bottom-area.d-flex.px-3 {
+    margin-top:-20px;
+}
+
+.product .text h3{
+    max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

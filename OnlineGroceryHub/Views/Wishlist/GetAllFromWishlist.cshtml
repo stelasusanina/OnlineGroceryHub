@@ -38,6 +38,7 @@
 								{
 									<tr class="text-center">
 										<form method="post" asp-action="Remove" asp-controller="Wishlist" class="wishlist-form">
+											@Html.AntiForgeryToken()
 										<td class="product-remove">
 											<button type="submit" name="productId" value="@product.Id" class="product-remove"><span class="ion-ios-close"></span></button>
 											<input type="hidden" name="wishlistId" value="@Model.ApplicationUser.WishListId" />

@@ -28,6 +28,7 @@ namespace OnlineGroceryHub.Controllers
 
 
 		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> ProcessCheckout(CheckoutFormModel checkoutFormModel)
 		{
 			var user = await userManager.GetUserAsync(User);

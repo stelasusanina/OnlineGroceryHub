@@ -12,6 +12,7 @@
 <section class="ftco-section">
 	<div class="container">
 		<form method="post" asp-action="ProcessCheckout" asp-controller="Checkout" class="billing-form">
+			@Html.AntiForgeryToken()
 			<div class="row justify-content-center">
 				<div class="col-xl-7 ftco-animate">
 					<h3 class="mb-4 billing-heading">Billing Details</h3>
@@ -142,8 +143,8 @@
 							</div>
 						</div>
 					</div>
-				</div> <!-- .col-md-8 -->
+				</div> 
 			</div>
 		</form>
 	</div>
-</section> <!-- .section -->
+</section> 
