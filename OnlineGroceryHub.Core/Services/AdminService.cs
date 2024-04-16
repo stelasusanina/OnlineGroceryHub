@@ -87,9 +87,21 @@ namespace OnlineGroceryHub.Core.Services
 			return article;
 		}
 
+		public async Task<Product> GetProductById(int id)
+		{
+			var product = await context.Products.FirstOrDefaultAsync(p => p.Id == id);
+
+			if (product == null)
+			{
+				return null;
+			}
+
+			return product;
+		}
+
 		public async Task ModifyArticle(int id, string title, string imageUrl, string content)
 		{
-			var article = context.Articles.FirstOrDefault(a => a.Id == id);
+			var article = await GetArticleById(id);
 
 			if (article == null)
 			{
@@ -102,5 +114,34 @@ namespace OnlineGroceryHub.Core.Services
 			
 			await context.SaveChangesAsync();
 		}
+
+		public async Task ModifyProduct(int id, string name, double quantity, decimal price, string imageUrl, int discount,
+			string expirationdate, string origin, string description, int subCategoryId)
+		{
+			var product = await GetProductById(id);
+
+            if (product == null)
+            {
+                return;
+            }
+
+            DateTime expDate = DateTime.MinValue;
+            if (!string.IsNullOrEmpty(expirationdate))
+            {
+                expDate = DateTime.Parse(expirationdate);
+            }
+
+            product.Name = name;
+			product.Quantity = quantity;
+			product.Price = price;
+			product.ImageUrl = imageUrl;
+			product.Discount = discount;
+			product.ExpirationDate = expDate;
+			product.Origin = origin;
+			product.Description = description;
+			product.SubCategoryId = subCategoryId;
+
+            await context.SaveChangesAsync();
+        }
 	}
 }

@@ -8,7 +8,6 @@ using OnlineGroceryHub.Extensions;
 
 namespace OnlineGroceryHub.Controllers
 {
-	//[Authorize(Roles = "Admin")]
 	public class AdminController : BaseController
 	{
 		private readonly IAdminService adminService;
@@ -60,7 +59,7 @@ namespace OnlineGroceryHub.Controllers
 
 			if (!ModelState.IsValid)
 			{
-				return BadRequest(ModelState);
+				return BadRequest();
 			}
 
 			await adminService.ModifyArticle(id, articleFormModel.Title, articleFormModel.ImageUrl, articleFormModel.Content);
@@ -93,7 +92,61 @@ namespace OnlineGroceryHub.Controllers
 			return View(viewModel);
 		}
 
-		[HttpPost]
+        [HttpPost]
+        public async Task<IActionResult> ModifyProduct(int id, ProductFormModel productFormModel)
+        {
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            await adminService.ModifyProduct(id, productFormModel.Name, productFormModel.Quantity, productFormModel.Price,
+				productFormModel.ImageUrl, productFormModel.Discount ?? 0, productFormModel.ExpirationDate.ToString(),
+				productFormModel.Origin, productFormModel.Description, productFormModel.SubCategoryId);
+
+            return RedirectToAction("ProductInfo", "Product", new { id });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ModifyProduct(int id)
+        {
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
+            var product = await adminService.GetProductById(id);
+
+            if (product == null)
+            {
+                return BadRequest();
+            }
+
+			var subCategories = await adminService.GetAllSubCategories();
+
+            var viewModel = new ProductFormModel
+            {
+                Name = product.Name,
+				Quantity = product.Quantity,
+				Price = product.Price,
+				ImageUrl = product.ImageUrl,
+				Discount = product.Discount,
+				ExpirationDate = product.ExpirationDate,
+				Origin = product.Origin,
+				Description = product.Description,
+				SubCategoryId = product.SubCategoryId,
+				SubCategories = subCategories
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
 		public async Task<IActionResult> AddNewProduct(ProductFormModel productFormModel)
 		{
 			if (!User.IsAdmin())

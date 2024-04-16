@@ -19,6 +19,11 @@ namespace OnlineGroceryHub.Core.Contracts
 
 		Task<Article> GetArticleById(int id);
 
+		Task ModifyProduct(int id, string name, double quantity, decimal price, string imageUrl,
+			int discount, string expirationdate, string origin, string description, int subCategoryId);
+
+		Task<Product> GetProductById(int id);
+
 		Task<IEnumerable<ProductSubCategoryViewModel>> GetAllSubCategories();
 	}
 }
