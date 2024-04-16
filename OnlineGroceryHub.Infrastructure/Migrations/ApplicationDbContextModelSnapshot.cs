@@ -611,6 +611,14 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                     b.ToTable("Shoppingcarts");
 
                     b.HasComment("User shopping cart");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "00359143-b644-4d40-ad75-b35df9341f0b",
+                            ApplicationUserId = "00359143-b644-4d40-ad75-b35df9341f0b",
+                            Total = 0m
+                        });
                 });
 
             modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.ShoppingcartProduct", b =>
@@ -746,6 +754,13 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                     b.ToTable("Wishlists");
 
                     b.HasComment("Wishlist of user's favourite products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "00359143-b644-4d40-ad75-b35df9341f0b",
+                            ApplicationUserId = "00359143-b644-4d40-ad75-b35df9341f0b"
+                        });
                 });
 
             modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.WishlistProduct", b =>

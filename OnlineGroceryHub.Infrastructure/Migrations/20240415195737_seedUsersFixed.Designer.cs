@@ -12,8 +12,8 @@ using OnlineGroceryHub.Data;
 namespace OnlineGroceryHub.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240414072452_pls")]
-    partial class pls
+    [Migration("20240415195737_seedUsersFixed")]
+    partial class seedUsersFixed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

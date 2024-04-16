@@ -19,7 +19,7 @@ namespace OnlineGroceryHub.Infrastructure.Data.Models
 
 		[Comment("Wishlist user identifier")]
 		[ForeignKey(nameof(ApplicationUserId))]
-        public string ApplicationUserId { get; set; } = null!;
+        public string? ApplicationUserId { get; set; } = null!;
 		public ApplicationUser ApplicationUser { get; set; } = null!;
 
         [Comment("List of the mapping table WishlistProduct")]
