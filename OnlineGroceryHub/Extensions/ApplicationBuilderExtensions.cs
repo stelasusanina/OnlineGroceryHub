@@ -15,9 +15,13 @@ namespace OnlineGroceryHub.Extensions
 			var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 			var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
-			await SeedUsersAsync(userManager);
-			await SeedShoppingcartAsync(dbContext);
-			await SeedWishlistAsync(dbContext);
+			if(dbContext.Users.FirstOrDefault(u => u.Email == "stela1234@abv.bg") == null 
+				&& dbContext.Users.FirstOrDefault(u => u.Email == "admin@admin.com") == null) 
+			{
+				await SeedUsersAsync(userManager);
+				await SeedShoppingcartAsync(dbContext);
+				await SeedWishlistAsync(dbContext);
+			}
 
 			if (userManager != null && roleManager != null)
 			{
