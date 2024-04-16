@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OnlineGroceryHub.Infrastructure.Migrations
 {
-    public partial class seedUsersFixed : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,8 +45,6 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    WishListId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ShoppingcartId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -236,7 +234,7 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Shopping cart identifier"),
-                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Shopping cart user identifier"),
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true, comment: "Shopping cart user identifier"),
                     Total = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false, comment: "Shopping cart total")
                 },
                 constraints: table =>
@@ -246,8 +244,7 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                         name: "FK_Shoppingcarts_AspNetUsers_ApplicationUserId",
                         column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 },
                 comment: "User shopping cart");
 
@@ -256,7 +253,7 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Wishlist identifier"),
-                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Wishlist user identifier")
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true, comment: "Wishlist user identifier")
                 },
                 constraints: table =>
                 {
@@ -265,8 +262,7 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                         name: "FK_Wishlists_AspNetUsers_ApplicationUserId",
                         column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 },
                 comment: "Wishlist of user's favourite products");
 
@@ -568,8 +564,7 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Shoppingcarts_ApplicationUserId",
                 table: "Shoppingcarts",
-                column: "ApplicationUserId",
-                unique: true);
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ShoppingcartsProducts_ProductId",
@@ -589,8 +584,7 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Wishlists_ApplicationUserId",
                 table: "Wishlists",
-                column: "ApplicationUserId",
-                unique: true);
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_WishlistsProducts_ProductId",

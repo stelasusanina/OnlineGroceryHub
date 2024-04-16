@@ -43,7 +43,7 @@
 											<form method="post" asp-action="Remove" asp-controller="Shoppingcart">
 												@Html.AntiForgeryToken()
 												<button type="submit" name="productId" value="@product.Id" class="product-remove"><span class="ion-ios-close"></span></button>
-												<input type="hidden" name="shoppingcartId" value="@Model.ApplicationUser.ShoppingcartId" />
+												<input type="hidden" name="shoppingcartId" value="@Model.ApplicationUser.Id" />
 											</form>
 										</td>
 										<td class="image-prod"><div class="img" style="background-image:url(@product.ImageUrl);"></div></td>

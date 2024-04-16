@@ -21,7 +21,7 @@ namespace OnlineGroceryHub.Controllers
 		{
 			var user = await userManager.GetUserAsync(User);
 
-			var shoppingCartViewModel = await checkoutService.Index(user.ShoppingcartId);
+			var shoppingCartViewModel = await checkoutService.Index(user.Id);
 
 			return View(shoppingCartViewModel);
 		}
@@ -33,7 +33,7 @@ namespace OnlineGroceryHub.Controllers
 		{
 			var user = await userManager.GetUserAsync(User);
 
-			await checkoutService.ProcessCheckout(user.ShoppingcartId, checkoutFormModel);
+			await checkoutService.ProcessCheckout(user.Id, checkoutFormModel);
 
 			return RedirectToAction("OrderDone");
 		}
@@ -42,7 +42,7 @@ namespace OnlineGroceryHub.Controllers
 		{
 			var user = await userManager.GetUserAsync(User);
 
-			checkoutService.OrderDone(user.ShoppingcartId);
+			checkoutService.OrderDone(user.Id);
 			return View();
 		}
 	}

@@ -118,7 +118,7 @@ namespace OnlineGroceryHub.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 string id = Guid.NewGuid().ToString();
-                var wishlist = new Wishlist() { Id = id };
+                var wishlist = new Wishlist() { Id = id};
                 var shoppingCart = new Shoppingcart() { Id = id };
 
                 wishlist.ApplicationUserId = id;
@@ -130,10 +130,6 @@ namespace OnlineGroceryHub.Areas.Identity.Pages.Account
                     Id = id, 
                     FirstName = Input.FirstName,
                     LastName = Input.LastName,
-                    Wishlist = wishlist, 
-                    WishListId = wishlist.Id, 
-                    Shoppingcart = shoppingCart, 
-                    ShoppingcartId = shoppingCart.Id
                 };
 
                 await _userManager.AddToRoleAsync(user, "User");

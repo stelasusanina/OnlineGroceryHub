@@ -12,8 +12,8 @@ using OnlineGroceryHub.Data;
 namespace OnlineGroceryHub.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240415205646_asd")]
-    partial class asd
+    [Migration("20240416115612_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -596,7 +596,6 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                         .HasComment("Shopping cart identifier");
 
                     b.Property<string>("ApplicationUserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)")
                         .HasComment("Shopping cart user identifier");
 
@@ -607,20 +606,11 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId")
-                        .IsUnique();
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Shoppingcarts");
 
                     b.HasComment("User shopping cart");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "00359143-b644-4d40-ad75-b35df9341f0b",
-                            ApplicationUserId = "00359143-b644-4d40-ad75-b35df9341f0b",
-                            Total = 0m
-                        });
                 });
 
             modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.ShoppingcartProduct", b =>
@@ -744,25 +734,16 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                         .HasComment("Wishlist identifier");
 
                     b.Property<string>("ApplicationUserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)")
                         .HasComment("Wishlist user identifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId")
-                        .IsUnique();
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Wishlists");
 
                     b.HasComment("Wishlist of user's favourite products");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "00359143-b644-4d40-ad75-b35df9341f0b",
-                            ApplicationUserId = "00359143-b644-4d40-ad75-b35df9341f0b"
-                        });
                 });
 
             modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.WishlistProduct", b =>
@@ -839,18 +820,12 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ShoppingcartId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("WishListId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -977,10 +952,8 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
             modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.Shoppingcart", b =>
                 {
                     b.HasOne("OnlineGroceryHub.Models.ApplicationUser", "ApplicationUser")
-                        .WithOne("Shoppingcart")
-                        .HasForeignKey("OnlineGroceryHub.Infrastructure.Data.Models.Shoppingcart", "ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
 
                     b.Navigation("ApplicationUser");
                 });
@@ -1037,10 +1010,8 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
             modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.Wishlist", b =>
                 {
                     b.HasOne("OnlineGroceryHub.Models.ApplicationUser", "ApplicationUser")
-                        .WithOne("Wishlist")
-                        .HasForeignKey("OnlineGroceryHub.Infrastructure.Data.Models.Wishlist", "ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
 
                     b.Navigation("ApplicationUser");
                 });
@@ -1094,15 +1065,6 @@ namespace OnlineGroceryHub.Infrastructure.Migrations
             modelBuilder.Entity("OnlineGroceryHub.Infrastructure.Data.Models.Wishlist", b =>
                 {
                     b.Navigation("WishlistProducts");
-                });
-
-            modelBuilder.Entity("OnlineGroceryHub.Models.ApplicationUser", b =>
-                {
-                    b.Navigation("Shoppingcart")
-                        .IsRequired();
-
-                    b.Navigation("Wishlist")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

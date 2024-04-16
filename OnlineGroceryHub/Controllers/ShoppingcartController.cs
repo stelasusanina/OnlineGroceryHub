@@ -31,7 +31,7 @@ namespace OnlineGroceryHub.Controllers
 				return BadRequest();
 			}
 
-			var products = await shoppingcartService.GetAllFromShoppingcart(user.ShoppingcartId, user.Id);
+			var products = await shoppingcartService.GetAllFromShoppingcart(user.Id, user.Id);
 
 			if(products == null)
 			{
@@ -53,7 +53,7 @@ namespace OnlineGroceryHub.Controllers
 		{
 			var user = await userManager.GetUserAsync(User);
 
-			await shoppingcartService.AddToShoppingcart(productId, user.ShoppingcartId, amount);
+			await shoppingcartService.AddToShoppingcart(productId, user.Id, amount);
 
 			return RedirectToAction("GetAllProducts", "Shop");
 		}

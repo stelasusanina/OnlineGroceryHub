@@ -39,8 +39,9 @@ namespace OnlineGroceryHub.Data
 			builder.ApplyConfiguration(new ArticleConfiguration());
 			builder.ApplyConfiguration(new CommentConfiguration());
 			builder.ApplyConfiguration(new ArticleCommentConfiguration());
-			builder.ApplyConfiguration(new WishlistConfiguration());
-			builder.ApplyConfiguration(new ShoppingcartConfiguration());
+			//builder.ApplyConfiguration(new ApplicationUserConfiguration());
+			//builder.ApplyConfiguration(new WishlistConfiguration());
+			//builder.ApplyConfiguration(new ShoppingcartConfiguration());
 
 			builder.Entity<Product>()
 				.Property(p => p.Price)
@@ -84,13 +85,6 @@ namespace OnlineGroceryHub.Data
 				.WithMany()
 				.HasForeignKey(p => p.ProductId);
 
-			builder.Entity<ApplicationUser>()
-			  .HasOne(u => u.Wishlist)
-			  .WithOne(w => w.ApplicationUser)
-			  .HasForeignKey<Wishlist>(w => w.ApplicationUserId)
-			  .IsRequired()
-			  .OnDelete(DeleteBehavior.Cascade);
-
 			builder.Entity<ShoppingcartProduct>()
 				.HasKey(scp => new
 				{
@@ -107,13 +101,6 @@ namespace OnlineGroceryHub.Data
 				.HasOne(scp => scp.Product)
 				.WithMany()
 				.HasForeignKey(p => p.ProductId);
-
-			builder.Entity<ApplicationUser>()
-				.HasOne(u => u.Shoppingcart)
-				.WithOne(sc => sc.ApplicationUser)
-				.HasForeignKey<Shoppingcart>(sc => sc.ApplicationUserId)
-				.IsRequired()
-				.OnDelete(DeleteBehavior.Cascade);
 
 			builder.Entity<ProductOrder>()
 				.HasKey(po => new

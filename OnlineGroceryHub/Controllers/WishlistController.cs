@@ -25,7 +25,7 @@ namespace OnlineGroceryHub.Controllers
 		{
 			var user = await userManager.GetUserAsync(User);
 
-			var wishlistId = user.WishListId;
+			var wishlistId = user.Id;
 			var products = await wishlistService.GetAllFromWishlist(wishlistId, user.Id);
 
             var viewModel = new WishlistViewModel
@@ -52,7 +52,7 @@ namespace OnlineGroceryHub.Controllers
 		{
 			var user = await userManager.GetUserAsync(User);
 
-			await wishlistService.AddToWishlist(productId, user.WishListId);
+			await wishlistService.AddToWishlist(productId, user.Id);
 
 			return RedirectToAction("GetAllProducts", "Shop");
 		}

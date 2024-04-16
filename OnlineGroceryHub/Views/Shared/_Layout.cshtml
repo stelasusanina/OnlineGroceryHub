@@ -90,7 +90,7 @@
 								@{
 									var user = await userManager.GetUserAsync(User);
 									if (user == null) return;
-									var shoppingCart = await shoppingcartService.GetAllFromShoppingcart(user.ShoppingcartId, user.Id);
+									var shoppingCart = await shoppingcartService.GetAllFromShoppingcart(user.Id, user.Id);
 									var itemsCount = shoppingCart.Count();
 								}
 								<span class="icon-shopping_cart"></span>[@itemsCount]

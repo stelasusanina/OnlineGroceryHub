@@ -10,10 +10,14 @@ namespace OnlineGroceryHub.Extensions
 	{
 		public static async Task CreateAdminRoleAsync(this IApplicationBuilder app)
 		{
-
 			using var scope = app.ApplicationServices.CreateScope();
 			var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 			var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+			var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+			await SeedUsersAsync(userManager);
+			await SeedShoppingcartAsync(dbContext);
+			await SeedWishlistAsync(dbContext);
 
 			if (userManager != null && roleManager != null)
 			{
@@ -23,38 +27,67 @@ namespace OnlineGroceryHub.Extensions
 				await roleManager.CreateAsync(adminRole);
 				await roleManager.CreateAsync(userRole);
 
-				if (await userManager.FindByEmailAsync("stela1234@abv.bg") == null)
-				{
-					var User = new ApplicationUser()
-					{
-						Id = "00359143-b644-4d40-ad75-b35df9341f0b",
-						FirstName = "Stela",
-						LastName = "Susanina",
-						Email = "stela1234@abv.bg",
-						ShoppingcartId = "00359143-b644-4d40-ad75-b35df9341f0b",
-						WishListId = "00359143-b644-4d40-ad75-b35df9341f0b",
-						UserName = "stela1234@abv.bg",
-					};
+				var user = await userManager.FindByEmailAsync("stela1234@abv.bg");
 
-					await userManager.CreateAsync(User, "s123456789S");
-					await userManager.AddToRoleAsync(User, userRole.Name);
+				if (user != null)
+				{
+					await userManager.AddToRoleAsync(user, userRole.Name);
 				}
 
-				if (await userManager.FindByEmailAsync("admin@admin.com") == null)
-				{
-					var Admin = new ApplicationUser()
-					{
-						Id = "9a2f0ce7-97a9-4806-a706-5e239efd4dd2",
-						FirstName = "Admin",
-						LastName = "Admin",
-						Email = "admin@admin.com",
-						UserName = "admin@admin.com",
-					};
+				var admin = await userManager.FindByEmailAsync("admin@admin.com");
 
-					await userManager.CreateAsync(Admin, "a123456789A");
-					await userManager.AddToRoleAsync(Admin, adminRole.Name);
+				if (admin != null)
+				{
+					await userManager.AddToRoleAsync(admin, adminRole.Name);
 				}
 			}
+		}
+		private async static Task SeedWishlistAsync(ApplicationDbContext dbContext)
+		{
+			var userWishlist = new Wishlist()
+			{
+				Id = "00359143-b644-4d40-ad75-b35df9341f0b",
+				ApplicationUserId = "00359143-b644-4d40-ad75-b35df9341f0b"
+			};
+
+			await dbContext.Wishlists.AddAsync(userWishlist);
+			await dbContext.SaveChangesAsync();
+		}
+
+		private async static Task SeedShoppingcartAsync(ApplicationDbContext dbContext)
+		{
+			var userShoppingcart = new Shoppingcart()
+			{
+				Id = "00359143-b644-4d40-ad75-b35df9341f0b",
+				ApplicationUserId = "00359143-b644-4d40-ad75-b35df9341f0b"
+			};
+
+			await dbContext.Shoppingcarts.AddAsync(userShoppingcart);
+			await dbContext.SaveChangesAsync();
+		}
+
+		private async static Task SeedUsersAsync(UserManager<ApplicationUser> userManager)
+		{
+			var user = new ApplicationUser()
+			{
+				Id = "00359143-b644-4d40-ad75-b35df9341f0b",
+				FirstName = "Stela",
+				LastName = "Susanina",
+				Email = "stela1234@abv.bg",
+				UserName = "stela1234@abv.bg",
+			};
+
+			var admin = new ApplicationUser()
+			{
+				Id = "9a2f0ce7-97a9-4806-a706-5e239efd4dd2",
+				FirstName = "Admin",
+				LastName = "Admin",
+				Email = "admin@admin.com",
+				UserName = "admin@admin.com",
+			};
+
+			await userManager.CreateAsync(user, "s123456789S");
+			await userManager.CreateAsync(admin, "a123456789A");
 		}
 	}
 }
