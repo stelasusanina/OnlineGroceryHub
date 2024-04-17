@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static OnlineGroceryHub.Infrastructure.Constants.DataConstants.Comment;
+using static OnlineGroceryHub.Infrastructure.Constants.DataConstants.CommentConsts;
 
 
 namespace OnlineGroceryHub.Infrastructure.Data.Models

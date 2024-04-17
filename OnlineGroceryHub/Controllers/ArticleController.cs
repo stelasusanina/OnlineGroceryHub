@@ -23,13 +23,22 @@ namespace OnlineGroceryHub.Controllers
             }
 
             var article = await articleService.GetArticleContent(id);
-            return View(article);
+            var commentFormModel = new CommentFormModel()
+            {
+                ArticleId = article.Id
+            };
+            return View(commentFormModel);
         }
 
         [HttpPost]
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> AddComment(CommentFormModel commentFormModel)
         {
+            if(!ModelState.IsValid)
+            {
+                return View("GetArticleContent", commentFormModel);
+            }
+
             await articleService.AddComment(commentFormModel);
 
             return RedirectToAction("GetArticleContent", "Article", new {Id = commentFormModel.ArticleId});

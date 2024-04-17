@@ -37,10 +37,12 @@ namespace OnlineGroceryHub.Infrastructure.Constants
             public const int ContentMinLength = 200;
         }
 
-		public static class Comment
+		public static class CommentConsts
 		{
 			public const int AuthorMaxLength = 50;
+            public const int AuthorMinLength = 5;
             public const int ContentMaxLength = 500;
+            public const int ContentMinLength = 10;
 		}
 
         public static class ApplicationUserConsts

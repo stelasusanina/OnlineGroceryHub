@@ -1,4 +1,8 @@
-﻿@model ArticleDTO
+﻿@model CommentFormModel
+@inject IArticleService articleService;
+@{
+	var article = await articleService.GetArticleContent(Model.ArticleId);
+}
 
 <div class="hero-wrap hero-bread" style="background-image: url('https://pbs.twimg.com/media/D7vU-BDVUAAWHgM?format=jpg&name=medium');">
 	<div class="container">
@@ -14,13 +18,13 @@
 	<div class="container">
 		<div class="article-section">
 			<div class="ftco-animate">
-				<h2 class="mb-3">@Model.Title</h2>
-				<p class="paragraph">@Model.Content</p>
+				<h2 class="mb-3">@article.Title</h2>
+				<p class="paragraph">@article.Content</p>
 
 				<div class="pt-5 mt-5">
-					<h3 class="mb-5">@Model.Comments.Count() Comments</h3>
+					<h3 class="mb-5">@article.Comments.Count() Comments</h3>
 					<ul class="comment-list">
-						@foreach(var comment in Model.Comments){
+						@foreach(var comment in article.Comments){
 						<li class="comment">
 							<div class="comment-body">
 								<h3>@comment.Author</h3>
@@ -35,16 +39,18 @@
 						<h3 class="mb-5">Leave a comment</h3>
 						<form method="post" asp-action="AddComment" asp-controller="Article" class="p-5 bg-light">
 							@Html.AntiForgeryToken()
-							<input type="hidden" class="form-control" name="ArticleId" value="@Model.Id">
+							<input type="hidden" class="form-control" name="ArticleId" value="@article.Id">
 
 							<div class="form-group">
-								<label for="Author">Name *</label>
-								<input type="text" class="form-control" name="Author">
+								<label asp-for="Author">Name *</label>
+								<input asp-for="Author" type="text" class="form-control" name="Author">
+								<span asp-validation-for="Author" class="small text-danger"></span>
 							</div>
 
 							<div class="form-group">
-								<label for="Message">Message *</label>
-								<textarea name="Message" cols="30" rows="10" class="form-control"></textarea>
+								<label asp-for="Message">Message *</label>
+								<textarea asp-for="Message" class="form-control" rows="4"></textarea>
+								<span asp-validation-for="Message" class="small text-danger"></span>
 							</div>
 							<div class="form-group">
 								<input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
