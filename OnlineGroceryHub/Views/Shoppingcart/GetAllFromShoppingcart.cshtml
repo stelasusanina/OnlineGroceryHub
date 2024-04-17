@@ -40,7 +40,7 @@
 								{
 									<tr class="text-center">
 										<td class="product-remove">
-											<form method="post" asp-action="Remove" asp-controller="Shoppingcart">
+											<form method="post" asp-action="RemoveFromShoppingcart" asp-controller="Shoppingcart">
 												@Html.AntiForgeryToken()
 												<button type="submit" name="productId" value="@product.Id" class="product-remove"><span class="ion-ios-close"></span></button>
 												<input type="hidden" name="shoppingcartId" value="@Model.ApplicationUser.Id" />

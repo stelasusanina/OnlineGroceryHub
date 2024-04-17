@@ -22,8 +22,9 @@ namespace OnlineGroceryHub.Controllers
 			var user = await userManager.GetUserAsync(User);
 
 			var shoppingCartViewModel = await checkoutService.Index(user.Id);
+			var checkoutFormModel = new CheckoutFormModel();
 
-			return View(shoppingCartViewModel);
+			return View(checkoutFormModel);
 		}
 
 
@@ -32,6 +33,12 @@ namespace OnlineGroceryHub.Controllers
 		public async Task<IActionResult> ProcessCheckout(CheckoutFormModel checkoutFormModel)
 		{
 			var user = await userManager.GetUserAsync(User);
+            var shoppingCartViewModel = await checkoutService.Index(user.Id);
+
+            if (!ModelState.IsValid)
+			{
+				return View("Index", checkoutFormModel);
+            }
 
 			await checkoutService.ProcessCheckout(user.Id, checkoutFormModel);
 

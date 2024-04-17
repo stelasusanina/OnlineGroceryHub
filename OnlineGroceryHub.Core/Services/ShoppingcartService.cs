@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineGroceryHub.Core.Contracts;
 using OnlineGroceryHub.Core.Models.Product;
+using OnlineGroceryHub.Core.Models.Shoppingcart;
 using OnlineGroceryHub.Data;
 using OnlineGroceryHub.Infrastructure.Data.Models;
 
@@ -14,7 +15,7 @@ namespace OnlineGroceryHub.Core.Services
 		{
 			this.context = context;
 		}
-		public async Task<IEnumerable<ExtendedProductDTO>> GetAllFromShoppingcart(string shoppingcartId, string userId)
+		public async Task<ShoppingcartViewModel> GetAllFromShoppingcart(string shoppingcartId, string userId)
 		{
 			var products = await context.ShoppingcartsProducts
 				.Where(scp => scp.Shoppingcart.Id == shoppingcartId)
@@ -25,10 +26,19 @@ namespace OnlineGroceryHub.Core.Services
 					Name = sc.Product.Name,
 					Price = sc.Product.Price,
 					Discount = sc.Product.Discount,
-					Amount = sc.ProductAmount
+					Amount = sc.ProductAmount,
 				}).ToListAsync();
 
-			return products;
+			decimal total = products.Sum(p => p.Price * p.Amount);
+
+			var viewModel = new ShoppingcartViewModel
+			{
+				ShoppingcartId = shoppingcartId,
+				Products = products,
+				Total = total
+			};
+
+			return viewModel;
 		}
 
 		public async Task<ShoppingcartProduct> AddToShoppingcart(int productId, string shoppingcartId, int amount)
@@ -66,7 +76,7 @@ namespace OnlineGroceryHub.Core.Services
 		public async Task RemoveFromShoppingcart(int productId, string shoppingcartId)
 		{
 			var shoppingcartProduct = await context.ShoppingcartsProducts
-				.FirstOrDefaultAsync(scp => scp.Product.Id == productId && scp.Shoppingcart.Id == shoppingcartId);
+				.FirstOrDefaultAsync(scp => scp.ProductId == productId && scp.ShoppingcartId == shoppingcartId);
 
 			context.ShoppingcartsProducts.Remove(shoppingcartProduct);
 			await context.SaveChangesAsync();

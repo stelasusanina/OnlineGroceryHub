@@ -91,7 +91,8 @@
 									var user = await userManager.GetUserAsync(User);
 									if (user == null) return;
 									var shoppingCart = await shoppingcartService.GetAllFromShoppingcart(user.Id, user.Id);
-									var itemsCount = shoppingCart.Count();
+
+									var itemsCount = shoppingCart.Products.Sum(product => product.Amount);
 								}
 								<span class="icon-shopping_cart"></span>[@itemsCount]
 							</a>

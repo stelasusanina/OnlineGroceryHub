@@ -12,7 +12,7 @@ namespace OnlineGroceryHub.Core.Contracts
 {
 	public interface IShoppingcartService
 	{
-		Task<IEnumerable<ExtendedProductDTO>> GetAllFromShoppingcart(string shoppingCartId, string userId);
+		Task<ShoppingcartViewModel> GetAllFromShoppingcart(string shoppingCartId, string userId);
 		Task<ShoppingcartProduct> AddToShoppingcart(int productId, string shoppingcartId, int amount);
 		Task RemoveFromShoppingcart(int productId, string shoppingcartId);
 	}
