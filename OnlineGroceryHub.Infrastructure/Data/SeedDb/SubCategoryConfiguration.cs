@@ -17,7 +17,7 @@ namespace OnlineGroceryHub.Infrastructure.Data.SeedDb
             var data = new SeedData();
 
             builder.HasData(new SubCategory[] { data.Coffee, data.Apples, data.Chicken, data.Cheese,
-                data.Snacks, data.FrozenMeat, data.Cucumbers });
+                data.Snacks, data.FrozenFruits, data.Cucumbers, data.Nuts });
         }
     }
 }

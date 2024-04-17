@@ -19,10 +19,11 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
 		public SubCategory Apples { get; set; }
 		public SubCategory Cucumbers { get; set; }
 		public SubCategory Cheese { get; set; }
-		public SubCategory FrozenMeat { get; set; }
+		public SubCategory FrozenFruits { get; set; }
 		public SubCategory Coffee { get; set; }
 		public SubCategory Chicken { get; set; }
 		public SubCategory Snacks { get; set; }
+		public SubCategory Nuts {  get; set; }
 
 		public Product CheeseMadzharov { get; set; }
 		public Product CoffeeLavazza { get; set; }
@@ -34,6 +35,9 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
 		public Product ChickenRoso { get; set; }
 		public Product SticksScala { get; set; }
 		public Product CucumbersGr { get; set; }
+		public Product BluberiesFrozen { get; set; }
+		public Product SmoothieMix {  get; set; }
+		public Product RoastedNuts {  get; set; }
 
 		public Article NutritionalPsychiatry { get; set; }
 		public Comment FirstComment { get; set; }
@@ -123,7 +127,7 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
 				CategoryId = 3
 			};
 
-			FrozenMeat = new SubCategory()
+			FrozenFruits = new SubCategory()
 			{
 				Id = 4,
 				Name = "Frozen Meat",
@@ -150,18 +154,57 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
 				Name = "Snacks",
 				CategoryId = 7
 			};
+
+			Nuts = new SubCategory()
+			{
+				Id = 8,
+				Name = "Nuts",
+				CategoryId = 7
+			};
 		}
 
 		private void SeedProducts()
 		{
-			DateTime expirationDate1 = new DateTime(2024, 08, 29);
-			DateTime expirationDate2 = new DateTime(2025, 08, 30);
-			DateTime expirationDate3 = new DateTime(2025, 02, 08);
-			DateTime expirationDate4 = new DateTime(2024, 10, 21);
-			DateTime expirationDate5 = new DateTime(2025, 02, 02);
-			DateTime expirationDate6 = new DateTime(2025, 12, 30);
-			DateTime expirationDate7 = new DateTime(2024, 04, 26);
-			DateTime expirationDate8 = new DateTime(2024, 09, 27);
+			RoastedNuts = new Product
+			{
+				Id = 13,
+				Name = "Nuts Rois Premium Mix Roasted",
+				Description = "Nuts Rois Premium Mix Roasted",
+				Quantity = 0.150,
+				Price = 7.99M,
+				Discount = 12,
+				ExpirationDate = new DateTime(2024, 09, 13),
+				ImageUrl = "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQEVfKkNqwuq73bx1IDhsJldNqSlb0vOMSvzsNqj6y_NQi6s3Ro",
+				Origin ="Bulgaria",
+				SubCategoryId = 8
+			};
+
+			SmoothieMix = new Product
+			{
+				Id = 12,
+				Name = "Mix Magre Green Energy for Smoothie Frozen",
+				Description = "Mix Magre Green Energy for Smoothie Frozen 400 g",
+				Quantity = 0.4,
+				Price = 4.99M,
+				Discount = 15,
+				ExpirationDate = new DateTime(2026, 02, 01),
+				ImageUrl = "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRQiXgr6jKo3FyZ9d3K9oJil1gaQvC7ocdKpO79C1vdLE1UQzjT",
+				Origin = "EU",
+				SubCategoryId = 4
+			};
+
+			BluberiesFrozen = new Product
+			{
+				Id = 11,
+				Name = "Blueberries Pinguin",
+				Description = "Ingredients: Blueberries 100%",
+				Quantity = 1,
+				Price = 19.99M,
+				ExpirationDate = new DateTime(2026, 09, 26),
+				ImageUrl = "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTmge-RhucLiDFCDVFhnUyopGD6zMyhAhJx-Bmf4AmEdJXtYiB-",
+				Origin = "Belgium",
+				SubCategoryId = 4
+			};
 
 			CheeseMadzharov = new Product()
 			{
@@ -170,7 +213,7 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
 				Description = "\"Dimitar Madjarov\" cheeses are traditional Bulgarian products, produced from 100% cow, sheep, goat and buffalo milk and Bulgarian sourdough, with a characteristic pale yellow color, well-expressed aroma and mild taste.",
 				Quantity = 0.380,
 				Price = 12.99M,
-				ExpirationDate = expirationDate1,
+				ExpirationDate = new DateTime(2024, 08, 29),
 				ImageUrl = "https://cdncloudcart.com/16398/products/images/39837/kaskaval-ot-krave-mlako-madzarov-bds-420-g-image_5ea2d3e81638e_1280x1280.png?1587732297",
 				Origin = "Bulgaria",
 				SubCategoryId = 3
@@ -183,7 +226,7 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
 				Description = "Ingredients: 60% Robusta and 40% Arabica; Intensity: 8/10",
 				Quantity = 1,
 				Price = 30.99M,
-				ExpirationDate = expirationDate2,
+				ExpirationDate = new DateTime(2025, 08, 30),
 				ImageUrl = "https://i0.wp.com/avanti-bg.com/wp-content/uploads/2020/09/%D0%9A%D0%90%D0%A4%D0%95-%D0%9B%D0%90%D0%92%D0%90%D0%A6%D0%90-%D0%9A%D0%A0%D0%95%D0%9C%D0%90-%D0%90%D0%A0%D0%9E%D0%9C%D0%90-1%D0%9A%D0%93.jpg?fit=1500%2C1500&ssl=1",
 				Origin = "Poland",
 				SubCategoryId = 5
@@ -196,7 +239,7 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
 				Description = "In the development of our recipe, we were inspired by a unique taste profile born back 800 years ago in the small Cheddar village in the UK. Right there, in the caves, close to nature, an exclusive taste palette was born – rich, mellow and slightly salty. It conquered the world.",
 				Quantity = 0.06,
 				Price = 1.99M,
-				ExpirationDate = expirationDate3,
+				ExpirationDate = new DateTime(2025, 02, 08),
 				Discount = 15,
 				ImageUrl = "https://m.ebag.bg/en/products/images/133238/800",
 				Origin = "Bulgaria",
@@ -210,7 +253,7 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
 				Description = "Prepare it with natural fresh whole milk and without taking away any ingredients. The cheese thus acquires a specific taste. The traditional Bulgarian cultures of Lactobacilus bulgaricus and Streptococcus thermophilus are used for the starter, and this also adds probiotic properties. The cheese contains huge amounts of protein, also the very useful fatty acids that are characteristic of the milk of the pasture cows.",
 				Quantity = 0.4,
 				Price = 12.99M,
-				ExpirationDate = expirationDate4,
+				ExpirationDate = new DateTime(2024, 10, 21),
 				ImageUrl = "https://production.balevbiomarket-contents.com/p/020022/sirene-ot-krave-mlqko-zoom.jpeg",
 				Origin = "Bulgaria",
 				SubCategoryId = 3
@@ -224,7 +267,7 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
 				Quantity = 0.07,
 				Price = 1.49M,
 				Discount = 5,
-				ExpirationDate = expirationDate5,
+				ExpirationDate = new DateTime(2025, 02, 02),
 				ImageUrl = "https://www.superbagplovdiv.bg/media/99/27815.png",
 				Origin = "Bulgaria",
 				SubCategoryId = 7
@@ -250,7 +293,7 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
 				Quantity = 0.095,
 				Price = 8.99M,
 				Discount = 10,
-				ExpirationDate = expirationDate6,
+				ExpirationDate = new DateTime(2025, 12, 30),
 				ImageUrl = "https://www.nescafe.com/bg/sites/default/files/2023-08/11_3.png",
 				Origin = "France",
 				SubCategoryId = 5
@@ -263,10 +306,10 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
 				Description = "Chicken Roso Chilled about 1.700 kg. The price for one piece.",
 				Quantity = 1.7,
 				Price = 21.80M,
-				ExpirationDate = expirationDate7,
+				ExpirationDate = new DateTime(2024, 04, 26),
 				ImageUrl = "https://m.ebag.bg/en/products/images/85639/800",
 				Origin = "Bulgaria",
-				SubCategoryId = 4
+				SubCategoryId = 6
 			};
 
 			SticksScala = new Product()
@@ -276,7 +319,7 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
 				Description = "Hand-made chickens with a balanced, natural taste that brings the authentic taste of home-made brine! Each ingredient is precisely chosen, paying special attention to quality and usefulness!",
 				Quantity = 0.1,
 				Price = 3.49M,
-				ExpirationDate = expirationDate8,
+				ExpirationDate = new DateTime(2024, 09, 27),
 				ImageUrl = "https://m.ebag.bg/en/products/images/111780/800",
 				Origin = "Bulgaria",
 				SubCategoryId = 7

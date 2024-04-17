@@ -27,7 +27,10 @@ namespace OnlineGroceryHub.Infrastructure.Data.SeedDb
                 data.ChickenRoso,
                 data.CoffeeNescafe,
                 data.CucumbersGr,
-                data.SticksScala
+                data.SticksScala,
+                data.RoastedNuts,
+                data.BluberiesFrozen,
+                data.SmoothieMix,
             });
         }
     }

@@ -4,7 +4,6 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-OnlineGroceryHub-578b7efe-d0bb-4d59-9b5d-78199cf89395</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
