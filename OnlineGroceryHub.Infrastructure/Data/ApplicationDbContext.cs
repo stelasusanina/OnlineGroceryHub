@@ -39,9 +39,6 @@ namespace OnlineGroceryHub.Data
 			builder.ApplyConfiguration(new ArticleConfiguration());
 			builder.ApplyConfiguration(new CommentConfiguration());
 			builder.ApplyConfiguration(new ArticleCommentConfiguration());
-			//builder.ApplyConfiguration(new ApplicationUserConfiguration());
-			//builder.ApplyConfiguration(new WishlistConfiguration());
-			//builder.ApplyConfiguration(new ShoppingcartConfiguration());
 
 			builder.Entity<Product>()
 				.Property(p => p.Price)

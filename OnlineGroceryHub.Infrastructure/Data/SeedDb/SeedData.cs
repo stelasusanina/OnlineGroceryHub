@@ -53,48 +53,6 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
 			SeedArticles();
 			SeedComments();
 			SeedArticleComments();
-			//SeedUsers();
-			//SeedWishlist();
-			//SeedShoppingcart();
-		}
-
-		private void SeedWishlist()
-		{
-			UserWishlist = new Wishlist() 
-			{ 
-				Id = "00359143-b644-4d40-ad75-b35df9341f0b",
-				ApplicationUserId = "00359143-b644-4d40-ad75-b35df9341f0b" 
-			};
-		}
-
-		private void SeedShoppingcart()
-		{
-			UserShoppingcart = new Shoppingcart() 
-			{ 
-				Id = "00359143-b644-4d40-ad75-b35df9341f0b",
-				ApplicationUserId = "00359143-b644-4d40-ad75-b35df9341f0b" 
-			};
-		}
-
-		private void SeedUsers()
-		{
-			User = new ApplicationUser()
-			{
-				Id = "00359143-b644-4d40-ad75-b35df9341f0b",
-				FirstName = "Stela",
-				LastName = "Susanina",
-				Email = "stela1234@abv.bg",
-				UserName = "stela1234@abv.bg",
-			};
-
-			Admin = new ApplicationUser()
-			{
-				Id = "9a2f0ce7-97a9-4806-a706-5e239efd4dd2",
-				FirstName = "Admin",
-				LastName = "Admin",
-				Email = "admin@admin.com",
-				UserName = "admin@admin.com",
-			};
 		}
 
 		private void SeedCategories()
