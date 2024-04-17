@@ -39,7 +39,7 @@
 			<div class="col-md-4">
 				<div class="form-group">
 					<label class="sort-label" asp-for="Sorting">Sort by: </label>
-					<select name="sorting" class="form-control" onchange="this.form.submit()">
+					<select name="sorting" class="form-control sort mt-0" onchange="this.form.submit()">
 						@if (Model.Sorting.ToString() == "AscendingByName")
 						{
 							<option value="AscendingByName" selected>A-Z</option>

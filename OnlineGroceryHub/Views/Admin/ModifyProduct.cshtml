@@ -1,8 +1,8 @@
 ﻿@model ProductFormModel
 
-<div class="row">
+<div class="container mt-3 mb-5">
     <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
-        <form method="post" asp-action="ModifyProduct" asp-controller="Admin">
+        <form method="post">
             @Html.AntiForgeryToken()
             <div class="form-group">
                 <label asp-for="Name"></label>
@@ -11,7 +11,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Quantity"></label>
-                <input asp-for="Quantity" class="form-control" placeholder="Enter quantity...">
+                <input asp-for="Quantity" class="form-control" type="number" step="0.001" min="0.001" max="3" placeholder="Enter quantity...">
                 <span asp-validation-for="Quantity" class="small text-danger"></span>
             </div>
             <div class="form-group">
@@ -26,12 +26,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Price"></label>
-                <input asp-for="Price" class="form-control" placeholder="Enter price...">
+                <input asp-for="Price" class="form-control" placeholder="Enter price..." type="number" step="0.1" min="0.1" max="100">
                 <span asp-validation-for="Price" class="small text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Discount"></label>
-                <input asp-for="Discount" class="form-control" placeholder="Enter discount...">
+                <input asp-for="Discount" min="0" class="form-control" placeholder="Enter discount...">
                 <span asp-validation-for="Discount" class="small text-danger"></span>
             </div>
             <div class="form-group">
