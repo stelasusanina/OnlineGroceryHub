@@ -31,18 +31,13 @@ namespace OnlineGroceryHub.Controllers
 				return BadRequest();
 			}
 
-			var products = await shoppingcartService.GetAllFromShoppingcart(user.Id, user.Id);
+			var viewModel = await shoppingcartService.GetAllFromShoppingcart(user.Id, user.Id);
+			viewModel.ApplicationUser = user;
 
-			if(products == null)
+			if(viewModel.Products == null)
 			{
 				return BadRequest();
 			}
-
-			var viewModel = new ShoppingcartViewModel
-			{
-				ApplicationUser = user,
-				Products = products
-			};
 
 			return View(viewModel);
 		}
@@ -60,7 +55,7 @@ namespace OnlineGroceryHub.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Remove(int productId, string shoppingcartId)
+		public async Task<IActionResult> RemoveFromShoppingcart(int productId, string shoppingcartId)
 		{
 			await shoppingcartService.RemoveFromShoppingcart(productId, shoppingcartId);
 
