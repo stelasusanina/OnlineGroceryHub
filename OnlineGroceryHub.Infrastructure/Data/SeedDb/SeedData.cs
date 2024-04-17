@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using OnlineGroceryHub.Infrastructure.Data.Models;
 using OnlineGroceryHub.Models;
 using System;
+using static System.Net.WebRequestMethods;
 
 namespace OnlineGroceryHub.Infrastructure.SeedDb
 {
@@ -174,7 +175,7 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
 				Price = 7.99M,
 				Discount = 12,
 				ExpirationDate = new DateTime(2024, 09, 13),
-				ImageUrl = "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQEVfKkNqwuq73bx1IDhsJldNqSlb0vOMSvzsNqj6y_NQi6s3Ro",
+				ImageUrl = "https://cdncloudcart.com/16372/products/images/74170/rois-premium-mix-adki-miks-150-g-image_63bc1eb232b77_1920x1920.jpeg?1673273025",
 				Origin ="Bulgaria",
 				SubCategoryId = 8
 			};
@@ -188,7 +189,7 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
 				Price = 4.99M,
 				Discount = 15,
 				ExpirationDate = new DateTime(2026, 02, 01),
-				ImageUrl = "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRQiXgr6jKo3FyZ9d3K9oJil1gaQvC7ocdKpO79C1vdLE1UQzjT",
+				ImageUrl = "https://m.ebag.bg/en/products/images/88241/800",
 				Origin = "EU",
 				SubCategoryId = 4
 			};
@@ -201,7 +202,7 @@ namespace OnlineGroceryHub.Infrastructure.SeedDb
 				Quantity = 1,
 				Price = 19.99M,
 				ExpirationDate = new DateTime(2026, 09, 26),
-				ImageUrl = "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTmge-RhucLiDFCDVFhnUyopGD6zMyhAhJx-Bmf4AmEdJXtYiB-",
+				ImageUrl = "https://m.ebag.bg/products/images/119203/800",
 				Origin = "Belgium",
 				SubCategoryId = 4
 			};
