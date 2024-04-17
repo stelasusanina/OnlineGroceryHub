@@ -61,7 +61,7 @@ namespace OnlineGroceryHub.Controllers
 
 			if (!ModelState.IsValid)
 			{
-				return BadRequest();
+				return View(articleFormModel);
 			}
 
 			await adminService.ModifyArticle(id, articleFormModel.Title, articleFormModel.ImageUrl, articleFormModel.Content);
@@ -103,9 +103,13 @@ namespace OnlineGroceryHub.Controllers
                 return Unauthorized();
             }
 
-            if (!ModelState.IsValid)
+			var subCategories = await adminService.GetAllSubCategories();
+
+			if (!ModelState.IsValid)
             {
-                return BadRequest();
+                productFormModel.SubCategories = await adminService.GetAllSubCategories();
+
+                return View(productFormModel);
             }
 
             await adminService.ModifyProduct(id, productFormModel.Name, productFormModel.Quantity, productFormModel.Price,
