@@ -302,10 +302,6 @@ button#update-profile-button, button.w-100.btn.btn-lg.btn-primary {
     content: "Hide Products";
 }
 
-table tbody tr td:first-child {
-    width: 55%;
-}
-
 .border.border-dark{
     text-align: center;
 }
@@ -340,4 +336,8 @@ table tbody tr td:first-child {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+
+.about{
+    text-align:justify;
 }

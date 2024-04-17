@@ -18,6 +18,7 @@ namespace OnlineGroceryHub.Infrastructure.Constants
         {
             public const int NameMaxLength = 150;
             public const int NameMinLength = 10;
+
             public const int DescriptionMinLength = 10;
 			public const int DescriptionMaxLength = 500;
         }
@@ -32,6 +33,7 @@ namespace OnlineGroceryHub.Infrastructure.Constants
         {
             public const int TitleMaxLength = 150;
             public const int TitleMinLength = 10;
+
             public const int ContentMinLength = 200;
         }
 
@@ -45,6 +47,30 @@ namespace OnlineGroceryHub.Infrastructure.Constants
         {
             public const int FirstNameMaxLength = 100;
 			public const int LastNameMaxLength = 100;
+		}
+
+        public static class CheckoutFormConsts
+        {
+			public const int FirstNameMaxLength = 50;
+            public const int FirstNameMinLength = 2;
+
+			public const int LastNameMaxLength = 50;
+			public const int LastNameMinLength = 1;
+
+            public const int StreetAddressMaxLength = 200;
+            public const int StreetAddressMinLength = 5;
+
+            public const int CityMaxLength = 50;
+            public const int CityMinLength = 3;
+
+            public const int PostCodeMaxLength = 4;
+            public const int PostCodeMinLength = 4;
+
+			public const int PhoneCodeMaxLength = 10;
+			public const int PhoneCodeMinLength = 10;
+
+            public const int EmailMinLength = 10;
+            public const int EmailMaxLength = 150;
 		}
 	}
 }
