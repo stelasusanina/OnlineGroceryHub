@@ -55,14 +55,14 @@ a.nav-link.text-dark {
     margin-top: 10px;
 }
 
-.row.justify-content-sm-evenly, input.form-control.form-control-sm.mr-sm-2, button.btn.btn-primary, a.btn.btn-primary, select.form-control, .filter-content.ml-4.mr-4 {
+.row.justify-content-sm-evenly, input.form-control.form-control-sm.mr-sm-2, button.btn.btn-primary, a.btn.btn-primary, select.form-control.sort, .filter-content.ml-4.mr-4 {
     font-size: 11px;
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
 
-.row.justify-content-center, input.form-control.form-control-sm.mr-sm-2, select.form-control, .filter-content.ml-4.mr-4 {
+.row.justify-content-center, input.form-control.form-control-sm.mr-sm-2, select.form-control.sort, .filter-content.ml-4.mr-4 {
     color: black;
 }
 
@@ -269,39 +269,6 @@ button#update-profile-button, button.w-100.btn.btn-lg.btn-primary {
     margin-bottom: 70px;
 }
 
-.someText {
-    height: 0px;
-    overflow: hidden;
-    display: block;
-}
-
-.theButton {
-    background: #444;
-    color: #fff;
-    padding: 10px;
-    display: block;
-    margin: 10px auto;
-    text-align: center;
-    cursor: pointer;
-    position: relative;
-}
-
-#showProducts:checked + .someText {
-    height: auto;
-}
-
-.theButton:after {
-    content: "Show Products";
-}
-
-#showProducts:checked + .someText {
-    height: 100%;
-}
-
-#showProducts:checked ~ .theButton:after {
-    content: "Hide Products";
-}
-
 .border.border-dark{
     text-align: center;
 }
@@ -340,4 +307,19 @@ button#update-profile-button, button.w-100.btn.btn-lg.btn-primary {
 
 .about{
     text-align:justify;
+}
+
+.order{
+    border:1px solid black;
+}
+
+table.order {
+    margin-bottom: 20px;
+    width: 80%;
+    color: black;
+}
+
+.order-amount {
+    width: 8%;
+    text-align: center;
 }

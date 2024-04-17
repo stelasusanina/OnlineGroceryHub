@@ -5,89 +5,35 @@
     ViewData["ActivePage"] = ManageNavPages.Orders;
 }
 
-<style>
-    .someText {
-        height: 0;
-        overflow: hidden;
-        display: block;
-    }
+@if (User.IsInRole("User"))
+{
+    <h3 class="orders">@ViewData["Title"]</h3>
 
-    .theButton {
-        background: #444;
-        color: #fff;
-        padding: 10px;
-        display: block;
-        margin: 10px auto;
-        text-align: center;
-        cursor: pointer;
-        position: relative;
-    }
-
-        .theButton:after {
-            content: "Show Products";
+    @if (Model.Orders != null && Model.Orders.Any())
+    {
+        @foreach (var orderGroup in Model.Orders.GroupBy(o => o.Id))
+        {
+            var order = orderGroup.First();
+            <table class="order">
+                <thead class="order">
+                    <tr class="order">
+                        <th class="order" colspan="2">Order ID: @order.Id</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var productOrder in order.ProductsOrders)
+                    {
+                        <tr class="order">
+                            <td class="order">@productOrder.Product.Name</td>
+                            <td class="order-amount">@productOrder.Amount</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         }
-
-    #showProducts:checked + .someText {
-        height: auto;
     }
-
-    #showProducts:checked ~ .theButton:after {
-        content: "Hide Products";
+    else
+    {
+        <p>No orders found.</p>
     }
-
-    .border {
-        border: 1px solid black;
-    }
-
-    .border-dark {
-        text-align: center;
-    }
-</style>
-
-<h3 class="orders">@ViewData["Title"]</h3>
-
-@if (Model.Orders != null && Model.Orders.Any())
-{
-    <table>
-        <tbody>
-            @foreach (var orderGroup in Model.Orders.GroupBy(o => o.Id))
-            {
-                <tr>
-                    <td>@orderGroup.Key</td>
-                    <td>
-                        <input type="checkbox" id="showProducts" hidden />
-                        <div class="someText">
-                            <div class="products">
-                                <table class="border border-dark">
-                                    <thead class="border border-dark">
-                                        <tr class="border border-dark">
-                                            <th class="border border-dark">Product Name</th>
-                                            <th class="border border-dark">Quantity</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="border border-dark">
-                                        @foreach (var order in orderGroup)
-                                        {
-                                            foreach (var productOrder in order.ProductsOrders)
-                                            {
-                                                <tr class="border border-dark">
-                                                    <td class="border border-dark">@productOrder.Product.Name</td>
-                                                    <td class="border border-dark">@productOrder.Amount</td>
-                                                </tr>
-                                            }
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <label class="theButton" for="showProducts"></label>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <p>No orders found.</p>
 }
