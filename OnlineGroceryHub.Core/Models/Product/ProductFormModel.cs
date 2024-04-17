@@ -30,15 +30,18 @@ namespace OnlineGroceryHub.Core.Models.Product
 
 		public int? Discount { get; set; }
 
+		[Display(Name = "Expiration Date")]
 		public DateTime? ExpirationDate { get; set; }
 
 		[Required]
+		[Display(Name = "Image URL")]
 		public string ImageUrl { get; set; } = null!;
 
 		public string? Origin { get; set; }
 
 		[Required]
-		public int SubCategoryId { get; set; }
+        [Display(Name = "Subcategory")]
+        public int SubCategoryId { get; set; }
 
 		public IEnumerable<ProductSubCategoryViewModel> SubCategories { get; set; } 
 			= new List<ProductSubCategoryViewModel>();

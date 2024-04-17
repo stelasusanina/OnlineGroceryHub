@@ -13,10 +13,12 @@ namespace OnlineGroceryHub.Core.Models.Blog
 	public class ArticleFormModel
 	{
 		[Required]
-		[StringLength(TitleMaxLength, MinimumLength = TitleMinLength)]
+		[StringLength(TitleMaxLength, MinimumLength = TitleMinLength,
+			ErrorMessage = "The field {0} must be between {2} and {1} characters long.")]
 		public string Title { get; set; } = null!;
 
 		[Required]
+		[Display(Name= "Image URL")]
 		public string ImageUrl { get; set; } = null!;
 
 		[Required]
